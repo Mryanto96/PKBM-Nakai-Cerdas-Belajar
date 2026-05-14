@@ -1,0 +1,662 @@
+﻿<!-- PKBM Nakai Cerdas Belajar - KONTAK -->
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description"
+        content="Hubungi PKBM Nakai Cerdas Belajar - Pusat Kegiatan Belajar Masyarakat di Distrik Pulau Tiga, Kabupaten Asmat, Papua Selatan. Kirim pesan, pengaduan, atau masukan untuk kemajuan pendidikan.">
+    <meta name="keywords"
+        content="Kontak PKBM, Pengaduan PKBM, Asmat, Papua Selatan, Pendidikan Kesetaraan, Paket A, Paket B, Paket C">
+    <title>Kontak & Pengaduan | PKBM Nakai Cerdas Belajar - Asmat</title>
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap 5 CSS + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Leaflet CSS (untuk peta) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #ffffff;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Contact card styling */
+        .contact-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: #1D4ED8;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: #EFF6FF;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-icon i {
+            font-size: 28px;
+            color: #1D4ED8;
+        }
+
+        /* Form styling */
+        .form-control-custom,
+        .form-select-custom {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .form-control-custom:focus,
+        .form-select-custom:focus,
+        .form-textarea-custom:focus {
+            outline: none;
+            border-color: #1D4ED8;
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+        }
+
+        .form-textarea-custom {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s;
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1e293b;
+            display: block;
+        }
+
+        .required:after {
+            content: " *";
+            color: #ef4444;
+        }
+
+        /* Map container */
+        #map {
+            height: 300px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            #map {
+                height: 350px;
+            }
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 1rem 0;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .faq-question:hover {
+            color: #1D4ED8;
+        }
+
+        .faq-answer {
+            padding-bottom: 1rem;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Pengaduan card */
+        .pengaduan-card {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+            border-left: 4px solid #F59E0B;
+        }
+
+        /* Office hours */
+        .office-hours li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .office-hours li:last-child {
+            border-bottom: none;
+        }
+
+        /* Scroll buttons */
+        .scroll-btn {
+            position: fixed;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            background-color: #1D4ED8;
+            color: white;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-btn:hover {
+            background-color: #F59E0B;
+            transform: scale(1.05);
+        }
+
+        .scroll-up {
+            bottom: 80px;
+        }
+
+        .scroll-down {
+            bottom: 30px;
+        }
+
+        .scroll-btn i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-btn {
+                width: 34px;
+                height: 34px;
+                right: 15px;
+            }
+
+            .scroll-up {
+                bottom: 70px;
+            }
+
+            .scroll-down {
+                bottom: 25px;
+            }
+
+            .scroll-btn i {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-2 md:py-3">
+                <a href="../index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
+                    <img src="../images/logo/Logo1.png" alt="Logo PKBM Nakai"
+                        class="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain"
+                        onerror="this.src='https://placehold.co/200x60/1D4ED8/white?text=Logo'">
+                    <div class="flex flex-col">
+                        <span class="text-xs sm:text-sm md:text-base font-semibold text-blue-800 leading-tight">NAKAI
+                            CERDAS</span>
+                        <span class="text-xs sm:text-sm md:text-base font-semibold text-blue-600 leading-tight">B E L A
+                            J A R</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex space-x-6 lg:space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2">Beranda</a>
+                    <a href="visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2">Visi & Misi</a>
+                    <a href="program.html" class="text-gray-600 hover:text-blue-700 py-2">Program</a>
+                    <a href="pendaftaran.html" class="text-gray-600 hover:text-blue-700 py-2">Pendaftaran</a>
+                    <a href="data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2">Data Peserta</a>
+                    <a href="struktur.html" class="text-gray-600 hover:text-blue-700 py-2">Struktur</a>
+                    <a href="laporan.html" class="text-gray-600 hover:text-blue-700 py-2">LPJ</a>
+                    <!-- <a href="blog/index.html" class="text-gray-600 hover:text-blue-700 py-2">Blog</a> -->
+                    <a href="galeri.html" class="text-gray-600 hover:text-blue-700 py-2">Galeri</a>
+                    <a href="kontak.html" class="text-blue-700 border-b-2 border-blue-700 font-semibold py-2">Kontak</a>
+                </div>
+
+                <button id="mobileMenuButton" class="md:hidden text-gray-600 focus:outline-none">
+                    <i class="bi bi-list text-3xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4">
+            <div class="flex flex-col space-y-3">
+                <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Beranda</a>
+                <a href="visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Visi & Misi</a>
+                <a href="program.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Program</a>
+                <a href="pendaftaran.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Pendaftaran</a>
+                <a href="data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Data Peserta</a>
+                <a href="struktur.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Struktur</a>
+                <a href="laporan.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">LPJ</a>
+                <!-- <a href="blog/index.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Blog</a> -->
+                <a href="galeri.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Galeri</a>
+                <a href="kontak.html"
+                    class="text-blue-700 font-semibold py-2 border-l-4 border-blue-700 pl-3">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION (Gambar) ==================== -->
+    <section class="relative w-full bg-white">
+        <img src="../images/hero/Kontak.png" alt="PKBM Nakai Cerdas Belajar" class="w-full h-auto block">
+    </section>
+
+    <!-- ==================== INFO KONTAK (CARD) ==================== -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Informasi Kontak</h2>
+                <div class="w-20 h-1 bg-yellow-500 mx-auto mt-3 rounded-full"></div>
+                <p class="text-gray-600 mt-3">Hubungi kami melalui berbagai saluran berikut</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Alamat -->
+                <div class="contact-card bg-white rounded-xl p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-icon mx-auto"><i class="bi bi-geo-alt-fill"></i></div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Alamat Kami</h3>
+                    <p class="text-gray-600 text-sm">Kampung Nakai, Distrik Pulau Tiga<br>Kabupaten Asmat, Provinsi
+                        Papua Selatan<br>Kode Pos: 99777</p>
+                    <a href="https://maps.google.com/?q=Kampung+Nakai+Pulau+Tiga+Asmat" target="_blank"
+                        class="inline-block mt-3 text-blue-700 text-sm font-semibold"><i class="bi bi-map"></i> Lihat di
+                        Google Maps</a>
+                </div>
+
+                <!-- WhatsApp -->
+                <div class="contact-card bg-white rounded-xl p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-icon mx-auto" style="background: #E8F5E9;">
+                        <i class="bi bi-whatsapp" style="color: #25D366;"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">WhatsApp</h3>
+                    <p class="text-gray-600 text-sm">+62822-5473-0476</p>
+                    <a href="https://wa.me/6282254730476?text=Hai%20PKBM%20Nakai%20%F0%9F%8C%9E%0A%0ASaya%20ingin%20bertanya%20tentang%3A%0A1.%20%0A2.%20%0A%0ATerima%20kasih"
+                        target="_blank"
+                        class="inline-block mt-3 bg-green-600 hover:bg-green-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition">
+                        <i class="bi bi-chat-dots"></i> Chat Sekarang
+                    </a>
+                </div>
+
+                <!-- Email -->
+                <div class="contact-card bg-white rounded-xl p-6 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="contact-icon mx-auto" style="background: #FCE4EC;"><i class="bi bi-envelope-fill"
+                            style="color: #E91E63;"></i></div>
+                    <h3 class="font-bold text-lg text-gray-800 mb-2">Email</h3>
+                    <p class="text-gray-600 text-sm">pkbm.nakai@gmail.com</p>
+                    <a href="mailto:pkbm.nakai@gmail.com"
+                        class="inline-block mt-3 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition"><i
+                            class="bi bi-envelope-paper"></i> Kirim Email</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FORM KONTAK & PENGADUAN ==================== -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Form Kirim Pesan -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 border" data-aos="fade-right">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="bi bi-envelope-paper-fill text-2xl text-blue-700"></i>
+                        <h3 class="text-xl font-bold text-gray-800">Kirim Pesan & Pengaduan</h3>
+                    </div>
+
+                    <form id="contactForm">
+                        <div class="mb-4"><label class="form-label required">Nama Lengkap</label><input type="text"
+                                id="contactNama" class="form-control-custom" placeholder="Contoh: Yulianus Kolem"
+                                required></div>
+                        <div class="mb-4"><label class="form-label required">Email</label><input type="email"
+                                id="contactEmail" class="form-control-custom" placeholder="email@contoh.com" required>
+                        </div>
+                        <div class="mb-4"><label class="form-label">Nomor HP/WA (opsional)</label><input type="tel"
+                                id="contactHp" class="form-control-custom" placeholder="081234567890"></div>
+                        <div class="mb-4"><label class="form-label required">Jenis Pesan</label>
+                            <select id="contactJenis" class="form-select-custom" required>
+                                <option value="">Pilih jenis pesan</option>
+                                <option value="Pertanyaan">📋 Pertanyaan Umum</option>
+                                <option value="Pengaduan">⚠️ Pengaduan / Keluhan</option>
+                                <option value="Masukan">💡 Masukan / Saran</option>
+                                <option value="Kerjasama">🤝 Kerjasama / Donasi</option>
+                                <option value="Lainnya">📝 Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="mb-4"><label class="form-label required">Pesan / Pengaduan</label><textarea
+                                id="contactPesan" rows="5" class="form-textarea-custom"
+                                placeholder="Tulis pesan atau pengaduan Anda dengan jelas..." required></textarea></div>
+                        <div class="mb-4"><label class="flex items-center gap-3 cursor-pointer"><input type="checkbox"
+                                    id="contactAnonim" class="w-4 h-4"><span class="text-sm text-gray-600">Kirim sebagai
+                                    anonim (nama tidak dipublikasikan)</span></label></div>
+                        <button type="submit"
+                            class="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 rounded-xl transition"><i
+                                class="bi bi-send-fill mr-2"></i> Kirim Pesan</button>
+                    </form>
+                    <div class="mt-4 text-center">
+                        <p class="text-xs text-gray-500"><i class="bi bi-shield-lock"></i> Data Anda aman. Pengaduan
+                            serius akan ditindaklanjuti maksimal 3x24 jam.</p>
+                    </div>
+                </div>
+
+                <!-- Info Penting & Transparansi -->
+                <div class="space-y-6" data-aos="fade-left">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border">
+                        <div class="flex items-center gap-3 mb-4"><i
+                                class="bi bi-clock-history text-2xl text-blue-700"></i>
+                            <h3 class="text-lg font-bold text-gray-800">Jam Operasional</h3>
+                        </div>
+                        <ul class="office-hours">
+                            <li class="flex justify-between"><span>Senin - Jumat</span><span class="font-semibold">08.00
+                                    - 15.00 WIT</span></li>
+                            <li class="flex justify-between"><span>Sabtu</span><span class="font-semibold">08.00 - 12.00
+                                    WIT</span></li>
+                            <li class="flex justify-between"><span>Minggu & Hari Besar</span><span
+                                    class="font-semibold">Libur</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="pengaduan-card rounded-2xl p-6">
+                        <div class="flex items-center gap-3 mb-4"><i
+                                class="bi bi-building text-2xl text-orange-600"></i>
+                            <h3 class="text-lg font-bold text-gray-800">Pengaduan ke Dinas Pendidikan</h3>
+                        </div>
+                        <p class="text-gray-700 text-sm mb-3">Jika Anda ingin menyampaikan pengaduan langsung ke Dinas
+                            Pendidikan Kabupaten Asmat:</p>
+                        <ul class="space-y-2 text-sm">
+                            <li><i class="bi bi-telephone-fill text-blue-600 mr-2"></i> Dinas Pendidikan Asmat: (0290)
+                                123456</li>
+                            <li><i class="bi bi-envelope-fill text-red-600 mr-2"></i> Email: disdik@asmatkab.go.id</li>
+                            <li><i class="bi bi-geo-alt-fill text-green-600 mr-2"></i> Jl. Pendidikan No. 1, Agats,
+                                Asmat</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border">
+                        <div class="flex items-center gap-3 mb-4"><i
+                                class="bi bi-share-fill text-2xl text-blue-700"></i>
+                            <h3 class="text-lg font-bold text-gray-800">Ikuti Kami</h3>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#"
+                                class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition"><i
+                                    class="bi bi-facebook"></i></a>
+                            <a href="#"
+                                class="w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition"><i
+                                    class="bi bi-twitter-x"></i></a>
+                            <a href="#"
+                                class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition"><i
+                                    class="bi bi-instagram"></i></a>
+                            <a href="#"
+                                class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white text-xl hover:scale-110 transition"><i
+                                    class="bi bi-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PETA LOKASI ==================== -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Lokasi Kami</h2>
+                <div class="w-20 h-1 bg-yellow-500 mx-auto mt-3 rounded-full"></div>
+                <p class="text-gray-600 mt-3">Kampung Nakai, Distrik Pulau Tiga, Kabupaten Asmat</p>
+            </div>
+            <div class="rounded-2xl overflow-hidden shadow-lg" data-aos="fade-up">
+                <div id="map"></div>
+            </div>
+            <div class="text-center mt-4">
+                <p class="text-xs text-gray-500"><i class="bi bi-info-circle"></i> Peta menunjukkan lokasi estimasi
+                    Distrik Pulau Tiga. Untuk petunjuk arah yang lebih akurat, silakan hubungi kontak kami.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FAQ ==================== -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Pertanyaan Umum</h2>
+                <div class="w-20 h-1 bg-yellow-500 mx-auto mt-3 rounded-full"></div>
+                <p class="text-gray-600 mt-3">Informasi yang sering ditanyakan seputar PKBM Nakai</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-md p-6 border" data-aos="fade-up">
+                <div class="faq-item">
+                    <button class="faq-question">Apakah benar-benar GRATIS? <i class="bi bi-chevron-down"></i></button>
+                    <div class="faq-answer hidden">Ya, benar-benar GRATIS! Tidak ada biaya pendaftaran, SPP, atau biaya
+                        lainnya. Program ini didukung oleh pemerintah daerah dan donatur.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Bagaimana cara mendaftar? <i class="bi bi-chevron-down"></i></button>
+                    <div class="faq-answer hidden">Anda bisa mendaftar secara online melalui halaman Pendaftaran atau
+                        datang langsung ke PKBM Nakai di Kampung Nakai, Distrik Pulau Tiga.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Apakah ijazah diakui negara? <i
+                            class="bi bi-chevron-down"></i></button>
+                    <div class="faq-answer hidden">Ya, ijazah Paket A, B, dan C setara dengan ijazah SD, SMP, dan SMA
+                        dan diakui oleh Pemerintah Republik Indonesia. Lulusan bisa melanjutkan ke jenjang pendidikan
+                        lebih tinggi.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Berapa lama proses pendaftaran? <i
+                            class="bi bi-chevron-down"></i></button>
+                    <div class="faq-answer hidden">Setelah mengisi formulir online, Anda akan menerima email konfirmasi
+                        dalam waktu maksimal 2x24 jam. Nomor pendaftaran akan diberikan setelah data diverifikasi.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Bagaimana jika ada pengaduan? <i
+                            class="bi bi-chevron-down"></i></button>
+                    <div class="faq-answer hidden">Anda bisa menggunakan form pengaduan di halaman ini. Setiap pengaduan
+                        akan kami tanggapi maksimal 3x24 jam. Untuk pengaduan serius, akan diteruskan ke Dinas
+                        Pendidikan.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CALL CENTER ==================== -->
+    <section class="py-12 bg-gradient-to-r from-blue-900 to-teal-800 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+            <i class="bi bi-telephone-inbound-fill text-4xl text-yellow-400 mb-4 inline-block"></i>
+            <h3 class="text-2xl md:text-3xl font-bold mb-3">Butuh Bantuan Langsung?</h3>
+            <p class="text-lg opacity-90 mb-6 max-w-2xl mx-auto">Hubungi Call Center kami di nomor berikut untuk
+                informasi cepat</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <div class="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3"><i
+                        class="bi bi-whatsapp text-green-400 text-xl"></i><span class="ml-2 font-semibold">+62822-5473-0476</span></div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3"><i
+                        class="bi bi-telephone-fill text-yellow-400 text-xl"></i><span class="ml-2 font-semibold">+62822-5473-0476</span></div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-xl px-6 py-3"><i
+                        class="bi bi-envelope-fill text-red-300 text-xl"></i><span
+                        class="ml-2 font-semibold">pkbm.nakai@gmail.com</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-3">PKBM NAKAI<br>CERDAS BELAJAR</h3>
+                    <p class="text-gray-400 text-sm">Mencerdaskan kehidupan bangsa dari Distrik Pulau Tiga, Asmat, Papua
+                        Selatan.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Halaman</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="../index.html" class="hover:text-white">Beranda</a></li>
+                        <li><a href="visi-misi.html" class="hover:text-white">Visi & Misi</a></li>
+                        <li><a href="program.html" class="hover:text-white">Program</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Lainnya</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="pendaftaran.html" class="hover:text-white">Pendaftaran</a></li>
+                        <li><a href="data-peserta.html" class="hover:text-white">Data Peserta</a></li>
+                        <li><a href="struktur.html" class="hover:text-white">Struktur Organisasi</a></li>
+                        <li><a href="laporan.html" class="hover:text-white">LPJ & Laporan</a></li>
+                        <li><a href="blog/index.html" class="hover:text-white">Blog</a></li>
+                        <li><a href="galeri.html" class="hover:text-white">Galeri</a></li>
+                        <li><a href="kontak.html" class="hover:text-white">Kontak</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Kontak</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="bi bi-geo-alt mr-2"></i> Kampung Nakai, Pulau Tiga</li>
+                        <li><i class="bi bi-whatsapp mr-2"></i> +62822-5473-0476</li>
+                        <li><i class="bi bi-envelope mr-2"></i> pkbm.nakai@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 text-center text-sm text-gray-500">
+                <p>&copy; 2026 PKBM Nakai Cerdas Belajar. Pendidikan Kesetaraan untuk semua warga Asmat.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCROLL BUTTONS ==================== -->
+    <div class="scroll-btn scroll-up" id="scrollUpBtn" title="Scroll ke atas"><i class="bi bi-chevron-up"></i></div>
+    <div class="scroll-btn scroll-down" id="scrollDownBtn" title="Scroll ke bawah"><i class="bi bi-chevron-down"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        AOS.init({ once: true, duration: 800 });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // Scroll buttons
+        const scrollUpBtn = document.getElementById('scrollUpBtn');
+        const scrollDownBtn = document.getElementById('scrollDownBtn');
+
+        function toggleScrollButtons() {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.body.scrollHeight;
+            const seventyPercent = documentHeight * 0.7;
+            const isBelowSeventyPercent = scrollY + windowHeight >= seventyPercent;
+            const isAtBottom = (windowHeight + scrollY) >= documentHeight - 100;
+
+            if (isBelowSeventyPercent) { scrollUpBtn.style.display = 'flex'; scrollDownBtn.style.display = 'flex'; }
+            else { scrollUpBtn.style.display = 'none'; scrollDownBtn.style.display = 'none'; }
+            if (isAtBottom) scrollDownBtn.style.display = 'none';
+            if (scrollY === 0) scrollUpBtn.style.display = 'none';
+        }
+
+        if (scrollUpBtn) scrollUpBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        if (scrollDownBtn) scrollDownBtn.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
+
+        window.addEventListener('scroll', toggleScrollButtons);
+        window.addEventListener('load', toggleScrollButtons);
+        window.addEventListener('resize', toggleScrollButtons);
+
+        // Map initialization
+        const map = L.map('map').setView([-5.3795, 138.4995], 10);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; CartoDB',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        const marker = L.marker([-5.3795, 138.4995]).addTo(map);
+        marker.bindPopup(`<b>PKBM Nakai Cerdas Belajar</b><br>Kampung Nakai, Distrik Pulau Tiga<br>Kabupaten Asmat, Papua Selatan`).openPopup();
+
+        // Contact Form submission
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const nama = document.getElementById('contactNama').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const jenis = document.getElementById('contactJenis').value;
+            const pesan = document.getElementById('contactPesan').value.trim();
+            const isAnonim = document.getElementById('contactAnonim').checked;
+
+            if (!nama || !email || !jenis || !pesan) {
+                Swal.fire({ icon: 'error', title: 'Data Belum Lengkap', text: 'Silakan lengkapi semua data yang diperlukan', confirmButtonColor: '#1D4ED8' });
+                return;
+            }
+            if (!email.includes('@')) {
+                Swal.fire({ icon: 'error', title: 'Email Tidak Valid', text: 'Masukkan alamat email yang benar', confirmButtonColor: '#1D4ED8' });
+                return;
+            }
+
+            Swal.fire({ title: 'Mengirim Pesan...', text: 'Mohon tunggu sebentar', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            setTimeout(() => {
+                Swal.fire({ icon: 'success', title: 'Pesan Terkirim!', html: `Terima kasih ${isAnonim ? 'atas pesannya' : nama}.<br>Kami akan merespon dalam maksimal 3x24 jam.`, confirmButtonColor: '#1D4ED8', confirmButtonText: 'OK' });
+                document.getElementById('contactForm').reset();
+            }, 1500);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('bi-chevron-down');
+                icon.classList.toggle('bi-chevron-up');
+            });
+        });
+    </script>
+</body>
+
+</html>

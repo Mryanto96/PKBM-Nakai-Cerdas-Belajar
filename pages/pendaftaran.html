@@ -1,0 +1,1028 @@
+﻿<!-- PKBM Nakai Cerdas Belajar - PENDAFTARAN -->
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="description"
+    content="Pendaftaran Online PKBM Nakai Cerdas Belajar - Program Paket A (SD), B (SMP), C (SMA) gratis untuk warga Distrik Pulau Tiga, Kabupaten Asmat, Papua Selatan" />
+  <meta name="keywords"
+    content="Pendaftaran PKBM, Paket A, Paket B, Paket C, Asmat, Papua Selatan, Formulir Pendaftaran" />
+  <title>Pendaftaran Online | PKBM Nakai Cerdas Belajar - Asmat</title>
+
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Bootstrap 5 CSS + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+      background-color: #ffffff;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .font-heading {
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* Form styling */
+    .form-container {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .form-control-custom,
+    .form-select-custom {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+
+    .form-control-custom:focus,
+    .form-select-custom:focus {
+      outline: none;
+      border-color: #1d4ed8;
+      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+    }
+
+    .form-label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #1e293b;
+      display: block;
+    }
+
+    .required:after {
+      content: " *";
+      color: #ef4444;
+    }
+
+    .step-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step .step-number {
+      width: 40px;
+      height: 40px;
+      background: #e2e8f0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px;
+      font-weight: bold;
+      color: #64748b;
+      transition: all 0.3s;
+    }
+
+    .step.active .step-number {
+      background: #1d4ed8;
+      color: white;
+      box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.2);
+    }
+
+    .step.completed .step-number {
+      background: #10b981;
+      color: white;
+    }
+
+    .step .step-label {
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+
+    .step.active .step-label {
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+
+    .step:not(:last-child):before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      background: #e2e8f0;
+      z-index: 0;
+    }
+
+    @media (max-width: 768px) {
+      .step .step-label {
+        font-size: 0.6rem;
+      }
+
+      .step-number {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Radio & Checkbox styling */
+    .radio-group {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .radio-option input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    /* Alert/info box */
+    .info-box {
+      background: #eff6ff;
+      border-left: 4px solid #1d4ed8;
+      padding: 1rem;
+      border-radius: 12px;
+    }
+
+    /* Scroll buttons */
+    .scroll-btn {
+      position: fixed;
+      right: 20px;
+      width: 38px;
+      height: 38px;
+      background-color: #1d4ed8;
+      color: white;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 999;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .scroll-btn:hover {
+      background-color: #f59e0b;
+      transform: scale(1.05);
+    }
+
+    .scroll-up {
+      bottom: 80px;
+    }
+
+    .scroll-down {
+      bottom: 30px;
+    }
+
+    .scroll-btn i {
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .scroll-btn {
+        width: 34px;
+        height: 34px;
+        right: 15px;
+      }
+
+      .scroll-up {
+        bottom: 70px;
+      }
+
+      .scroll-down {
+        bottom: 25px;
+      }
+
+      .scroll-btn i {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-2 md:py-3">
+        <a href="../index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
+          <img src="../images/logo/Logo1.png" alt="Logo PKBM Nakai"
+            class="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain" onerror="
+                this.src = 'https://placehold.co/200x60/1D4ED8/white?text=Logo'
+              " />
+          <div class="flex flex-col">
+            <span class="text-xs sm:text-sm md:text-base font-semibold text-blue-800 leading-tight">NAKAI CERDAS</span>
+            <span class="text-xs sm:text-sm md:text-base font-semibold text-blue-600 leading-tight">B E L A J A R</span>
+          </div>
+        </a>
+
+        <div class="hidden md:flex space-x-6 lg:space-x-8">
+          <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2">Beranda</a>
+          <a href="visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2">Visi & Misi</a>
+          <a href="program.html" class="text-gray-600 hover:text-blue-700 py-2">Program</a>
+          <a href="pendaftaran.html" class="text-blue-700 border-b-2 border-blue-700 font-semibold py-2">Pendaftaran</a>
+          <a href="data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2">Data Peserta</a>
+          <a href="struktur.html" class="text-gray-600 hover:text-blue-700 py-2">Struktur</a>
+          <a href="laporan.html" class="text-gray-600 hover:text-blue-700 py-2">LPJ</a>
+          <!-- <a href="blog/index.html" class="text-gray-600 hover:text-blue-700 py-2">Blog</a> -->
+          <a href="galeri.html" class="text-gray-600 hover:text-blue-700 py-2">Galeri</a>
+          <a href="kontak.html" class="text-gray-600 hover:text-blue-700 py-2">Kontak</a>
+        </div>
+
+        <button id="mobileMenuButton" class="md:hidden text-gray-600 focus:outline-none">
+          <i class="bi bi-list text-3xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4">
+      <div class="flex flex-col space-y-3">
+        <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Beranda</a>
+        <a href="visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Visi & Misi</a>
+        <a href="program.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Program</a>
+        <a href="pendaftaran.html"
+          class="text-blue-700 font-semibold py-2 border-l-4 border-blue-700 pl-3">Pendaftaran</a>
+        <a href="data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Data Peserta</a>
+        <a href="struktur.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Struktur</a>
+        <a href="laporan.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">LPJ</a>
+        <!-- <a href="blog/index.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Blog</a> -->
+        <a href="galeri.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Galeri</a>
+        <a href="kontak.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO SECTION (Gambar) ==================== -->
+  <section class="relative w-full bg-white" id="heroSection">
+    <img src="../images/hero/Hero5.png" alt="PKBM Nakai Cerdas Belajar" class="w-full h-auto block" />
+  </section>
+
+  <!-- ==================== FORM PENDAFTARAN ==================== -->
+  <section class="py-12 md:py-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <!-- Info Box -->
+        <div class="info-box mb-6" data-aos="fade-up">
+          <div class="flex items-start gap-3">
+            <i class="bi bi-info-circle-fill text-blue-700 text-xl"></i>
+            <div>
+              <p class="font-semibold text-gray-800">
+                Informasi Penting Pendaftaran
+              </p>
+              <p class="text-sm text-gray-600">
+                Pendaftaran dibuka mulai
+                <strong>12 Mei - 30 Juni 2026</strong>. Semua biaya pendidikan
+                <strong>GRATIS</strong>. Setelah mengisi form, Anda akan
+                menerima email konfirmasi dan nomor pendaftaran.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step Indicator -->
+        <div class="step-indicator" data-aos="fade-up">
+          <div class="step active" id="step1Indicator">
+            <div class="step-number">1</div>
+            <div class="step-label">Data Pribadi</div>
+          </div>
+          <div class="step" id="step2Indicator">
+            <div class="step-number">2</div>
+            <div class="step-label">Program & Pendidikan</div>
+          </div>
+          <div class="step" id="step3Indicator">
+            <div class="step-number">3</div>
+            <div class="step-label">Orang Tua/Wali</div>
+          </div>
+          <div class="step" id="step4Indicator">
+            <div class="step-number">4</div>
+            <div class="step-label">Konfirmasi</div>
+          </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="form-container p-6 md:p-8" data-aos="fade-up" data-aos-delay="100">
+          <form id="registrationForm" method="POST">
+            <!-- STEP 1: Data Pribadi -->
+            <div id="step1" class="form-step">
+              <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+                <i class="bi bi-person-circle text-blue-700 mr-2"></i> Data
+                Pribadi
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="md:col-span-2">
+                  <label class="form-label required">Nama Lengkap</label>
+                  <input type="text" id="namaLengkap" class="form-control-custom" placeholder="Contoh: Yulianus Kolem"
+                    required />
+                </div>
+                <div>
+                  <label class="form-label required">NIK (KTP/KIA)</label>
+                  <input type="text" id="nik" class="form-control-custom" placeholder="16 digit angka" maxlength="16"
+                    pattern="[0-9]{16}" required />
+                </div>
+                <div>
+                  <label class="form-label required">Tempat Lahir</label>
+                  <input type="text" id="tempatLahir" class="form-control-custom" placeholder="Contoh: Nakai"
+                    required />
+                </div>
+                <div>
+                  <label class="form-label required">Tanggal Lahir</label>
+                  <input type="date" id="tanggalLahir" class="form-control-custom" required />
+                </div>
+                <div>
+                  <label class="form-label required">Jenis Kelamin</label>
+                  <div class="radio-group mt-2">
+                    <label class="radio-option"><input type="radio" name="jenisKelamin" value="Laki-laki" required />
+                      Laki-laki</label>
+                    <label class="radio-option"><input type="radio" name="jenisKelamin" value="Perempuan" required />
+                      Perempuan</label>
+                  </div>
+                </div>
+                <div>
+                  <label class="form-label required">Agama</label>
+                  <select id="agama" class="form-select-custom" required>
+                    <option value="">Pilih Agama</option>
+                    <option>Kristen Protestan</option>
+                    <option>Katolik</option>
+                    <option>Islam</option>
+                    <option>Hindu</option>
+                    <option>Buddha</option>
+                    <option>Lainnya</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label required">Status dalam Keluarga</label>
+                  <select id="statusKeluarga" class="form-select-custom" required>
+                    <option value="">Pilih Status</option>
+                    <option>Anak kandung</option>
+                    <option>Anak tiri</option>
+                    <option>Lainnya</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label required">Anak ke-</label>
+                  <input type="number" id="anakKe" class="form-control-custom" placeholder="Contoh: 2" min="1"
+                    required />
+                </div>
+                <div>
+                  <label class="form-label required">Jumlah Bersaudara</label>
+                  <input type="number" id="jumlahBersaudara" class="form-control-custom" placeholder="Contoh: 4" min="0"
+                    required />
+                </div>
+                <div class="md:col-span-2">
+                  <label class="form-label required">Alamat Lengkap</label>
+                  <textarea id="alamat" rows="3" class="form-control-custom"
+                    placeholder="RT/RW, Dusun, Desa/Kelurahan, Kecamatan, Kab/Kota, Provinsi" required></textarea>
+                </div>
+                <div>
+                  <label class="form-label required">Nomor HP/WA</label>
+                  <input type="tel" id="nomorHp" class="form-control-custom" placeholder="Contoh: 081234567890"
+                    required />
+                </div>
+                <div>
+                  <label class="form-label required">Email (untuk konfirmasi)</label>
+                  <input type="email" id="email" class="form-control-custom" placeholder="contoh: email@gmail.com"
+                    required />
+                </div>
+              </div>
+              <div class="flex justify-end mt-8">
+                <button type="button"
+                  class="btn-next bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-xl transition">
+                  Selanjutnya <i class="bi bi-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 2: Program & Pendidikan -->
+            <div id="step2" class="form-step hidden">
+              <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+                <i class="bi bi-book-half text-blue-700 mr-2"></i> Program &
+                Pendidikan Terakhir
+              </h3>
+              <div class="grid grid-cols-1 gap-5">
+                <div>
+                  <label class="form-label required">Pilih Program</label>
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                    <label class="border-2 rounded-xl p-4 cursor-pointer transition hover:border-blue-700 program-card"
+                      data-program="A">
+                      <input type="radio" name="program" value="Paket A (setara SD)" class="hidden program-radio" />
+                      <div class="text-center">
+                        <i class="bi bi-backpack text-3xl text-green-600"></i>
+                        <p class="font-bold mt-2">Paket A</p>
+                        <p class="text-xs text-gray-500">Setara SD</p>
+                      </div>
+                    </label>
+                    <label class="border-2 rounded-xl p-4 cursor-pointer transition hover:border-blue-700 program-card"
+                      data-program="B">
+                      <input type="radio" name="program" value="Paket B (setara SMP)" class="hidden program-radio" />
+                      <div class="text-center">
+                        <i class="bi bi-journal-bookmark-fill text-3xl text-blue-600"></i>
+                        <p class="font-bold mt-2">Paket B</p>
+                        <p class="text-xs text-gray-500">Setara SMP</p>
+                      </div>
+                    </label>
+                    <label class="border-2 rounded-xl p-4 cursor-pointer transition hover:border-blue-700 program-card"
+                      data-program="C">
+                      <input type="radio" name="program" value="Paket C (setara SMA)" class="hidden program-radio" />
+                      <div class="text-center">
+                        <i class="bi bi-mortarboard-fill text-3xl text-yellow-600"></i>
+                        <p class="font-bold mt-2">Paket C</p>
+                        <p class="text-xs text-gray-500">Setara SMA</p>
+                      </div>
+                    </label>
+                  </div>
+                  <div id="programError" class="text-red-500 text-sm mt-2 hidden">
+                    Silakan pilih program
+                  </div>
+                </div>
+                <div>
+                  <label class="form-label required">Pendidikan Formal Terakhir</label>
+                  <select id="pendidikanTerakhir" class="form-select-custom" required>
+                    <option value="">Pilih Pendidikan</option>
+                    <option>Tidak sekolah</option>
+                    <option>SD/MI</option>
+                    <option>SMP/MTs</option>
+                    <option>SMA/MA</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label required">Kelas/Tingkat Terakhir yang Ditempuh</label>
+                  <input type="text" id="kelasTerakhir" class="form-control-custom"
+                    placeholder="Contoh: Kelas 3 SD / Kelas 2 SMP" required />
+                </div>
+              </div>
+              <div class="flex justify-between mt-8">
+                <button type="button"
+                  class="btn-prev bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-3 px-8 rounded-xl transition">
+                  <i class="bi bi-arrow-left"></i> Sebelumnya
+                </button>
+                <button type="button"
+                  class="btn-next bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-xl transition">
+                  Selanjutnya <i class="bi bi-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 3: Orang Tua / Wali -->
+            <div id="step3" class="form-step hidden">
+              <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+                <i class="bi bi-people-fill text-blue-700 mr-2"></i> Data
+                Orang Tua / Wali
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label class="form-label required">Nama Ayah</label><input type="text" id="namaAyah"
+                    class="form-control-custom" placeholder="Nama lengkap ayah" required />
+                </div>
+                <div>
+                  <label class="form-label required">Pekerjaan Ayah</label><input type="text" id="pekerjaanAyah"
+                    class="form-control-custom" placeholder="Contoh: Nelayan, Petani" required />
+                </div>
+                <div>
+                  <label class="form-label">No HP Ayah</label><input type="tel" id="noHpAyah"
+                    class="form-control-custom" placeholder="Contoh: 081234567890" />
+                </div>
+                <div>
+                  <label class="form-label required">Nama Ibu</label><input type="text" id="namaIbu"
+                    class="form-control-custom" placeholder="Nama lengkap ibu" required />
+                </div>
+                <div>
+                  <label class="form-label required">Pekerjaan Ibu</label><input type="text" id="pekerjaanIbu"
+                    class="form-control-custom" placeholder="Contoh: IRT, Pedagang" required />
+                </div>
+                <div>
+                  <label class="form-label">No HP Ibu</label><input type="tel" id="noHpIbu" class="form-control-custom"
+                    placeholder="Contoh: 081234567890" />
+                </div>
+                <div class="md:col-span-2">
+                  <label class="form-label">Nama Wali (jika ada)</label><input type="text" id="namaWali"
+                    class="form-control-custom" placeholder="Nama wali (opsional)" />
+                </div>
+              </div>
+              <div class="flex justify-between mt-8">
+                <button type="button"
+                  class="btn-prev bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-3 px-8 rounded-xl transition">
+                  <i class="bi bi-arrow-left"></i> Sebelumnya
+                </button>
+                <button type="button"
+                  class="btn-next bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-xl transition">
+                  Selanjutnya <i class="bi bi-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 4: Konfirmasi -->
+            <div id="step4" class="form-step hidden">
+              <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-6">
+                <i class="bi bi-check-circle-fill text-green-600 mr-2"></i>
+                Konfirmasi Data
+              </h3>
+              <div class="bg-gray-50 rounded-xl p-5 mb-6">
+                <p class="font-semibold text-gray-800 mb-3">
+                  Pastikan data yang Anda isi sudah benar:
+                </p>
+                <ul class="space-y-2 text-sm text-gray-600" id="confirmData"></ul>
+              </div>
+              <div class="info-box mb-6">
+                <label class="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" id="agreeTerms" class="w-5 h-5" required />
+                  <span class="text-sm text-gray-700">Saya menyatakan bahwa data yang saya isi adalah benar dan
+                    siap mengikuti proses seleksi. Saya memahami bahwa semua
+                    biaya pendidikan <strong>GRATIS</strong>.</span>
+                </label>
+              </div>
+              <div class="flex justify-between mt-8">
+                <button type="button"
+                  class="btn-prev bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-3 px-8 rounded-xl transition">
+                  <i class="bi bi-arrow-left"></i> Sebelumnya
+                </button>
+                <button type="submit"
+                  class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-xl transition">
+                  <i class="bi bi-send-fill mr-2"></i> Kirim Pendaftaran
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Informasi Tambahan -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="bg-white rounded-xl p-4 text-center shadow-sm border">
+            <i class="bi bi-whatsapp text-green-500 text-2xl"></i>
+            <p class="text-sm text-gray-600 mt-2">
+              Konfirmasi via WhatsApp<br />+62 812-3456-7890
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-4 text-center shadow-sm border">
+            <i class="bi bi-envelope text-blue-500 text-2xl"></i>
+            <p class="text-sm text-gray-600 mt-2">
+              Email Konfirmasi<br />dikirim setelah daftar
+            </p>
+          </div>
+          <div class="bg-white rounded-xl p-4 text-center shadow-sm border">
+            <i class="bi bi-printer text-gray-500 text-2xl"></i>
+            <p class="text-sm text-gray-600 mt-2">
+              Cetak Bukti Pendaftaran<br />setelah submit
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== JADWAL & PERSYARATAN ==================== -->
+  <section class="py-12 bg-white border-t border-gray-100">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div data-aos="fade-right">
+          <h3 class="text-lg font-bold text-gray-800 mb-4">
+            <i class="bi bi-calendar-check text-blue-700 mr-2"></i> Jadwal
+            Pendaftaran
+          </h3>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-center gap-3">
+              <i class="bi bi-calendar3 text-blue-600"></i> Pendaftaran
+              dibuka: <strong>12 Mei 2026</strong>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="bi bi-calendar-x text-red-600"></i> Pendaftaran
+              ditutup: <strong>30 Juni 2026</strong>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="bi bi-envelope-paper text-green-600"></i> Pengumuman:
+              <strong>15 Juli 2026</strong>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="bi bi-backpack text-yellow-600"></i> Mulai belajar:
+              <strong>20 Juli 2026</strong>
+            </li>
+          </ul>
+        </div>
+        <div data-aos="fade-left">
+          <h3 class="text-lg font-bold text-gray-800 mb-4">
+            <i class="bi bi-file-text text-blue-700 mr-2"></i> Persyaratan
+          </h3>
+          <ul class="space-y-2 text-gray-600">
+            <li class="flex items-center gap-3">
+              <i class="bi bi-check-circle-fill text-green-500"></i> Fotokopi
+              KK (bagi yang punya)
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="bi bi-check-circle-fill text-green-500"></i> Fotokopi
+              Ijazah terakhir (jika ada)
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="bi bi-check-circle-fill text-green-500"></i> Pas foto
+              3x4 (2 lembar)
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="bi bi-check-circle-fill text-green-500"></i> Surat
+              keterangan tidak mampu (jika ada)
+            </li>
+          </ul>
+          <p class="text-xs text-gray-500 mt-3">
+            *Dokumen bisa disusulkan setelah daftar online
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-gray-900 text-white pt-12 pb-6">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h3 class="font-bold text-lg mb-3">
+            PKBM NAKAI<br />CERDAS BELAJAR
+          </h3>
+          <p class="text-gray-400 text-sm">
+            Mencerdaskan kehidupan bangsa dari Distrik Pulau Tiga, Asmat,
+            Papua Selatan.
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">Halaman</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li>
+              <a href="../index.html" class="hover:text-white">Beranda</a>
+            </li>
+            <li>
+              <a href="visi-misi.html" class="hover:text-white">Visi & Misi</a>
+            </li>
+            <li>
+              <a href="program.html" class="hover:text-white">Program</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">Lainnya</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li>
+              <a href="data-peserta.html" class="hover:text-white">Data Peserta</a>
+            </li>
+            <li>
+              <a href="struktur.html" class="hover:text-white">Struktur Organisasi</a>
+            </li>
+            <li>
+              <a href="laporan.html" class="hover:text-white">LPJ & Laporan</a>
+            </li>
+            <li>
+              <a href="blog/index.html" class="hover:text-white">Blog</a>
+            </li>
+            <li><a href="galeri.html" class="hover:text-white">Galeri</a></li>
+            <li><a href="kontak.html" class="hover:text-white">Kontak</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">Kontak</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li>
+              <i class="bi bi-geo-alt mr-2"></i> Kampung Nakai, Pulau Tiga
+            </li>
+            <li><i class="bi bi-whatsapp mr-2"></i> +62 812-3456-7890</li>
+            <li><i class="bi bi-envelope mr-2"></i> pkbm.nakai@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 pt-6 text-center text-sm text-gray-500">
+        <p>
+          &copy; 2026 PKBM Nakai Cerdas Belajar. Pendidikan Kesetaraan untuk
+          semua warga Asmat.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== SCROLL BUTTONS ==================== -->
+  <div class="scroll-btn scroll-up" id="scrollUpBtn" title="Scroll ke atas">
+    <i class="bi bi-chevron-up"></i>
+  </div>
+  <div class="scroll-btn scroll-down" id="scrollDownBtn" title="Scroll ke bawah">
+    <i class="bi bi-chevron-down"></i>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    AOS.init({ once: true, duration: 800 });
+
+    const menuBtn = document.getElementById("mobileMenuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+    if (menuBtn) {
+      menuBtn.addEventListener("click", () =>
+        mobileMenu.classList.toggle("hidden"),
+      );
+    }
+
+    // Scroll buttons
+    const scrollUpBtn = document.getElementById("scrollUpBtn");
+    const scrollDownBtn = document.getElementById("scrollDownBtn");
+
+    function toggleScrollButtons() {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.body.scrollHeight;
+      const seventyPercent = documentHeight * 0.7;
+      const isBelowSeventyPercent = scrollY + windowHeight >= seventyPercent;
+      const isAtBottom = windowHeight + scrollY >= documentHeight - 100;
+
+      if (isBelowSeventyPercent) {
+        scrollUpBtn.style.display = "flex";
+        scrollDownBtn.style.display = "flex";
+      } else {
+        scrollUpBtn.style.display = "none";
+        scrollDownBtn.style.display = "none";
+      }
+      if (isAtBottom) scrollDownBtn.style.display = "none";
+      if (scrollY === 0) scrollUpBtn.style.display = "none";
+    }
+
+    if (scrollUpBtn)
+      scrollUpBtn.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" }),
+      );
+    if (scrollDownBtn)
+      scrollDownBtn.addEventListener("click", () =>
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        }),
+      );
+
+    window.addEventListener("scroll", toggleScrollButtons);
+    window.addEventListener("load", toggleScrollButtons);
+    window.addEventListener("resize", toggleScrollButtons);
+
+    // Multi-step form logic
+    let currentStep = 1;
+    const totalSteps = 4;
+
+    function showStep(step) {
+      for (let i = 1; i <= totalSteps; i++)
+        document.getElementById(`step${i}`).classList.add("hidden");
+      document.getElementById(`step${step}`).classList.remove("hidden");
+      for (let i = 1; i <= totalSteps; i++) {
+        const indicator = document.getElementById(`step${i}Indicator`);
+        if (i < step) {
+          indicator.classList.add("completed");
+          indicator.classList.remove("active");
+        } else if (i === step) {
+          indicator.classList.add("active");
+          indicator.classList.remove("completed");
+        } else {
+          indicator.classList.remove("active", "completed");
+        }
+      }
+      currentStep = step;
+    }
+
+    function validateStep1() {
+      const fields = [
+        "namaLengkap",
+        "nik",
+        "tempatLahir",
+        "tanggalLahir",
+        "agama",
+        "statusKeluarga",
+        "anakKe",
+        "jumlahBersaudara",
+        "alamat",
+        "nomorHp",
+        "email",
+      ];
+      let isValid = true;
+      fields.forEach((field) => {
+        const input = document.getElementById(field);
+        if (input && !input.value.trim()) {
+          isValid = false;
+          input.style.borderColor = "#ef4444";
+        } else if (input) input.style.borderColor = "#e2e8f0";
+      });
+      if (!document.querySelector('input[name="jenisKelamin"]:checked'))
+        isValid = false;
+      if (document.getElementById("nik").value.length !== 16) isValid = false;
+      if (!document.getElementById("email").value.includes("@"))
+        isValid = false;
+      return isValid;
+    }
+
+    function validateStep2() {
+      let isValid = true;
+      if (!document.querySelector('input[name="program"]:checked')) {
+        document.getElementById("programError").classList.remove("hidden");
+        isValid = false;
+      } else {
+        document.getElementById("programError").classList.add("hidden");
+      }
+      const pendidikan = document.getElementById("pendidikanTerakhir");
+      if (!pendidikan.value) {
+        pendidikan.style.borderColor = "#ef4444";
+        isValid = false;
+      } else {
+        pendidikan.style.borderColor = "#e2e8f0";
+      }
+      const kelas = document.getElementById("kelasTerakhir");
+      if (!kelas.value.trim()) {
+        kelas.style.borderColor = "#ef4444";
+        isValid = false;
+      } else {
+        kelas.style.borderColor = "#e2e8f0";
+      }
+      return isValid;
+    }
+
+    function validateStep3() {
+      const fields = ["namaAyah", "pekerjaanAyah", "namaIbu", "pekerjaanIbu"];
+      let isValid = true;
+      fields.forEach((field) => {
+        const input = document.getElementById(field);
+        if (input && !input.value.trim()) {
+          isValid = false;
+          input.style.borderColor = "#ef4444";
+        } else if (input) input.style.borderColor = "#e2e8f0";
+      });
+      return isValid;
+    }
+
+    function updateConfirmationData() {
+      const data = {
+        namaLengkap: document.getElementById("namaLengkap").value,
+        nik: document.getElementById("nik").value,
+        tempatLahir: document.getElementById("tempatLahir").value,
+        tanggalLahir: document.getElementById("tanggalLahir").value,
+        jenisKelamin: document.querySelector(
+          'input[name="jenisKelamin"]:checked',
+        )?.value,
+        agama: document.getElementById("agama").value,
+        statusKeluarga: document.getElementById("statusKeluarga").value,
+        anakKe: document.getElementById("anakKe").value,
+        jumlahBersaudara: document.getElementById("jumlahBersaudara").value,
+        alamat: document.getElementById("alamat").value,
+        nomorHp: document.getElementById("nomorHp").value,
+        email: document.getElementById("email").value,
+        program: document.querySelector('input[name="program"]:checked')
+          ?.value,
+        pendidikanTerakhir:
+          document.getElementById("pendidikanTerakhir").value,
+        kelasTerakhir: document.getElementById("kelasTerakhir").value,
+        namaAyah: document.getElementById("namaAyah").value,
+        pekerjaanAyah: document.getElementById("pekerjaanAyah").value,
+        noHpAyah: document.getElementById("noHpAyah").value || "-",
+        namaIbu: document.getElementById("namaIbu").value,
+        pekerjaanIbu: document.getElementById("pekerjaanIbu").value,
+        noHpIbu: document.getElementById("noHpIbu").value || "-",
+        namaWali: document.getElementById("namaWali").value || "-",
+      };
+      document.getElementById("confirmData").innerHTML = `
+                <li><strong>Nama Lengkap:</strong> ${data.namaLengkap}</li><li><strong>NIK:</strong> ${data.nik}</li>
+                <li><strong>Tempat, Tgl Lahir:</strong> ${data.tempatLahir}, ${data.tanggalLahir}</li><li><strong>Jenis Kelamin:</strong> ${data.jenisKelamin}</li>
+                <li><strong>Agama:</strong> ${data.agama}</li><li><strong>Status Keluarga:</strong> ${data.statusKeluarga} (Anak ke-${data.anakKe} dari ${data.jumlahBersaudara})</li>
+                <li><strong>Alamat:</strong> ${data.alamat}</li><li><strong>No HP/WA:</strong> ${data.nomorHp}</li><li><strong>Email:</strong> ${data.email}</li>
+                <li><strong>Program Dipilih:</strong> ${data.program}</li><li><strong>Pendidikan Terakhir:</strong> ${data.pendidikanTerakhir} (${data.kelasTerakhir})</li>
+                <li><strong>Ayah:</strong> ${data.namaAyah} (${data.pekerjaanAyah}) - HP: ${data.noHpAyah}</li>
+                <li><strong>Ibu:</strong> ${data.namaIbu} (${data.pekerjaanIbu}) - HP: ${data.noHpIbu}</li><li><strong>Wali:</strong> ${data.namaWali}</li>
+            `;
+    }
+
+    document.querySelectorAll(".program-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        card.querySelector(".program-radio").checked = true;
+        document
+          .querySelectorAll(".program-card")
+          .forEach((c) =>
+            c.classList.remove("border-blue-700", "bg-blue-50"),
+          );
+        card.classList.add("border-blue-700", "bg-blue-50");
+      });
+    });
+
+    document.querySelectorAll(".btn-next").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        let isValid = false;
+        if (currentStep === 1) isValid = validateStep1();
+        else if (currentStep === 2) isValid = validateStep2();
+        else if (currentStep === 3) isValid = validateStep3();
+        if (isValid || currentStep === 3) {
+          if (currentStep === 3) updateConfirmationData();
+          if (currentStep < totalSteps) showStep(currentStep + 1);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Data Belum Lengkap",
+            text: "Silakan lengkapi semua data yang diperlukan",
+            confirmButtonColor: "#1D4ED8",
+          });
+        }
+      });
+    });
+
+    document.querySelectorAll(".btn-prev").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (currentStep > 1) showStep(currentStep - 1);
+      });
+    });
+
+    document
+      .getElementById("registrationForm")
+      .addEventListener("submit", async function (e) {
+        e.preventDefault();
+        if (!document.getElementById("agreeTerms").checked) {
+          Swal.fire({
+            icon: "warning",
+            title: "Setujui Pernyataan",
+            text: "Silakan centang kotak persetujuan data",
+            confirmButtonColor: "#1D4ED8",
+          });
+          return;
+        }
+        const formData = {
+          timestamp: new Date().toISOString(),
+          namaLengkap: document.getElementById("namaLengkap").value,
+          nik: document.getElementById("nik").value,
+          tempatLahir: document.getElementById("tempatLahir").value,
+          tanggalLahir: document.getElementById("tanggalLahir").value,
+          jenisKelamin: document.querySelector(
+            'input[name="jenisKelamin"]:checked',
+          )?.value,
+          agama: document.getElementById("agama").value,
+          statusKeluarga: document.getElementById("statusKeluarga").value,
+          anakKe: document.getElementById("anakKe").value,
+          jumlahBersaudara: document.getElementById("jumlahBersaudara").value,
+          alamat: document.getElementById("alamat").value,
+          nomorHp: document.getElementById("nomorHp").value,
+          email: document.getElementById("email").value,
+          program: document.querySelector('input[name="program"]:checked')
+            ?.value,
+          pendidikanTerakhir:
+            document.getElementById("pendidikanTerakhir").value,
+          kelasTerakhir: document.getElementById("kelasTerakhir").value,
+          namaAyah: document.getElementById("namaAyah").value,
+          pekerjaanAyah: document.getElementById("pekerjaanAyah").value,
+          noHpAyah: document.getElementById("noHpAyah").value,
+          namaIbu: document.getElementById("namaIbu").value,
+          pekerjaanIbu: document.getElementById("pekerjaanIbu").value,
+          noHpIbu: document.getElementById("noHpIbu").value,
+          namaWali: document.getElementById("namaWali").value || "-",
+        };
+        Swal.fire({
+          title: "Mengirim Data...",
+          text: "Mohon tunggu sebentar",
+          allowOutsideClick: false,
+          didOpen: () => Swal.showLoading(),
+        });
+        setTimeout(() => {
+          console.log("Data Pendaftaran:", formData);
+          Swal.fire({
+            icon: "success",
+            title: "Pendaftaran Berhasil!",
+            html: `Nomor pendaftaran akan dikirim ke <strong>${formData.email}</strong> dan WhatsApp.<br><br>Terima kasih telah mendaftar di PKBM Nakai Cerdas Belajar.`,
+            confirmButtonColor: "#1D4ED8",
+          }).then(() => {
+            document.getElementById("registrationForm").reset();
+            showStep(1);
+          });
+        }, 1500);
+      });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description"
+        content="Laporan Pertanggungjawaban (LPJ) PKBM Nakai Cerdas Belajar - Laporan pemasukan, pengeluaran, saldo, dan statistik keuangan transparan untuk publik dan Dinas Pendidikan">
+    <meta name="keywords" content="LPJ PKBM, Laporan Keuangan, Pemasukan, Pengeluaran, Saldo, Asmat, Papua Selatan">
+    <title>LPJ & Laporan Keuangan | PKBM Nakai Cerdas Belajar - Asmat</title>
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap 5 CSS + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- html2pdf.js untuk export PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Report Container untuk PDF */
+        .report-container {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Untuk export PDF */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .report-container {
+                box-shadow: none;
+                padding: 0.5cm;
+                margin: 0;
+            }
+
+            .print-landscape {
+                size: landscape;
+            }
+
+            .stat-card {
+                break-inside: avoid;
+            }
+
+            table {
+                break-inside: avoid;
+            }
+
+            .chart-container {
+                break-inside: avoid;
+            }
+        }
+
+        /* Stat Card */
+        .stat-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border-left: 4px solid;
+        }
+
+        .stat-card.pemasukan {
+            border-left-color: #10B981;
+        }
+
+        .stat-card.pengeluaran {
+            border-left-color: #EF4444;
+        }
+
+        .stat-card.saldo {
+            border-left-color: #1D4ED8;
+        }
+
+        .stat-card.surplus {
+            border-left-color: #F59E0B;
+        }
+
+        /* Tabel styling */
+        .table-custom {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .table-custom th,
+        .table-custom td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .table-custom th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .table-custom tr:hover {
+            background: #f8fafc;
+        }
+
+        /* Export button */
+        .btn-export {
+            transition: all 0.3s;
+        }
+
+        .btn-export:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Signature area */
+        .signature-area {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #cbd5e1;
+        }
+
+        /* Responsive table */
+        .table-responsive-custom {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Scroll buttons */
+        .scroll-btn {
+            position: fixed;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            background-color: #1D4ED8;
+            color: white;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-btn:hover {
+            background-color: #F59E0B;
+            transform: scale(1.05);
+        }
+
+        .scroll-up {
+            bottom: 80px;
+        }
+
+        .scroll-down {
+            bottom: 30px;
+        }
+
+        .scroll-btn i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-btn {
+                width: 34px;
+                height: 34px;
+                right: 15px;
+            }
+
+            .scroll-up {
+                bottom: 70px;
+            }
+
+            .scroll-down {
+                bottom: 25px;
+            }
+
+            .scroll-btn i {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="bg-white shadow-md sticky top-0 z-50 no-print">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-2 md:py-3">
+                <a href="../index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
+                    <img src="../images/logo/Logo1.png" alt="Logo PKBM Nakai"
+                        class="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain"
+                        onerror="this.src='https://placehold.co/200x60/1D4ED8/white?text=Logo'">
+                    <div class="flex flex-col">
+                        <span class="text-xs sm:text-sm md:text-base font-semibold text-blue-800 leading-tight">NAKAI
+                            CERDAS</span>
+                        <span class="text-xs sm:text-sm md:text-base font-semibold text-blue-600 leading-tight">B E L A
+                            J A R</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex space-x-6 lg:space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2">Beranda</a>
+                    <a href="visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2">Visi & Misi</a>
+                    <a href="program.html" class="text-gray-600 hover:text-blue-700 py-2">Program</a>
+                    <a href="pendaftaran.html" class="text-gray-600 hover:text-blue-700 py-2">Pendaftaran</a>
+                    <a href="data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2">Data Peserta</a>
+                    <a href="struktur.html" class="text-gray-600 hover:text-blue-700 py-2">Struktur</a>
+                    <a href="laporan.html" class="text-blue-700 border-b-2 border-blue-700 font-semibold py-2">LPJ</a>
+                    <!-- <a href="blog/index.html" class="text-gray-600 hover:text-blue-700 py-2">Blog</a> -->
+                    <a href="galeri.html" class="text-gray-600 hover:text-blue-700 py-2">Galeri</a>
+                    <a href="kontak.html" class="text-gray-600 hover:text-blue-700 py-2">Kontak</a>
+                </div>
+
+                <button id="mobileMenuButton" class="md:hidden text-gray-600 focus:outline-none">
+                    <i class="bi bi-list text-3xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4">
+            <div class="flex flex-col space-y-3">
+                <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Beranda</a>
+                <a href="visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Visi & Misi</a>
+                <a href="program.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Program</a>
+                <a href="pendaftaran.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Pendaftaran</a>
+                <a href="data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Data Peserta</a>
+                <a href="struktur.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Struktur</a>
+                <a href="laporan.html" class="text-blue-700 font-semibold py-2 border-l-4 border-blue-700 pl-3">LPJ</a>
+                <!-- <a href="blog/index.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Blog</a> -->
+                <a href="galeri.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Galeri</a>
+                <a href="kontak.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION (Gambar) ==================== -->
+    <section class="relative w-full bg-white no-print" id="heroSection">
+        <img src="../images/hero/LPJ.png" alt="PKBM Nakai Cerdas Belajar" class="w-full h-auto block">
+    </section>
+
+    <!-- ==================== TOOLBAR EXPORT ==================== -->
+    <div class="bg-white border-b border-gray-200 py-3 no-print">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center flex-wrap gap-3">
+                <div class="flex gap-2">
+                    <button onclick="exportToPDF()"
+                        class="btn-export bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                        <i class="bi bi-file-pdf-fill"></i> Export PDF
+                    </button>
+                    <button onclick="window.print()"
+                        class="btn-export bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                        <i class="bi bi-printer-fill"></i> Print Out
+                    </button>
+                </div>
+                <div class="text-sm text-gray-500">
+                    <i class="bi bi-info-circle"></i> Klik Export PDF untuk unduh laporan lengkap format landscape
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== KONTEN LAPORAN (Yang akan di-export) ==================== -->
+    <div id="reportContent" class="py-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="report-container">
+
+                <!-- Header Laporan -->
+                <div class="text-center mb-8">
+                    <img src="../images/logo/Logo1.png" alt="Logo" class="h-16 mx-auto mb-3"
+                        onerror="this.style.display='none'">
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">PKBM NAKAI CERDAS BELAJAR</h2>
+                    <p class="text-gray-600">Kampung Nakai, Distrik Pulau Tiga, Kabupaten Asmat, Papua Selatan</p>
+                    <p class="text-gray-600">Email: pkbm.nakai@gmail.com | Telp: +62 812-3456-7890</p>
+                    <div class="border-t-2 border-gray-300 w-24 mx-auto my-3"></div>
+                    <h3 class="text-lg font-bold text-gray-800">LAPORAN PERTANGGUNGJAWABAN (LPJ)</h3>
+                    <p class="text-gray-600">Periode: Januari - Desember 2026</p>
+                </div>
+
+                <!-- Ringkasan Statistik -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                    <div class="stat-card pemasukan" data-aos="fade-up">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm">Total Pemasukan</p>
+                                <p class="text-2xl font-bold text-gray-800" id="totalPemasukan">Rp0</p>
+                            </div>
+                            <i class="bi bi-arrow-down-circle-fill text-3xl text-green-500"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card pengeluaran" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm">Total Pengeluaran</p>
+                                <p class="text-2xl font-bold text-gray-800" id="totalPengeluaran">Rp0</p>
+                            </div>
+                            <i class="bi bi-arrow-up-circle-fill text-3xl text-red-500"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card saldo" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm">Saldo Akhir</p>
+                                <p class="text-2xl font-bold text-gray-800" id="totalSaldo">Rp0</p>
+                            </div>
+                            <i class="bi bi-wallet2 text-3xl text-blue-500"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card surplus" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm">Surplus/(Defisit)</p>
+                                <p class="text-2xl font-bold text-gray-800" id="totalSurplus">Rp0</p>
+                            </div>
+                            <i class="bi bi-graph-up-arrow text-3xl text-yellow-500"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3"><i
+                                class="bi bi-pie-chart-fill text-blue-600 mr-2"></i> Grafik Pemasukan per Sumber</h4>
+                        <canvas id="incomeChart" style="max-height: 250px;"></canvas>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3"><i
+                                class="bi bi-bar-chart-fill text-blue-600 mr-2"></i> Tren Keuangan Bulanan</h4>
+                        <canvas id="trendChart" style="max-height: 250px;"></canvas>
+                    </div>
+                </div>
+
+                <!-- Tabel Pemasukan -->
+                <div class="mb-8">
+                    <h4 class="font-semibold text-gray-800 mb-3 bg-green-50 p-2 rounded-lg">
+                        <i class="bi bi-arrow-down-circle-fill text-green-600 mr-2"></i> Rincian Pemasukan
+                    </h4>
+                    <div class="table-responsive-custom">
+                        <table class="table-custom" id="incomeTable">
+                            <thead>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <th>Sumber</th>
+                                    <th>Deskripsi</th>
+                                    <th class="text-right">Jumlah (Rp)</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr class="bg-gray-100 font-semibold">
+                                    <td colspan="3" class="text-right">TOTAL PEMASUKAN</td>
+                                    <td class="text-right text-green-700" id="totalIncomeFooter">Rp0</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tabel Pengeluaran -->
+                <div class="mb-8">
+                    <h4 class="font-semibold text-gray-800 mb-3 bg-red-50 p-2 rounded-lg">
+                        <i class="bi bi-arrow-up-circle-fill text-red-600 mr-2"></i> Rincian Pengeluaran
+                    </h4>
+                    <div class="table-responsive-custom">
+                        <table class="table-custom" id="expenseTable">
+                            <thead>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <th>Kategori</th>
+                                    <th>Deskripsi</th>
+                                    <th class="text-right">Jumlah (Rp)</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr class="bg-gray-100 font-semibold">
+                                    <td colspan="3" class="text-right">TOTAL PENGELUARAN</td>
+                                    <td class="text-right text-red-700" id="totalExpenseFooter">Rp0</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Ringkasan Per Kategori -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3"><i class="bi bi-tag-fill text-blue-600 mr-2"></i>
+                            Ringkasan per Sumber Pemasukan</h4>
+                        <div class="table-responsive-custom">
+                            <table class="table-custom" id="incomeSummaryTable">
+                                <thead>
+                                    <tr>
+                                        <th>Sumber</th>
+                                        <th class="text-right">Jumlah</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-3"><i class="bi bi-tag-fill text-blue-600 mr-2"></i>
+                            Ringkasan per Kategori Pengeluaran</h4>
+                        <div class="table-responsive-custom">
+                            <table class="table-custom" id="expenseSummaryTable">
+                                <thead>
+                                    <tr>
+                                        <th>Kategori</th>
+                                        <th class="text-right">Jumlah</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Catatan & Tanda Tangan -->
+                <div class="signature-area">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-sm text-gray-600 mb-2"><strong>Catatan:</strong></p>
+                            <ul class="text-xs text-gray-500 space-y-1 list-disc list-inside">
+                                <li>Laporan keuangan ini disusun berdasarkan sistem akuntansi PKBM Nakai Cerdas Belajar
+                                </li>
+                                <li>Seluruh dana dikelola secara transparan dan dapat diakses publik</li>
+                                <li>Audit internal dilakukan setiap 3 bulan sekali</li>
+                                <li>Untuk pertanyaan lebih lanjut, hubungi bendahara PKBM</li>
+                            </ul>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-sm text-gray-600">Nakai, 31 Desember 2026</p>
+                            <p class="text-sm text-gray-600 mt-4">Ketua PKBM Nakai Cerdas Belajar</p>
+                            <div class="mt-8 mb-2">
+                                <div class="border-b-2 border-gray-400 w-48 mx-auto"></div>
+                            </div>
+                            <p class="text-sm font-semibold">Aurelius Santotinus Agung, S.Pd.</p>
+                            <p class="text-xs text-gray-500">NIP. -</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Laporan -->
+                <div class="text-center text-xs text-gray-400 mt-8 pt-4 border-t">
+                    <p>Dokumen ini sah dan dapat dipertanggungjawabkan. Laporan keuangan diperbarui setiap bulan.</p>
+                    <p>© 2026 PKBM Nakai Cerdas Belajar - Pendidikan Transparan untuk Asmat</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6 no-print">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-3">PKBM NAKAI<br>CERDAS BELAJAR</h3>
+                    <p class="text-gray-400 text-sm">Mencerdaskan kehidupan bangsa dari Distrik Pulau Tiga, Asmat, Papua
+                        Selatan.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Halaman</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="../index.html" class="hover:text-white">Beranda</a></li>
+                        <li><a href="visi-misi.html" class="hover:text-white">Visi & Misi</a></li>
+                        <li><a href="program.html" class="hover:text-white">Program</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Lainnya</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="pendaftaran.html" class="hover:text-white">Pendaftaran</a></li>
+                        <li><a href="data-peserta.html" class="hover:text-white">Data Peserta</a></li>
+                        <li><a href="struktur.html" class="hover:text-white">Struktur Organisasi</a></li>
+                        <li><a href="laporan.html" class="hover:text-white">LPJ & Laporan</a></li>
+                        <li><a href="blog/index.html" class="hover:text-white">Blog</a></li>
+                        <li><a href="galeri.html" class="hover:text-white">Galeri</a></li>
+                        <li><a href="kontak.html" class="hover:text-white">Kontak</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Kontak</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="bi bi-geo-alt mr-2"></i> Kampung Nakai, Pulau Tiga</li>
+                        <li><i class="bi bi-whatsapp mr-2"></i> +62 812-3456-7890</li>
+                        <li><i class="bi bi-envelope mr-2"></i> pkbm.nakai@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 text-center text-sm text-gray-500">
+                <p>&copy; 2026 PKBM Nakai Cerdas Belajar. Pendidikan Kesetaraan untuk semua warga Asmat.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCROLL BUTTONS ==================== -->
+    <div class="scroll-btn scroll-up no-print" id="scrollUpBtn" title="Scroll ke atas"><i class="bi bi-chevron-up"></i>
+    </div>
+    <div class="scroll-btn scroll-down no-print" id="scrollDownBtn" title="Scroll ke bawah"><i
+            class="bi bi-chevron-down"></i></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init({ once: true, duration: 800 });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+
+        // Scroll buttons
+        const scrollUpBtn = document.getElementById('scrollUpBtn');
+        const scrollDownBtn = document.getElementById('scrollDownBtn');
+
+        function toggleScrollButtons() {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.body.scrollHeight;
+            const seventyPercent = documentHeight * 0.7;
+            const isBelowSeventyPercent = scrollY + windowHeight >= seventyPercent;
+            const isAtBottom = (windowHeight + scrollY) >= documentHeight - 100;
+
+            if (isBelowSeventyPercent) {
+                scrollUpBtn.style.display = 'flex';
+                scrollDownBtn.style.display = 'flex';
+            } else {
+                scrollUpBtn.style.display = 'none';
+                scrollDownBtn.style.display = 'none';
+            }
+            if (isAtBottom) scrollDownBtn.style.display = 'none';
+            if (scrollY === 0) scrollUpBtn.style.display = 'none';
+        }
+
+        if (scrollUpBtn) scrollUpBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        if (scrollDownBtn) scrollDownBtn.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
+
+        window.addEventListener('scroll', toggleScrollButtons);
+        window.addEventListener('load', toggleScrollButtons);
+        window.addEventListener('resize', toggleScrollButtons);
+
+        // ==================== DATA KEUANGAN ====================
+        const pemasukanData = [
+            { tanggal: "2026-01-15", sumber: "BOSDA", deskripsi: "Dana Operasional PKBM Tahap I", jumlah: 25000000 },
+            { tanggal: "2026-01-20", sumber: "Donasi", deskripsi: "Donasi dari PT Freeport", jumlah: 15000000 },
+            { tanggal: "2026-02-10", sumber: "CSR", deskripsi: "CSR Bank Papua", jumlah: 10000000 },
+            { tanggal: "2026-03-05", sumber: "Pemerintah", deskripsi: "Bantuan Paket C", jumlah: 20000000 },
+            { tanggal: "2026-04-12", sumber: "Donasi", deskripsi: "Donasi perorangan (Anonim)", jumlah: 5000000 },
+            { tanggal: "2026-05-01", sumber: "BOSDA", deskripsi: "Dana Operasional PKBM Tahap II", jumlah: 25000000 },
+            { tanggal: "2026-06-20", sumber: "CSR", deskripsi: "CSR Pertamina", jumlah: 12000000 },
+            { tanggal: "2026-07-15", sumber: "Pemerintah", deskripsi: "Bantuan Paket B", jumlah: 18000000 },
+            { tanggal: "2026-08-10", sumber: "Donasi", deskripsi: "Yayasan Pendidikan Asmat", jumlah: 20000000 },
+            { tanggal: "2026-09-05", sumber: "BOSDA", deskripsi: "Dana Operasional PKBM Tahap III", jumlah: 25000000 },
+            { tanggal: "2026-10-20", sumber: "CSR", deskripsi: "CSR Bank Mandiri", jumlah: 15000000 },
+            { tanggal: "2026-11-12", sumber: "Donasi", deskripsi: "Gereja Katolik Asmat", jumlah: 8000000 },
+            { tanggal: "2026-12-01", sumber: "Pemerintah", deskripsi: "Bantuan Akhir Tahun", jumlah: 30000000 },
+        ];
+
+        const pengeluaranData = [
+            { tanggal: "2026-01-20", kategori: "Gaji", deskripsi: "Gaji Tutor Januari", jumlah: 8000000 },
+            { tanggal: "2026-01-25", kategori: "Operasional", deskripsi: "Pembelian ATK", jumlah: 1500000 },
+            { tanggal: "2026-02-15", kategori: "Prasarana", deskripsi: "Perbaikan ruang belajar", jumlah: 5000000 },
+            { tanggal: "2026-02-28", kategori: "Gaji", deskripsi: "Gaji Tutor Februari", jumlah: 8000000 },
+            { tanggal: "2026-03-10", kategori: "Transportasi", deskripsi: "Pengiriman modul dari Agats", jumlah: 2000000 },
+            { tanggal: "2026-03-30", kategori: "Kegiatan", deskripsi: "Acara Wisuda Paket C", jumlah: 7500000 },
+            { tanggal: "2026-04-15", kategori: "Gaji", deskripsi: "Gaji Tutor Maret", jumlah: 8000000 },
+            { tanggal: "2026-04-25", kategori: "Operasional", deskripsi: "Listrik dan air", jumlah: 1000000 },
+            { tanggal: "2026-05-20", kategori: "Gaji", deskripsi: "Gaji Tutor April", jumlah: 8000000 },
+            { tanggal: "2026-06-10", kategori: "Prasarana", deskripsi: "Pembelian meja dan kursi", jumlah: 4500000 },
+            { tanggal: "2026-06-25", kategori: "Kegiatan", deskripsi: "Perpisahan kelas", jumlah: 3000000 },
+            { tanggal: "2026-07-15", kategori: "Gaji", deskripsi: "Gaji Tutor Mei", jumlah: 8000000 },
+            { tanggal: "2026-07-30", kategori: "Transportasi", deskripsi: "Perjalanan dinas ke Agats", jumlah: 2500000 },
+            { tanggal: "2026-08-20", kategori: "Gaji", deskripsi: "Gaji Tutor Juni", jumlah: 8000000 },
+            { tanggal: "2026-09-10", kategori: "Operasional", deskripsi: "Pembelian buku modul", jumlah: 5000000 },
+            { tanggal: "2026-09-30", kategori: "Kegiatan", deskripsi: "Lomba cerdas cermat", jumlah: 3500000 },
+            { tanggal: "2026-10-20", kategori: "Gaji", deskripsi: "Gaji Tutor Juli-Agustus", jumlah: 16000000 },
+            { tanggal: "2026-11-15", kategori: "Prasarana", deskripsi: "Renovasi ruang kelas", jumlah: 10000000 },
+            { tanggal: "2026-12-05", kategori: "Kegiatan", deskripsi: "Perayaan Natal bersama", jumlah: 5000000 },
+            { tanggal: "2026-12-20", kategori: "Gaji", deskripsi: "Gaji Tutor September-Desember", jumlah: 32000000 },
+            { tanggal: "2026-12-28", kategori: "Operasional", deskripsi: "Laporan akhir tahun", jumlah: 2000000 },
+        ];
+
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(angka);
+        }
+
+        function hitungTotalPemasukan() {
+            return pemasukanData.reduce((sum, item) => sum + item.jumlah, 0);
+        }
+
+        function hitungTotalPengeluaran() {
+            return pengeluaranData.reduce((sum, item) => sum + item.jumlah, 0);
+        }
+
+        function formatTanggal(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+        }
+
+        function renderIncomeTable() {
+            const tbody = document.querySelector('#incomeTable tbody');
+            tbody.innerHTML = pemasukanData.map(item => `
+                <tr><td>${formatTanggal(item.tanggal)}</td><td>${item.sumber}</td><td>${item.deskripsi}</td><td class="text-right">${formatRupiah(item.jumlah)}</td></tr>
+            `).join('');
+            document.getElementById('totalIncomeFooter').innerHTML = formatRupiah(hitungTotalPemasukan());
+            document.getElementById('totalPemasukan').innerHTML = formatRupiah(hitungTotalPemasukan());
+        }
+
+        function renderExpenseTable() {
+            const tbody = document.querySelector('#expenseTable tbody');
+            tbody.innerHTML = pengeluaranData.map(item => `
+                <tr><td>${formatTanggal(item.tanggal)}</td><td>${item.kategori}</td><td>${item.deskripsi}</td><td class="text-right">${formatRupiah(item.jumlah)}</td></tr>
+            `).join('');
+            document.getElementById('totalExpenseFooter').innerHTML = formatRupiah(hitungTotalPengeluaran());
+            document.getElementById('totalPengeluaran').innerHTML = formatRupiah(hitungTotalPengeluaran());
+        }
+
+        function renderSummaryTables() {
+            const incomeSummary = {};
+            pemasukanData.forEach(item => { incomeSummary[item.sumber] = (incomeSummary[item.sumber] || 0) + item.jumlah; });
+            const incomeSummaryBody = document.querySelector('#incomeSummaryTable tbody');
+            incomeSummaryBody.innerHTML = Object.entries(incomeSummary).sort((a, b) => b[1] - a[1]).map(([sumber, jumlah]) => `<tr><td>${sumber}</td><td class="text-right">${formatRupiah(jumlah)}</td></tr>`).join('');
+
+            const expenseSummary = {};
+            pengeluaranData.forEach(item => { expenseSummary[item.kategori] = (expenseSummary[item.kategori] || 0) + item.jumlah; });
+            const expenseSummaryBody = document.querySelector('#expenseSummaryTable tbody');
+            expenseSummaryBody.innerHTML = Object.entries(expenseSummary).sort((a, b) => b[1] - a[1]).map(([kategori, jumlah]) => `<tr><td>${kategori}</td><td class="text-right">${formatRupiah(jumlah)}</td></tr>`).join('');
+        }
+
+        function updateSaldo() {
+            const totalPemasukan = hitungTotalPemasukan();
+            const totalPengeluaran = hitungTotalPengeluaran();
+            const saldo = totalPemasukan - totalPengeluaran;
+            document.getElementById('totalSaldo').innerHTML = formatRupiah(saldo);
+            document.getElementById('totalSurplus').innerHTML = formatRupiah(saldo);
+        }
+
+        let incomeChart, trendChart;
+
+        function initCharts() {
+            const incomeSummary = {};
+            pemasukanData.forEach(item => { incomeSummary[item.sumber] = (incomeSummary[item.sumber] || 0) + item.jumlah; });
+            incomeChart = new Chart(document.getElementById('incomeChart'), {
+                type: 'doughnut',
+                data: { labels: Object.keys(incomeSummary), datasets: [{ data: Object.values(incomeSummary), backgroundColor: ['#10B981', '#3B82F6', '#F59E0B', '#8B5CF6', '#EF4444', '#06B6D4'], borderWidth: 0 }] },
+                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom' } } }
+            });
+
+            const monthlyIncome = {}, monthlyExpense = {};
+            pemasukanData.forEach(item => { const month = item.tanggal.substring(0, 7); monthlyIncome[month] = (monthlyIncome[month] || 0) + item.jumlah; });
+            pengeluaranData.forEach(item => { const month = item.tanggal.substring(0, 7); monthlyExpense[month] = (monthlyExpense[month] || 0) + item.jumlah; });
+            const months = ['2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06', '2026-07', '2026-08', '2026-09', '2026-10', '2026-11', '2026-12'];
+            const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            trendChart = new Chart(document.getElementById('trendChart'), {
+                type: 'line',
+                data: { labels: monthNames, datasets: [{ label: 'Pemasukan', data: months.map(m => monthlyIncome[m] || 0), borderColor: '#10B981', backgroundColor: 'rgba(16,185,129,0.1)', fill: true, tension: 0.3 }, { label: 'Pengeluaran', data: months.map(m => monthlyExpense[m] || 0), borderColor: '#EF4444', backgroundColor: 'rgba(239,68,68,0.1)', fill: true, tension: 0.3 }] },
+                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'top' } }, scales: { y: { ticks: { callback: (value) => 'Rp' + (value / 1000000) + 'jt' } } } }
+            });
+        }
+
+        function exportToPDF() {
+            const element = document.getElementById('reportContent');
+            html2pdf().set({ margin: [0.5, 0.5, 0.5, 0.5], filename: `LPJ_PKBM_Nakai_${new Date().toISOString().split('T')[0]}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true }, jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' } }).from(element).save();
+        }
+
+        renderIncomeTable();
+        renderExpenseTable();
+        renderSummaryTables();
+        updateSaldo();
+        initCharts();
+    </script>
+</body>
+
+</html>

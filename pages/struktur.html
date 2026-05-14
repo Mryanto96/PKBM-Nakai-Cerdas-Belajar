@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description"
+        content="Struktur Organisasi PKBM Nakai Cerdas Belajar - Ketua, Sekretaris, Bendahara, dan Tutor Pendidikan Kesetaraan Paket A, B, C di Distrik Pulau Tiga, Kabupaten Asmat, Papua Selatan">
+    <meta name="keywords" content="Struktur Organisasi PKBM, Pengurus PKBM, Tutor PKBM, Asmat, Papua Selatan">
+    <title>Struktur Organisasi | PKBM Nakai Cerdas Belajar - Asmat</title>
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap 5 CSS + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Organizational Chart Styles */
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .org-level {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .org-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            width: 280px;
+            position: relative;
+        }
+
+        .org-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 30px -12px rgba(0, 0, 0, 0.2);
+        }
+
+        .org-card.ketua {
+            border-top: 4px solid #1D4ED8;
+        }
+
+        .org-card.sekretaris {
+            border-top: 4px solid #10B981;
+        }
+
+        .org-card.bendahara {
+            border-top: 4px solid #F59E0B;
+        }
+
+        .org-card.tutor {
+            border-top: 4px solid #8B5CF6;
+        }
+
+        /* Foto persegi panjang - full body, tidak rounded */
+        .org-photo {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .org-name {
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 1rem;
+            color: #1e293b;
+            padding: 0 0.5rem;
+        }
+
+        .org-position {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .org-position.ketua {
+            color: #1D4ED8;
+        }
+
+        .org-position.sekretaris {
+            color: #10B981;
+        }
+
+        .org-position.bendahara {
+            color: #F59E0B;
+        }
+
+        .org-position.tutor {
+            color: #8B5CF6;
+        }
+
+        .org-desc {
+            text-align: center;
+            font-size: 0.65rem;
+            color: #64748b;
+            margin: 0.5rem 1rem 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .connector-line {
+            width: 2px;
+            height: 30px;
+            background: #cbd5e1;
+            margin: 0 auto;
+        }
+
+        .level-label {
+            text-align: center;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
+        /* Tupoksi Section */
+        .tupoksi-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            height: 100%;
+        }
+
+        .tupoksi-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .tupoksi-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .tupoksi-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tupoksi-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        .tupoksi-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tupoksi-list li i {
+            color: #1D4ED8;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Tutor grid */
+        .tutor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tutor-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tutor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tutor-header {
+            background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+            padding: 0;
+            text-align: center;
+            color: white;
+        }
+
+        /* Foto tutor - persegi panjang, full body, tidak rounded */
+        .tutor-photo {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .tutor-name {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 0.75rem;
+            padding: 0 0.5rem;
+        }
+
+        .tutor-subject {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+            padding: 0 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tutor-body {
+            padding: 1rem;
+            flex: 1;
+        }
+
+        .tutor-body p {
+            font-size: 0.75rem;
+            color: #475569;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Scroll buttons */
+        .scroll-btn {
+            position: fixed;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            background-color: #1D4ED8;
+            color: white;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-btn:hover {
+            background-color: #F59E0B;
+            transform: scale(1.05);
+        }
+
+        .scroll-up {
+            bottom: 80px;
+        }
+
+        .scroll-down {
+            bottom: 30px;
+        }
+
+        .scroll-btn i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-btn {
+                width: 34px;
+                height: 34px;
+                right: 15px;
+            }
+
+            .scroll-up {
+                bottom: 70px;
+            }
+
+            .scroll-down {
+                bottom: 25px;
+            }
+
+            .scroll-btn i {
+                font-size: 1rem;
+            }
+
+            .org-level {
+                gap: 1rem;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .org-card {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .connector-line {
+                display: none;
+            }
+
+            .org-photo {
+                height: 220px;
+            }
+
+            .tutor-photo {
+                height: 220px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-2 md:py-3">
+                <a href="../index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
+                    <img src="../images/logo/Logo1.png" alt="Logo PKBM Nakai"
+                        class="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain"
+                        onerror="this.src='https://placehold.co/200x60/1D4ED8/white?text=Logo'">
+                    <div class="flex flex-col">
+                        <span class="text-xs sm:text-sm md:text-base font-semibold text-blue-800 leading-tight">NAKAI
+                            CERDAS</span>
+                        <span class="text-xs sm:text-sm md:text-base font-semibold text-blue-600 leading-tight">B E L A
+                            J A R</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex space-x-6 lg:space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2">Beranda</a>
+                    <a href="visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2">Visi & Misi</a>
+                    <a href="program.html" class="text-gray-600 hover:text-blue-700 py-2">Program</a>
+                    <a href="pendaftaran.html" class="text-gray-600 hover:text-blue-700 py-2">Pendaftaran</a>
+                    <a href="data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2">Data Peserta</a>
+                    <a href="struktur.html"
+                        class="text-blue-700 border-b-2 border-blue-700 font-semibold py-2">Struktur</a>
+                    <a href="laporan.html" class="text-gray-600 hover:text-blue-700 py-2">LPJ</a>
+                    <!-- <a href="blog/index.html" class="text-gray-600 hover:text-blue-700 py-2">Blog</a> -->
+                    <a href="galeri.html" class="text-gray-600 hover:text-blue-700 py-2">Galeri</a>
+                    <a href="kontak.html" class="text-gray-600 hover:text-blue-700 py-2">Kontak</a>
+                </div>
+
+                <button id="mobileMenuButton" class="md:hidden text-gray-600 focus:outline-none">
+                    <i class="bi bi-list text-3xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4">
+            <div class="flex flex-col space-y-3">
+                <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Beranda</a>
+                <a href="visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Visi & Misi</a>
+                <a href="program.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Program</a>
+                <a href="pendaftaran.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Pendaftaran</a>
+                <a href="data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Data Peserta</a>
+                <a href="struktur.html"
+                    class="text-blue-700 font-semibold py-2 border-l-4 border-blue-700 pl-3">Struktur</a>
+                <a href="laporan.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">LPJ</a>
+                <!-- <a href="blog/index.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Blog</a> -->
+                <a href="galeri.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Galeri</a>
+                <a href="kontak.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="relative w-full bg-white" id="heroSection">
+        <img src="../images/hero/Hero4.png" alt="PKBM Nakai Cerdas Belajar" class="w-full h-auto block">
+    </section>
+
+    <!-- ==================== BAGAN STRUKTUR ORGANISASI ==================== -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Bagan Struktur Organisasi</h2>
+                <div class="w-20 h-1 bg-yellow-500 mx-auto mt-3 rounded-full"></div>
+                <p class="text-gray-600 mt-3">Struktur kepengurusan PKBM Nakai Cerdas Belajar</p>
+            </div>
+
+            <div class="org-chart">
+                <!-- Level 1: Ketua -->
+                <div class="level-label">PEMBINA & PENANGGUNG JAWAB</div>
+                <div class="org-level" data-aos="fade-up" data-aos-delay="100">
+                    <div class="org-card ketua">
+                        <img src="../images/teachers/Ketua.png" alt="Foto Ketua" class="org-photo"
+                            onerror="this.src='https://placehold.co/280x280/1D4ED8/white?text=Ketua'">
+                        <h3 class="org-name">Aurelius Santotinus Agung, S.Pd.</h3>
+                        <div class="org-position ketua">Ketua PKBM</div>
+                        <div class="org-desc">Penanggung jawab seluruh kegiatan PKBM</div>
+                    </div>
+                </div>
+
+                <div class="connector-line"></div>
+
+                <!-- Level 2: Sekretaris & Bendahara -->
+                <div class="level-label">PENGURUS HARIAN</div>
+                <div class="org-level" data-aos="fade-up" data-aos-delay="200">
+                    <div class="org-card sekretaris">
+                        <img src="../images/teachers/Sekretaris.png" alt="Foto Sekretaris" class="org-photo"
+                            onerror="this.src='https://placehold.co/280x280/10B981/white?text=Sekretaris'">
+                        <h3 class="org-name">Yuliana Fokum, S.Pd.</h3>
+                        <div class="org-position sekretaris">Sekretaris</div>
+                        <div class="org-desc">Administrasi & dokumentasi kegiatan</div>
+                    </div>
+                    <div class="org-card bendahara">
+                        <img src="../images/teachers/Bendahara.png" alt="Foto Bendahara" class="org-photo"
+                            onerror="this.src='https://placehold.co/280x280/F59E0B/white?text=Bendahara'">
+                        <h3 class="org-name">Petrus Kolem, S.E.</h3>
+                        <div class="org-position bendahara">Bendahara</div>
+                        <div class="org-desc">Pengelolaan keuangan & laporan</div>
+                    </div>
+                </div>
+
+                <div class="connector-line"></div>
+
+                <!-- Level 3: Tutor -->
+                <div class="level-label">TENAGA PENGAJAR (TUTOR)</div>
+                <div class="org-level" data-aos="fade-up" data-aos-delay="300">
+                    <div class="org-card tutor">
+                        <img src="../images/teachers/Tutor.png" alt="Foto Tutor" class="org-photo"
+                            onerror="this.src='https://placehold.co/280x280/8B5CF6/white?text=Tutor'">
+                        <h3 class="org-name">Maria Yotam, S.Pd.</h3>
+                        <div class="org-position tutor">Koordinator Tutor</div>
+                        <div class="org-desc">Mengkoordinir kegiatan belajar mengajar</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TUPOKSI ==================== -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Tugas & Fungsi</h2>
+                <div class="w-20 h-1 bg-yellow-500 mx-auto mt-3 rounded-full"></div>
+                <p class="text-gray-600 mt-3">Rincian tugas pokok dan fungsi setiap jabatan</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="tupoksi-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tupoksi-icon" style="background: #EFF6FF;">
+                        <i class="bi bi-person-badge text-2xl" style="color: #1D4ED8;"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">Ketua PKBM</h3>
+                    <ul class="tupoksi-list">
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Memimpin dan mengkoordinasikan seluruh
+                            kegiatan PKBM</li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Menetapkan kebijakan dan program kerja</li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Bertanggung jawab kepada Dinas Pendidikan
+                        </li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Menjalin kerjasama dengan instansi terkait
+                        </li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Mengevaluasi kinerja organisasi secara
+                            berkala</li>
+                    </ul>
+                </div>
+
+                <div class="tupoksi-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tupoksi-icon" style="background: #ECFDF5;">
+                        <i class="bi bi-files text-2xl" style="color: #10B981;"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">Sekretaris</h3>
+                    <ul class="tupoksi-list">
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Mengelola administrasi dan dokumentasi</li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Menyusun laporan kegiatan dan surat-menyurat
+                        </li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Mengarsipkan data peserta dan tutor</li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Mempersiapkan bahan rapat dan notulen</li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Mengelola website dan informasi publik</li>
+                    </ul>
+                </div>
+
+                <div class="tupoksi-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="tupoksi-icon" style="background: #FFFBEB;">
+                        <i class="bi bi-wallet2 text-2xl" style="color: #F59E0B;"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">Bendahara</h3>
+                    <ul class="tupoksi-list">
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Mengelola keuangan PKBM secara transparan
+                        </li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Membuat laporan keuangan bulanan & tahunan
+                        </li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Mengkoordinasikan bantuan dan donasi</li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Mengelola inventaris barang dan aset</li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Menyusun anggaran kegiatan dan program</li>
+                    </ul>
+                </div>
+
+                <div class="tupoksi-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="tupoksi-icon" style="background: #F3E8FF;">
+                        <i class="bi bi-chalkboard text-2xl" style="color: #8B5CF6;"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">Koordinator Tutor</h3>
+                    <ul class="tupoksi-list">
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Mengoordinir jadwal dan kegiatan belajar
+                        </li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Membimbing dan mengevaluasi kinerja tutor
+                        </li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Menyusun kurikulum dan materi ajar</li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Mengadakan pelatihan tutor secara berkala
+                        </li>
+                        <li><i class="bi bi-check-circle-fill text-xs"></i> Memantau perkembangan peserta didik</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DAFTAR TUTOR ==================== -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Tenaga Pengajar (Tutor)</h2>
+                <div class="w-20 h-1 bg-yellow-500 mx-auto mt-3 rounded-full"></div>
+                <p class="text-gray-600 mt-3">Para tutor berpengalaman yang siap membimbing peserta didik</p>
+            </div>
+
+            <div class="tutor-grid">
+                <div class="tutor-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tutor-header">
+                        <img src="../images/teachers/Tutor1.png" alt="Tutor" class="tutor-photo"
+                            onerror="this.src='https://placehold.co/280x280/8B5CF6/white?text=Tutor'">
+                    </div>
+                    <div class="tutor-body">
+                        <h3 class="tutor-name">Maria Yotam, S.Pd.</h3>
+                        <p class="tutor-subject">Koordinator Tutor & Pengajar Paket C</p>
+                        <p><i class="bi bi-journal-bookmark-fill text-purple-600 mr-2"></i> S1 Pendidikan Bahasa
+                            Indonesia</p>
+                        <p><i class="bi bi-clock text-gray-500 mr-2"></i> 8 tahun mengajar kesetaraan</p>
+                        <p><i class="bi bi-star-fill text-yellow-500 mr-2"></i> Bahasa Indonesia, Sosiologi</p>
+                    </div>
+                </div>
+
+                <div class="tutor-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tutor-header">
+                        <img src="../images/teachers/Tutor2.png" alt="Tutor" class="tutor-photo"
+                            onerror="this.src='https://placehold.co/280x280/8B5CF6/white?text=Tutor'">
+                    </div>
+                    <div class="tutor-body">
+                        <h3 class="tutor-name">Yulianus Kolem, S.Pd.</h3>
+                        <p class="tutor-subject">Tutor Paket B</p>
+                        <p><i class="bi bi-journal-bookmark-fill text-purple-600 mr-2"></i> S1 Pendidikan Matematika</p>
+                        <p><i class="bi bi-clock text-gray-500 mr-2"></i> 6 tahun mengajar kesetaraan</p>
+                        <p><i class="bi bi-star-fill text-yellow-500 mr-2"></i> Matematika, IPA</p>
+                    </div>
+                </div>
+
+                <div class="tutor-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="tutor-header">
+                        <img src="../images/teachers/Tutor3.png" alt="Tutor" class="tutor-photo"
+                            onerror="this.src='https://placehold.co/280x280/8B5CF6/white?text=Tutor'">
+                    </div>
+                    <div class="tutor-body">
+                        <h3 class="tutor-name">Ester Awom, S.Pd.</h3>
+                        <p class="tutor-subject">Tutor Paket A & Literasi</p>
+                        <p><i class="bi bi-journal-bookmark-fill text-purple-600 mr-2"></i> S1 PGSD</p>
+                        <p><i class="bi bi-clock text-gray-500 mr-2"></i> 10 tahun mengajar anak usia dini</p>
+                        <p><i class="bi bi-star-fill text-yellow-500 mr-2"></i> Membaca, Menulis, Berhitung</p>
+                    </div>
+                </div>
+
+                <div class="tutor-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="tutor-header">
+                        <img src="../images/teachers/Tutor4.png" alt="Tutor" class="tutor-photo"
+                            onerror="this.src='https://placehold.co/280x280/8B5CF6/white?text=Tutor'">
+                    </div>
+                    <div class="tutor-body">
+                        <h3 class="tutor-name">Markus Kambu, S.Kom.</h3>
+                        <p class="tutor-subject">Tutor Literasi Digital</p>
+                        <p><i class="bi bi-journal-bookmark-fill text-purple-600 mr-2"></i> S1 Teknik Informatika</p>
+                        <p><i class="bi bi-clock text-gray-500 mr-2"></i> 5 tahun pengajar komputer</p>
+                        <p><i class="bi bi-star-fill text-yellow-500 mr-2"></i> Komputer, Internet, Administrasi</p>
+                    </div>
+                </div>
+
+                <div class="tutor-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="tutor-header">
+                        <img src="../images/teachers/Tutor5.png" alt="Tutor" class="tutor-photo"
+                            onerror="this.src='https://placehold.co/280x280/8B5CF6/white?text=Tutor'">
+                    </div>
+                    <div class="tutor-body">
+                        <h3 class="tutor-name">Ruth Alom, S.Pd.</h3>
+                        <p class="tutor-subject">Tutor Paket C & Bimbingan Beasiswa</p>
+                        <p><i class="bi bi-journal-bookmark-fill text-purple-600 mr-2"></i> S1 Bimbingan Konseling</p>
+                        <p><i class="bi bi-clock text-gray-500 mr-2"></i> 7 tahun konselor pendidikan</p>
+                        <p><i class="bi bi-star-fill text-yellow-500 mr-2"></i> Bimbingan karir & beasiswa</p>
+                    </div>
+                </div>
+
+                <div class="tutor-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="tutor-header">
+                        <img src="../images/teachers/Tutor6.png" alt="Tutor" class="tutor-photo"
+                            onerror="this.src='https://placehold.co/280x280/8B5CF6/white?text=Tutor'">
+                    </div>
+                    <div class="tutor-body">
+                        <h3 class="tutor-name">Daniel Waker, S.Pd.</h3>
+                        <p class="tutor-subject">Tutor Paket B & Kewirausahaan</p>
+                        <p><i class="bi bi-journal-bookmark-fill text-purple-600 mr-2"></i> S1 Pendidikan Ekonomi</p>
+                        <p><i class="bi bi-clock text-gray-500 mr-2"></i> 4 tahun mengajar kewirausahaan</p>
+                        <p><i class="bi bi-star-fill text-yellow-500 mr-2"></i> Ekonomi, Kewirausahaan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA KARIR ==================== -->
+    <section class="py-12 bg-gradient-to-r from-blue-900 to-teal-800 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+            <i class="bi bi-person-plus-fill text-4xl text-yellow-400 mb-4 inline-block"></i>
+            <h3 class="text-2xl md:text-3xl font-bold mb-3">Tertarik Menjadi Tutor?</h3>
+            <p class="text-lg opacity-90 mb-6 max-w-2xl mx-auto">
+                PKBM Nakai Cerdas Belajar membuka kesempatan bagi tenaga pengajar yang berdedikasi untuk pendidikan
+                Asmat
+            </p>
+            <a href="kontak.html"
+                class="inline-flex items-center bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold py-3 px-8 rounded-xl transition shadow-lg">
+                <i class="bi bi-envelope-fill mr-2"></i> Kirim Lamaran
+            </a>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-3">PKBM NAKAI<br>CERDAS BELAJAR</h3>
+                    <p class="text-gray-400 text-sm">Mencerdaskan kehidupan bangsa dari Distrik Pulau Tiga, Asmat, Papua
+                        Selatan.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Halaman</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="../index.html" class="hover:text-white">Beranda</a></li>
+                        <li><a href="visi-misi.html" class="hover:text-white">Visi & Misi</a></li>
+                        <li><a href="program.html" class="hover:text-white">Program</a></li>
+                        <li><a href="struktur.html" class="hover:text-white">Struktur Organisasi</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Lainnya</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="pendaftaran.html" class="hover:text-white">Pendaftaran</a></li>
+                        <li><a href="data-peserta.html" class="hover:text-white">Data Peserta</a></li>
+                        <li><a href="laporan.html" class="hover:text-white">LPJ & Laporan</a></li>
+                        <li><a href="blog/index.html" class="hover:text-white">Blog</a></li>
+                        <li><a href="galeri.html" class="hover:text-white">Galeri</a></li>
+                        <li><a href="kontak.html" class="hover:text-white">Kontak</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-3">Kontak</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="bi bi-geo-alt mr-2"></i> Kampung Nakai, Pulau Tiga</li>
+                        <li><i class="bi bi-whatsapp mr-2"></i> +62 812-3456-7890</li>
+                        <li><i class="bi bi-envelope mr-2"></i> pkbm.nakai@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 text-center text-sm text-gray-500">
+                <p>&copy; 2026 PKBM Nakai Cerdas Belajar. Pendidikan Kesetaraan untuk semua warga Asmat.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCROLL BUTTONS ==================== -->
+    <div class="scroll-btn scroll-up" id="scrollUpBtn" title="Scroll ke atas">
+        <i class="bi bi-chevron-up"></i>
+    </div>
+    <div class="scroll-btn scroll-down" id="scrollDownBtn" title="Scroll ke bawah">
+        <i class="bi bi-chevron-down"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+    // Inisialisasi AOS
+    AOS.init({ once: true, duration: 800 });
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn) {
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+
+    // Scroll buttons
+    const scrollUpBtn = document.getElementById('scrollUpBtn');
+    const scrollDownBtn = document.getElementById('scrollDownBtn');
+
+    function toggleScrollButtons() {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.body.scrollHeight;
+        const seventyPercent = documentHeight * 0.7;
+        const isBelowSeventyPercent = scrollY + windowHeight >= seventyPercent;
+        const isAtBottom = (windowHeight + scrollY) >= documentHeight - 100;
+
+        if (isBelowSeventyPercent) {
+            scrollUpBtn.style.display = 'flex';
+            scrollDownBtn.style.display = 'flex';
+        } else {
+            scrollUpBtn.style.display = 'none';
+            scrollDownBtn.style.display = 'none';
+        }
+        if (isAtBottom) scrollDownBtn.style.display = 'none';
+        if (scrollY === 0) scrollUpBtn.style.display = 'none';
+    }
+
+    if (scrollUpBtn) {
+        scrollUpBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+    if (scrollDownBtn) {
+        scrollDownBtn.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
+    }
+
+    window.addEventListener('scroll', toggleScrollButtons);
+    window.addEventListener('load', toggleScrollButtons);
+    window.addEventListener('resize', toggleScrollButtons);
+
+    // ==================== CELEGAH FOTO DISALAHGUNAKAN ====================
+    function protectImages() {
+        // Pilih semua gambar yang ingin dilindungi
+        const protectedImages = document.querySelectorAll('.org-photo, .tutor-photo');
+
+        protectedImages.forEach(img => {
+            // Mencegah klik kanan (context menu)
+            img.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                return false;
+            });
+
+            // Mencegah drag and drop
+            img.addEventListener('dragstart', (e) => {
+                e.preventDefault();
+                return false;
+            });
+
+            // Mencegah touch and hold (mobile)
+            img.addEventListener('touchstart', (e) => {
+                // Membiarkan scroll normal, hanya mencegah menu konteks
+                let touchDuration = 0;
+                const timer = setTimeout(() => {
+                    touchDuration = 1;
+                }, 500);
+                e.touchDuration = touchDuration;
+            });
+
+            // Menambahkan atribut draggable false
+            img.setAttribute('draggable', 'false');
+
+            // Menambahkan CSS untuk mencegah seleksi
+            img.style.userSelect = 'none';
+            img.style.webkitUserSelect = 'none';
+            img.style.pointerEvents = 'auto';
+        });
+    }
+
+    // Mencegah save image via keyboard (Ctrl+S / Command+S)
+    document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+            e.preventDefault();
+            Swal.fire({
+                icon: 'warning',
+                title: 'Tidak Diizinkan',
+                text: 'Fitur ini dinonaktifkan untuk melindungi hak cipta foto.',
+                confirmButtonColor: '#1D4ED8',
+                timer: 2000,
+                showConfirmButton: false
+            });
+            return false;
+        }
+    });
+
+    // Mencegah print
+    document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 'P')) {
+            e.preventDefault();
+            Swal.fire({
+                icon: 'info',
+                title: 'Print Dinonaktifkan',
+                text: 'Untuk mencetak halaman ini, silakan hubungi admin.',
+                confirmButtonColor: '#1D4ED8'
+            });
+            return false;
+        }
+    });
+
+    // Tambahan CSS untuk mencegah seleksi gambar
+    const style = document.createElement('style');
+    style.textContent = `
+        .org-photo, .tutor-photo {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Jalankan proteksi gambar saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', protectImages);
+
+    // Jalankan juga setelah AOS selesai (untuk gambar yang baru muncul)
+    window.addEventListener('load', protectImages);
+</script>
+</body>
+
+</html>
