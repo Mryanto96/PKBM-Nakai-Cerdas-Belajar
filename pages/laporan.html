@@ -51,8 +51,14 @@
         .report-container {
             background: white;
             border-radius: 1rem;
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 768px) {
+            .report-container {
+                padding: 2rem;
+            }
         }
 
         /* Untuk export PDF */
@@ -73,10 +79,6 @@
                 margin: 0;
             }
 
-            .print-landscape {
-                size: landscape;
-            }
-
             .stat-card {
                 break-inside: avoid;
             }
@@ -84,17 +86,13 @@
             table {
                 break-inside: avoid;
             }
-
-            .chart-container {
-                break-inside: avoid;
-            }
         }
 
-        /* Stat Card */
+        /* Stat Card - Responsive */
         .stat-card {
             background: white;
             border-radius: 1rem;
-            padding: 1.25rem;
+            padding: 0.75rem;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
             border-left: 4px solid;
@@ -116,28 +114,120 @@
             border-left-color: #F59E0B;
         }
 
+        .stat-card .stat-label {
+            font-size: 0.65rem;
+            color: #64748b;
+        }
+
+        .stat-card .stat-number {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1e293b;
+            word-break: break-word;
+        }
+
+        .stat-card .stat-icon {
+            font-size: 1.25rem;
+        }
+
+        @media (min-width: 480px) {
+            .stat-card .stat-label {
+                font-size: 0.7rem;
+            }
+
+            .stat-card .stat-number {
+                font-size: 1rem;
+            }
+
+            .stat-card .stat-icon {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (min-width: 640px) {
+            .stat-card {
+                padding: 1rem;
+            }
+
+            .stat-card .stat-label {
+                font-size: 0.75rem;
+            }
+
+            .stat-card .stat-number {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .stat-card .stat-label {
+                font-size: 0.85rem;
+            }
+
+            .stat-card .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .stat-card .stat-icon {
+                font-size: 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .stat-card .stat-number {
+                font-size: 1.875rem;
+            }
+
+            .stat-card .stat-icon {
+                font-size: 2.5rem;
+            }
+        }
+
         /* Tabel styling */
         .table-custom {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85rem;
+            font-size: 0.7rem;
+        }
+
+        @media (min-width: 640px) {
+            .table-custom {
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .table-custom {
+                font-size: 0.85rem;
+            }
         }
 
         .table-custom th,
         .table-custom td {
-            padding: 12px;
+            padding: 6px 8px;
             text-align: left;
             border-bottom: 1px solid #e2e8f0;
+        }
+
+        @media (min-width: 640px) {
+
+            .table-custom th,
+            .table-custom td {
+                padding: 8px 10px;
+            }
+        }
+
+        @media (min-width: 768px) {
+
+            .table-custom th,
+            .table-custom td {
+                padding: 12px;
+            }
         }
 
         .table-custom th {
             background: #f8fafc;
             font-weight: 600;
             color: #1e293b;
-        }
-
-        .table-custom tr:hover {
-            background: #f8fafc;
         }
 
         /* Export button */
@@ -151,15 +241,91 @@
 
         /* Signature area */
         .signature-area {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             padding-top: 1rem;
             border-top: 1px dashed #cbd5e1;
         }
 
-        /* Responsive table */
+        @media (min-width: 768px) {
+            .signature-area {
+                margin-top: 2rem;
+            }
+        }
+
+        /* Responsive table wrapper */
         .table-responsive-custom {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
+        }
+
+        /* Summary Card Grid (Mobile) */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .summary-card {
+            background: #f8fafc;
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .summary-card .summary-label {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .summary-card .summary-value {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1e293b;
+            word-break: break-word;
+        }
+
+        @media (min-width: 480px) {
+            .summary-grid {
+                gap: 1rem;
+            }
+
+            .summary-card {
+                padding: 1rem;
+            }
+
+            .summary-card .summary-label {
+                font-size: 0.75rem;
+            }
+
+            .summary-card .summary-value {
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .summary-grid {
+                display: none;
+            }
+
+            .summary-table-desktop {
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .summary-table-desktop {
+                display: none !important;
+            }
         }
 
         /* Scroll buttons */
@@ -216,6 +382,13 @@
                 font-size: 1rem;
             }
         }
+
+        /* Chart Container */
+        .chart-container canvas {
+            width: 100% !important;
+            height: auto !important;
+            max-height: 250px;
+        }
     </style>
 </head>
 
@@ -237,7 +410,6 @@
                     </div>
                 </a>
 
-                <!-- Desktop Menu (9 Menu) -->
                 <div class="hidden md:flex space-x-6 lg:space-x-8">
                     <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2">Beranda</a>
                     <a href="visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2">Visi Misi</a>
@@ -246,18 +418,17 @@
                     <a href="data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2">Data Peserta</a>
                     <a href="pendaftaran.html" class="text-gray-600 hover:text-blue-700 py-2">Pendaftaran</a>
                     <a href="laporan.html" class="text-blue-700 border-b-2 border-blue-700 font-semibold py-2">LPJ</a>
+                    <a href="saran.html" class="text-gray-600 hover:text-blue-700 py-2">Saran</a>
                     <a href="galeri.html" class="text-gray-600 hover:text-blue-700 py-2">Galeri</a>
                     <a href="kontak.html" class="text-gray-600 hover:text-blue-700 py-2">Kontak</a>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <button id="mobileMenuButton" class="md:hidden text-gray-600 focus:outline-none">
                     <i class="bi bi-list text-3xl"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
         <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4">
             <div class="flex flex-col space-y-3">
                 <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Beranda</a>
@@ -267,115 +438,115 @@
                 <a href="data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Data Peserta</a>
                 <a href="pendaftaran.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Pendaftaran</a>
                 <a href="laporan.html" class="text-blue-700 font-semibold py-2 border-l-4 border-blue-700 pl-3">LPJ</a>
+                <a href="saran.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Saran</a>
                 <a href="galeri.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Galeri</a>
                 <a href="kontak.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Kontak</a>
             </div>
         </div>
     </nav>
-    <!-- ==================== HERO SECTION (Gambar) ==================== -->
-    <section class="relative w-full bg-white no-print" id="heroSection">
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="relative w-full bg-white no-print">
         <img src="../images/hero/LPJ.png" alt="PKBM Nakai Cerdas Belajar" class="w-full h-auto block">
     </section>
 
     <!-- ==================== TOOLBAR EXPORT ==================== -->
     <div class="bg-white border-b border-gray-200 py-3 no-print">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center flex-wrap gap-3">
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
                 <div class="flex gap-2">
                     <button onclick="exportToPDF()"
-                        class="btn-export bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
-                        <i class="bi bi-file-pdf-fill"></i> Export PDF
-                    </button>
+                        class="btn-export bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg flex items-center gap-2 text-sm sm:text-base"><i
+                            class="bi bi-file-pdf-fill"></i> Export PDF</button>
                     <button onclick="window.print()"
-                        class="btn-export bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
-                        <i class="bi bi-printer-fill"></i> Print Out
-                    </button>
+                        class="btn-export bg-gray-600 hover:bg-gray-700 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg flex items-center gap-2 text-sm sm:text-base"><i
+                            class="bi bi-printer-fill"></i> Print Out</button>
                 </div>
-                <div class="text-sm text-gray-500">
-                    <i class="bi bi-info-circle"></i> Klik Export PDF untuk unduh laporan lengkap format landscape
-                </div>
+                <div class="text-xs sm:text-sm text-gray-500 text-center"><i class="bi bi-info-circle"></i> Klik Export
+                    PDF untuk unduh laporan lengkap format landscape</div>
             </div>
         </div>
     </div>
 
-    <!-- ==================== KONTEN LAPORAN (Yang akan di-export) ==================== -->
-    <div id="reportContent" class="py-8">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- ==================== KONTEN LAPORAN ==================== -->
+    <div id="reportContent" class="py-6 md:py-8">
+        <div class="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
             <div class="report-container">
 
                 <!-- Header Laporan -->
-                <div class="text-center mb-8">
-                    <img src="../images/logo/Logo1.png" alt="Logo" class="h-16 mx-auto mb-3"
+                <div class="text-center mb-6 md:mb-8">
+                    <img src="../images/logo/Logo1.png" alt="Logo" class="h-12 md:h-16 mx-auto mb-3"
                         onerror="this.style.display='none'">
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">PKBM NAKAI CERDAS BELAJAR</h2>
-                    <p class="text-gray-600">Kampung Nakai, Distrik Pulau Tiga, Kabupaten Asmat, Papua Selatan</p>
-                    <p class="text-gray-600">Email: pkbm.nakai@gmail.com | Telp: +62 812-3456-7890</p>
-                    <div class="border-t-2 border-gray-300 w-24 mx-auto my-3"></div>
-                    <h3 class="text-lg font-bold text-gray-800">LAPORAN PERTANGGUNGJAWABAN (LPJ)</h3>
-                    <p class="text-gray-600">Periode: Januari - Desember 2026</p>
+                    <h2 class="text-base md:text-xl lg:text-2xl font-bold text-gray-800">PKBM NAKAI CERDAS BELAJAR</h2>
+                    <p class="text-xs md:text-sm text-gray-600">Kampung Nakai, Distrik Pulau Tiga, Kabupaten Asmat,
+                        Papua Selatan</p>
+                    <p class="text-xs md:text-sm text-gray-600">Email: pkbm.nakai@gmail.com | Telp: +62 812-3456-7890
+                    </p>
+                    <div class="border-t-2 border-gray-300 w-20 md:w-24 mx-auto my-2 md:my-3"></div>
+                    <h3 class="text-sm md:text-lg font-bold text-gray-800">LAPORAN PERTANGGUNGJAWABAN (LPJ)</h3>
+                    <p class="text-xs md:text-sm text-gray-600">Periode: Januari - Desember 2026</p>
                 </div>
 
                 <!-- Ringkasan Statistik -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-6 md:mb-8">
                     <div class="stat-card pemasukan" data-aos="fade-up">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-500 text-sm">Total Pemasukan</p>
-                                <p class="text-2xl font-bold text-gray-800" id="totalPemasukan">Rp0</p>
+                        <div class="flex items-center justify-between gap-1">
+                            <div class="flex-1">
+                                <p class="stat-label">Total Pemasukan</p>
+                                <p class="stat-number font-bold" id="totalPemasukan">Rp0</p>
                             </div>
-                            <i class="bi bi-arrow-down-circle-fill text-3xl text-green-500"></i>
+                            <i class="bi bi-arrow-down-circle-fill stat-icon text-green-500"></i>
                         </div>
                     </div>
                     <div class="stat-card pengeluaran" data-aos="fade-up" data-aos-delay="100">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-500 text-sm">Total Pengeluaran</p>
-                                <p class="text-2xl font-bold text-gray-800" id="totalPengeluaran">Rp0</p>
+                        <div class="flex items-center justify-between gap-1">
+                            <div class="flex-1">
+                                <p class="stat-label">Total Pengeluaran</p>
+                                <p class="stat-number font-bold" id="totalPengeluaran">Rp0</p>
                             </div>
-                            <i class="bi bi-arrow-up-circle-fill text-3xl text-red-500"></i>
+                            <i class="bi bi-arrow-up-circle-fill stat-icon text-red-500"></i>
                         </div>
                     </div>
                     <div class="stat-card saldo" data-aos="fade-up" data-aos-delay="200">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-500 text-sm">Saldo Akhir</p>
-                                <p class="text-2xl font-bold text-gray-800" id="totalSaldo">Rp0</p>
+                        <div class="flex items-center justify-between gap-1">
+                            <div class="flex-1">
+                                <p class="stat-label">Saldo Akhir</p>
+                                <p class="stat-number font-bold" id="totalSaldo">Rp0</p>
                             </div>
-                            <i class="bi bi-wallet2 text-3xl text-blue-500"></i>
+                            <i class="bi bi-wallet2 stat-icon text-blue-500"></i>
                         </div>
                     </div>
                     <div class="stat-card surplus" data-aos="fade-up" data-aos-delay="300">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-500 text-sm">Surplus/(Defisit)</p>
-                                <p class="text-2xl font-bold text-gray-800" id="totalSurplus">Rp0</p>
+                        <div class="flex items-center justify-between gap-1">
+                            <div class="flex-1">
+                                <p class="stat-label">Surplus/(Defisit)</p>
+                                <p class="stat-number font-bold" id="totalSurplus">Rp0</p>
                             </div>
-                            <i class="bi bi-graph-up-arrow text-3xl text-yellow-500"></i>
+                            <i class="bi bi-graph-up-arrow stat-icon text-yellow-500"></i>
                         </div>
                     </div>
                 </div>
 
                 <!-- Chart Section -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                    <div>
-                        <h4 class="font-semibold text-gray-800 mb-3"><i
+                    <div data-aos="fade-right">
+                        <h4 class="font-semibold text-gray-800 mb-3 text-sm sm:text-base"><i
                                 class="bi bi-pie-chart-fill text-blue-600 mr-2"></i> Grafik Pemasukan per Sumber</h4>
-                        <canvas id="incomeChart" style="max-height: 250px;"></canvas>
+                        <div class="chart-container"><canvas id="incomeChart"></canvas></div>
                     </div>
-                    <div>
-                        <h4 class="font-semibold text-gray-800 mb-3"><i
+                    <div data-aos="fade-left">
+                        <h4 class="font-semibold text-gray-800 mb-3 text-sm sm:text-base"><i
                                 class="bi bi-bar-chart-fill text-blue-600 mr-2"></i> Tren Keuangan Bulanan</h4>
-                        <canvas id="trendChart" style="max-height: 250px;"></canvas>
+                        <div class="chart-container"><canvas id="trendChart"></canvas></div>
                     </div>
                 </div>
 
                 <!-- Tabel Pemasukan -->
                 <div class="mb-8">
-                    <h4 class="font-semibold text-gray-800 mb-3 bg-green-50 p-2 rounded-lg">
-                        <i class="bi bi-arrow-down-circle-fill text-green-600 mr-2"></i> Rincian Pemasukan
-                    </h4>
+                    <h4 class="font-semibold text-gray-800 mb-3 bg-green-50 p-2 rounded-lg text-sm sm:text-base"><i
+                            class="bi bi-arrow-down-circle-fill text-green-600 mr-2"></i> Rincian Pemasukan</h4>
                     <div class="table-responsive-custom">
-                        <table class="table-custom" id="incomeTable">
+                        <table class="table-custom w-full" id="incomeTable">
                             <thead>
                                 <tr>
                                     <th>Tanggal</th>
@@ -397,11 +568,10 @@
 
                 <!-- Tabel Pengeluaran -->
                 <div class="mb-8">
-                    <h4 class="font-semibold text-gray-800 mb-3 bg-red-50 p-2 rounded-lg">
-                        <i class="bi bi-arrow-up-circle-fill text-red-600 mr-2"></i> Rincian Pengeluaran
-                    </h4>
+                    <h4 class="font-semibold text-gray-800 mb-3 bg-red-50 p-2 rounded-lg text-sm sm:text-base"><i
+                            class="bi bi-arrow-up-circle-fill text-red-600 mr-2"></i> Rincian Pengeluaran</h4>
                     <div class="table-responsive-custom">
-                        <table class="table-custom" id="expenseTable">
+                        <table class="table-custom w-full" id="expenseTable">
                             <thead>
                                 <tr>
                                     <th>Tanggal</th>
@@ -421,13 +591,14 @@
                     </div>
                 </div>
 
-                <!-- Ringkasan Per Kategori -->
+                <!-- Ringkasan Per Kategori (Responsive: Card di Mobile, Tabel di Desktop) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div>
-                        <h4 class="font-semibold text-gray-800 mb-3"><i class="bi bi-tag-fill text-blue-600 mr-2"></i>
-                            Ringkasan per Sumber Pemasukan</h4>
-                        <div class="table-responsive-custom">
-                            <table class="table-custom" id="incomeSummaryTable">
+                    <div data-aos="fade-up">
+                        <h4 class="font-semibold text-gray-800 mb-3 text-sm sm:text-base"><i
+                                class="bi bi-tag-fill text-blue-600 mr-2"></i> Ringkasan per Sumber Pemasukan</h4>
+                        <div id="incomeSummaryCards" class="summary-grid"></div>
+                        <div class="summary-table-desktop table-responsive-custom">
+                            <table class="table-custom w-full" id="incomeSummaryTable">
                                 <thead>
                                     <tr>
                                         <th>Sumber</th>
@@ -438,11 +609,12 @@
                             </table>
                         </div>
                     </div>
-                    <div>
-                        <h4 class="font-semibold text-gray-800 mb-3"><i class="bi bi-tag-fill text-blue-600 mr-2"></i>
-                            Ringkasan per Kategori Pengeluaran</h4>
-                        <div class="table-responsive-custom">
-                            <table class="table-custom" id="expenseSummaryTable">
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <h4 class="font-semibold text-gray-800 mb-3 text-sm sm:text-base"><i
+                                class="bi bi-tag-fill text-blue-600 mr-2"></i> Ringkasan per Kategori Pengeluaran</h4>
+                        <div id="expenseSummaryCards" class="summary-grid"></div>
+                        <div class="summary-table-desktop table-responsive-custom">
+                            <table class="table-custom w-full" id="expenseSummaryTable">
                                 <thead>
                                     <tr>
                                         <th>Kategori</th>
@@ -457,10 +629,10 @@
 
                 <!-- Catatan & Tanda Tangan -->
                 <div class="signature-area">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         <div>
-                            <p class="text-sm text-gray-600 mb-2"><strong>Catatan:</strong></p>
-                            <ul class="text-xs text-gray-500 space-y-1 list-disc list-inside">
+                            <p class="text-xs sm:text-sm text-gray-600 mb-2"><strong>Catatan:</strong></p>
+                            <ul class="text-[10px] sm:text-xs text-gray-500 space-y-1 list-disc list-inside">
                                 <li>Laporan keuangan ini disusun berdasarkan sistem akuntansi PKBM Nakai Cerdas Belajar
                                 </li>
                                 <li>Seluruh dana dikelola secara transparan dan dapat diakses publik</li>
@@ -469,44 +641,39 @@
                             </ul>
                         </div>
                         <div class="text-center">
-                            <p class="text-sm text-gray-600">Nakai, 31 Desember 2026</p>
-                            <p class="text-sm text-gray-600 mt-4">Ketua PKBM Nakai Cerdas Belajar</p>
-                            <div class="mt-8 mb-2">
-                                <div class="border-b-2 border-gray-400 w-48 mx-auto"></div>
+                            <p class="text-xs sm:text-sm text-gray-600">Nakai, 31 Desember 2026</p>
+                            <p class="text-xs sm:text-sm text-gray-600 mt-4">Ketua PKBM Nakai Cerdas Belajar</p>
+                            <div class="mt-6 md:mt-8 mb-2">
+                                <div class="border-b-2 border-gray-400 w-32 sm:w-48 mx-auto"></div>
                             </div>
-                            <p class="text-sm font-semibold">Aurelius Santotinus Agung, S.Pd.</p>
-                            <p class="text-xs text-gray-500">NIP. -</p>
+                            <p class="text-xs sm:text-sm font-semibold">Aurelius Santotinus Agung, S.Pd.</p>
+                            <p class="text-[10px] sm:text-xs text-gray-500">NIP. -</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Footer Laporan -->
-                <div class="text-center text-xs text-gray-400 mt-8 pt-4 border-t">
+                <div class="text-center text-[10px] sm:text-xs text-gray-400 mt-6 md:mt-8 pt-3 md:pt-4 border-t">
                     <p>Dokumen ini sah dan dapat dipertanggungjawabkan. Laporan keuangan diperbarui setiap bulan.</p>
-                    <p>© 2026 PKBM Nakai Cerdas Belajar - Pendidikan Transparan untuk Asmat</p>
+                    <p>© <span id="currentYearReport"></span> PKBM Nakai Cerdas Belajar - Pendidikan Transparan untuk
+                        Asmat</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- ==================== FOOTER ==================== -->
-    <footer class="bg-gray-900 text-white pt-12 pb-6">
+    <footer class="bg-gray-900 text-white pt-10 md:pt-12 pb-6">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <!-- Profil Singkat -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 mb-6 md:mb-8">
                 <div>
-                    <h3 class="font-bold text-lg mb-3">
-                        PKBM NAKAI<br />CERDAS BELAJAR
-                    </h3>
-                    <p class="text-gray-400 text-sm">
-                        Mencerdaskan kehidupan bangsa dari Distrik Pulau Tiga, Asmat, Papua Selatan.
-                    </p>
+                    <h3 class="font-bold text-base md:text-lg mb-2 md:mb-3">PKBM NAKAI<br>CERDAS BELAJAR</h3>
+                    <p class="text-gray-400 text-xs md:text-sm">Mencerdaskan kehidupan bangsa dari Distrik Pulau Tiga,
+                        Asmat, Papua Selatan.</p>
                 </div>
-
-                <!-- Halaman Utama -->
                 <div>
-                    <h4 class="font-semibold mb-3">Halaman</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
+                    <h4 class="font-semibold text-sm md:text-base mb-2 md:mb-3">Halaman</h4>
+                    <ul class="space-y-1 md:space-y-2 text-xs md:text-sm text-gray-400">
                         <li><a href="../index.html" class="hover:text-white transition">Beranda</a></li>
                         <li><a href="visi-misi.html" class="hover:text-white transition">Visi Misi</a></li>
                         <li><a href="struktur.html" class="hover:text-white transition">Struktur</a></li>
@@ -514,38 +681,30 @@
                         <li><a href="kontak.html" class="hover:text-white transition">Kontak</a></li>
                     </ul>
                 </div>
-
-                <!-- Layanan & Informasi -->
                 <div>
-                    <h4 class="font-semibold mb-3">Layanan</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
+                    <h4 class="font-semibold text-sm md:text-base mb-2 md:mb-3">Layanan</h4>
+                    <ul class="space-y-1 md:space-y-2 text-xs md:text-sm text-gray-400">
                         <li><a href="data-peserta.html" class="hover:text-white transition">Data Peserta</a></li>
                         <li><a href="pendaftaran.html" class="hover:text-white transition">Pendaftaran</a></li>
                         <li><a href="laporan.html" class="hover:text-white transition">LPJ & Laporan</a></li>
+                        <li><a href="saran.html" class="hover:text-white transition">Saran & Kritik</a></li>
                         <li><a href="galeri.html" class="hover:text-white transition">Galeri</a></li>
                     </ul>
                 </div>
-
-                <!-- Kontak & Transparansi -->
                 <div>
-                    <h4 class="font-semibold mb-3">Kontak</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
+                    <h4 class="font-semibold text-sm md:text-base mb-2 md:mb-3">Kontak</h4>
+                    <ul class="space-y-1 md:space-y-2 text-xs md:text-sm text-gray-400">
                         <li><i class="bi bi-geo-alt mr-2"></i> Kampung Nakai, Pulau Tiga</li>
                         <li><i class="bi bi-whatsapp mr-2"></i> +62 822-5473-0476</li>
                         <li><i class="bi bi-envelope mr-2"></i> pkbm.nakai@gmail.com</li>
                     </ul>
-                    <p class="text-sm text-gray-400 mt-3">
-                        <i class="bi bi-shield-check"></i> Transparansi keuangan dan data peserta dapat diakses melalui
-                        menu
-                        Data Peserta & LPJ.
-                    </p>
+                    <p class="text-xs text-gray-500 mt-2 md:mt-3"><i class="bi bi-shield-check"></i> Transparansi
+                        keuangan & data peserta via Data Peserta & LPJ.</p>
                 </div>
             </div>
-
-            <div class="border-t border-gray-800 pt-6 text-center text-sm text-gray-500">
-                <p>
-                    &copy; <span id="currentYear"></span> PKBM Nakai Cerdas Belajar | Pendidikan Kesetaraan untuk semua warga Asmat
-                </p>
+            <div class="border-t border-gray-800 pt-4 md:pt-6 text-center text-[10px] md:text-sm text-gray-500">
+                <p>&copy; <span id="currentYear"></span> PKBM Nakai Cerdas Belajar | Pendidikan Kesetaraan untuk semua
+                    warga Asmat</p>
             </div>
         </div>
     </footer>
@@ -556,21 +715,21 @@
     <div class="scroll-btn scroll-down no-print" id="scrollDownBtn" title="Scroll ke bawah"><i
             class="bi bi-chevron-down"></i></div>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
         // Set tahun otomatis
-            document.getElementById('currentYear').innerHTML = new Date().getFullYear();
+        document.getElementById('currentYear').innerHTML = new Date().getFullYear();
+        const yearSpan = document.getElementById('currentYearReport');
+        if (yearSpan) yearSpan.innerHTML = new Date().getFullYear();
+
         AOS.init({ once: true, duration: 800 });
 
         // Mobile menu toggle
         const menuBtn = document.getElementById('mobileMenuButton');
         const mobileMenu = document.getElementById('mobileMenu');
-        if (menuBtn) {
-            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        }
+        if (menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
         // Scroll buttons
         const scrollUpBtn = document.getElementById('scrollUpBtn');
@@ -584,13 +743,8 @@
             const isBelowSeventyPercent = scrollY + windowHeight >= seventyPercent;
             const isAtBottom = (windowHeight + scrollY) >= documentHeight - 100;
 
-            if (isBelowSeventyPercent) {
-                scrollUpBtn.style.display = 'flex';
-                scrollDownBtn.style.display = 'flex';
-            } else {
-                scrollUpBtn.style.display = 'none';
-                scrollDownBtn.style.display = 'none';
-            }
+            if (isBelowSeventyPercent) { scrollUpBtn.style.display = 'flex'; scrollDownBtn.style.display = 'flex'; }
+            else { scrollUpBtn.style.display = 'none'; scrollDownBtn.style.display = 'none'; }
             if (isAtBottom) scrollDownBtn.style.display = 'none';
             if (scrollY === 0) scrollUpBtn.style.display = 'none';
         }
@@ -647,13 +801,8 @@
             return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(angka);
         }
 
-        function hitungTotalPemasukan() {
-            return pemasukanData.reduce((sum, item) => sum + item.jumlah, 0);
-        }
-
-        function hitungTotalPengeluaran() {
-            return pengeluaranData.reduce((sum, item) => sum + item.jumlah, 0);
-        }
+        function hitungTotalPemasukan() { return pemasukanData.reduce((sum, item) => sum + item.jumlah, 0); }
+        function hitungTotalPengeluaran() { return pengeluaranData.reduce((sum, item) => sum + item.jumlah, 0); }
 
         function formatTanggal(dateString) {
             const date = new Date(dateString);
@@ -662,32 +811,46 @@
 
         function renderIncomeTable() {
             const tbody = document.querySelector('#incomeTable tbody');
-            tbody.innerHTML = pemasukanData.map(item => `
-                <tr><td>${formatTanggal(item.tanggal)}</td><td>${item.sumber}</td><td>${item.deskripsi}</td><td class="text-right">${formatRupiah(item.jumlah)}</td></tr>
-            `).join('');
+            tbody.innerHTML = pemasukanData.map(item => `<tr><td class="text-xs sm:text-sm">${formatTanggal(item.tanggal)}</td><td class="text-xs sm:text-sm">${item.sumber}</td><td class="text-xs sm:text-sm">${item.deskripsi}</td><td class="text-right text-xs sm:text-sm">${formatRupiah(item.jumlah)}</td></tr>`).join('');
             document.getElementById('totalIncomeFooter').innerHTML = formatRupiah(hitungTotalPemasukan());
             document.getElementById('totalPemasukan').innerHTML = formatRupiah(hitungTotalPemasukan());
         }
 
         function renderExpenseTable() {
             const tbody = document.querySelector('#expenseTable tbody');
-            tbody.innerHTML = pengeluaranData.map(item => `
-                <tr><td>${formatTanggal(item.tanggal)}</td><td>${item.kategori}</td><td>${item.deskripsi}</td><td class="text-right">${formatRupiah(item.jumlah)}</td></tr>
-            `).join('');
+            tbody.innerHTML = pengeluaranData.map(item => `<tr><td class="text-xs sm:text-sm">${formatTanggal(item.tanggal)}</td><td class="text-xs sm:text-sm">${item.kategori}</td><td class="text-xs sm:text-sm">${item.deskripsi}</td><td class="text-right text-xs sm:text-sm">${formatRupiah(item.jumlah)}</td></tr>`).join('');
             document.getElementById('totalExpenseFooter').innerHTML = formatRupiah(hitungTotalPengeluaran());
             document.getElementById('totalPengeluaran').innerHTML = formatRupiah(hitungTotalPengeluaran());
         }
 
         function renderSummaryTables() {
+            // Summary untuk tabel desktop
             const incomeSummary = {};
             pemasukanData.forEach(item => { incomeSummary[item.sumber] = (incomeSummary[item.sumber] || 0) + item.jumlah; });
-            const incomeSummaryBody = document.querySelector('#incomeSummaryTable tbody');
-            incomeSummaryBody.innerHTML = Object.entries(incomeSummary).sort((a, b) => b[1] - a[1]).map(([sumber, jumlah]) => `<tr><td>${sumber}</td><td class="text-right">${formatRupiah(jumlah)}</td></tr>`).join('');
+            document.querySelector('#incomeSummaryTable tbody').innerHTML = Object.entries(incomeSummary).sort((a, b) => b[1] - a[1]).map(([sumber, jumlah]) => `<tr><td class="text-xs sm:text-sm">${sumber}</td><td class="text-right text-xs sm:text-sm">${formatRupiah(jumlah)}</td></tr>`).join('');
 
             const expenseSummary = {};
             pengeluaranData.forEach(item => { expenseSummary[item.kategori] = (expenseSummary[item.kategori] || 0) + item.jumlah; });
-            const expenseSummaryBody = document.querySelector('#expenseSummaryTable tbody');
-            expenseSummaryBody.innerHTML = Object.entries(expenseSummary).sort((a, b) => b[1] - a[1]).map(([kategori, jumlah]) => `<tr><td>${kategori}</td><td class="text-right">${formatRupiah(jumlah)}</td></tr>`).join('');
+            document.querySelector('#expenseSummaryTable tbody').innerHTML = Object.entries(expenseSummary).sort((a, b) => b[1] - a[1]).map(([kategori, jumlah]) => `<tr><td class="text-xs sm:text-sm">${kategori}</td><td class="text-right text-xs sm:text-sm">${formatRupiah(jumlah)}</td></tr>`).join('');
+        }
+
+        function renderSummaryCards() {
+            // Card view untuk mobile
+            const incomeSummary = {};
+            pemasukanData.forEach(item => { incomeSummary[item.sumber] = (incomeSummary[item.sumber] || 0) + item.jumlah; });
+            const incomeEntries = Object.entries(incomeSummary).sort((a, b) => b[1] - a[1]);
+            const incomeCardsContainer = document.getElementById('incomeSummaryCards');
+            if (incomeCardsContainer) {
+                incomeCardsContainer.innerHTML = incomeEntries.map(([sumber, jumlah]) => `<div class="summary-card"><div class="summary-label"><i class="bi bi-receipt text-green-600 text-xs"></i> ${sumber}</div><div class="summary-value">${formatRupiah(jumlah)}</div></div>`).join('');
+            }
+
+            const expenseSummary = {};
+            pengeluaranData.forEach(item => { expenseSummary[item.kategori] = (expenseSummary[item.kategori] || 0) + item.jumlah; });
+            const expenseEntries = Object.entries(expenseSummary).sort((a, b) => b[1] - a[1]);
+            const expenseCardsContainer = document.getElementById('expenseSummaryCards');
+            if (expenseCardsContainer) {
+                expenseCardsContainer.innerHTML = expenseEntries.map(([kategori, jumlah]) => `<div class="summary-card"><div class="summary-label"><i class="bi bi-tag text-red-600 text-xs"></i> ${kategori}</div><div class="summary-value">${formatRupiah(jumlah)}</div></div>`).join('');
+            }
         }
 
         function updateSaldo() {
@@ -703,10 +866,12 @@
         function initCharts() {
             const incomeSummary = {};
             pemasukanData.forEach(item => { incomeSummary[item.sumber] = (incomeSummary[item.sumber] || 0) + item.jumlah; });
+
+            if (incomeChart) incomeChart.destroy();
             incomeChart = new Chart(document.getElementById('incomeChart'), {
                 type: 'doughnut',
                 data: { labels: Object.keys(incomeSummary), datasets: [{ data: Object.values(incomeSummary), backgroundColor: ['#10B981', '#3B82F6', '#F59E0B', '#8B5CF6', '#EF4444', '#06B6D4'], borderWidth: 0 }] },
-                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom' } } }
+                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { font: { size: window.innerWidth < 768 ? 10 : 12 } } } }, animation: { animateScale: true, animateRotate: true, duration: 1500 } }
             });
 
             const monthlyIncome = {}, monthlyExpense = {};
@@ -714,10 +879,12 @@
             pengeluaranData.forEach(item => { const month = item.tanggal.substring(0, 7); monthlyExpense[month] = (monthlyExpense[month] || 0) + item.jumlah; });
             const months = ['2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06', '2026-07', '2026-08', '2026-09', '2026-10', '2026-11', '2026-12'];
             const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+
+            if (trendChart) trendChart.destroy();
             trendChart = new Chart(document.getElementById('trendChart'), {
                 type: 'line',
-                data: { labels: monthNames, datasets: [{ label: 'Pemasukan', data: months.map(m => monthlyIncome[m] || 0), borderColor: '#10B981', backgroundColor: 'rgba(16,185,129,0.1)', fill: true, tension: 0.3 }, { label: 'Pengeluaran', data: months.map(m => monthlyExpense[m] || 0), borderColor: '#EF4444', backgroundColor: 'rgba(239,68,68,0.1)', fill: true, tension: 0.3 }] },
-                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'top' } }, scales: { y: { ticks: { callback: (value) => 'Rp' + (value / 1000000) + 'jt' } } } }
+                data: { labels: monthNames, datasets: [{ label: 'Pemasukan', data: months.map(m => monthlyIncome[m] || 0), borderColor: '#10B981', backgroundColor: 'rgba(16,185,129,0.1)', fill: true, tension: 0.3, pointBackgroundColor: '#10B981' }, { label: 'Pengeluaran', data: months.map(m => monthlyExpense[m] || 0), borderColor: '#EF4444', backgroundColor: 'rgba(239,68,68,0.1)', fill: true, tension: 0.3, pointBackgroundColor: '#EF4444' }] },
+                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'top', labels: { font: { size: window.innerWidth < 768 ? 10 : 12 } } } }, scales: { y: { ticks: { callback: (value) => 'Rp' + (value / 1000000) + 'jt', font: { size: window.innerWidth < 768 ? 9 : 11 } } }, x: { ticks: { font: { size: window.innerWidth < 768 ? 9 : 11 } } } }, animation: { duration: 1500 } }
             });
         }
 
@@ -729,8 +896,14 @@
         renderIncomeTable();
         renderExpenseTable();
         renderSummaryTables();
+        renderSummaryCards();
         updateSaldo();
         initCharts();
+
+        window.addEventListener('resize', () => {
+            initCharts();
+            renderSummaryCards();
+        });
     </script>
 </body>
 

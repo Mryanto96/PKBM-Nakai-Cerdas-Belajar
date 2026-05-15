@@ -1,4 +1,3 @@
-<!-- PKBM Nakai Cerdas Belajar - SARAN & KRITIK -->
 <!DOCTYPE html>
 <html lang="id">
 
@@ -175,6 +174,16 @@
                 font-size: 1rem;
             }
         }
+
+        /* Card testimoni */
+        .testimoni-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimoni-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+        }
     </style>
 </head>
 
@@ -192,12 +201,11 @@
                         <span class="text-xs sm:text-sm md:text-base font-semibold text-blue-800 leading-tight">NAKAI
                             CERDAS</span>
                         <span class="text-xs sm:text-sm md:text-base font-semibold text-blue-600 leading-tight">B E L A
-                            J A
-                            R</span>
+                            J A R</span>
                     </div>
                 </a>
 
-                <!-- Desktop Menu (9 Menu) -->
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-6 lg:space-x-8">
                     <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2">Beranda</a>
                     <a href="visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2">Visi Misi</a>
@@ -234,9 +242,10 @@
             </div>
         </div>
     </nav>
+
     <!-- ==================== HERO SECTION ==================== -->
     <section class="relative w-full bg-white">
-        <img src="../images/hero/Hero1.png" alt="PKBM Nakai Cerdas Belajar" class="w-full h-auto block">
+        <img src="../images/hero/Saran.png" alt="PKBM Nakai Cerdas Belajar" class="w-full h-auto block">
     </section>
 
     <!-- ==================== FORM SARAN & KRITIK ==================== -->
@@ -260,21 +269,18 @@
                 <!-- Form Container -->
                 <div class="form-container p-6 md:p-8" data-aos="fade-up" data-aos-delay="100">
                     <form id="saranForm" method="POST">
-                        <!-- Nama -->
                         <div class="mb-5">
                             <label class="form-label required">Nama Lengkap</label>
                             <input type="text" id="nama" class="form-control-custom"
                                 placeholder="Contoh: Yulianus Kolem" required>
                         </div>
 
-                        <!-- Email -->
                         <div class="mb-5">
                             <label class="form-label required">Email</label>
                             <input type="email" id="email" class="form-control-custom"
                                 placeholder="contoh: email@gmail.com" required>
                         </div>
 
-                        <!-- Kategori Saran/Kritik -->
                         <div class="mb-5">
                             <label class="form-label required">Kategori</label>
                             <select id="kategori" class="form-select-custom" required>
@@ -287,7 +293,6 @@
                             </select>
                         </div>
 
-                        <!-- Rating -->
                         <div class="mb-5">
                             <label class="form-label">Rating Kepuasan (1-5)</label>
                             <div class="rating" id="ratingContainer">
@@ -305,7 +310,6 @@
                             <p class="text-xs text-gray-500 mt-1">(5 = Sangat Puas, 1 = Kurang Puas)</p>
                         </div>
 
-                        <!-- Pesan -->
                         <div class="mb-5">
                             <label class="form-label required">Pesan / Saran / Kritik</label>
                             <textarea id="pesan" rows="6" class="form-textarea-custom"
@@ -313,7 +317,6 @@
                                 required></textarea>
                         </div>
 
-                        <!-- Anonim -->
                         <div class="mb-5">
                             <label class="flex items-center gap-3 cursor-pointer">
                                 <input type="checkbox" id="anonim" class="w-4 h-4">
@@ -322,7 +325,6 @@
                             </label>
                         </div>
 
-                        <!-- Submit Button -->
                         <button type="submit"
                             class="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 rounded-xl transition">
                             <i class="bi bi-send-fill mr-2"></i> Kirim Saran & Kritik
@@ -330,10 +332,8 @@
                     </form>
 
                     <div class="mt-4 text-center">
-                        <p class="text-xs text-gray-500">
-                            <i class="bi bi-shield-lock"></i> Data Anda aman. Setiap saran dan kritik akan kami baca dan
-                            tindaklanjuti.
-                        </p>
+                        <p class="text-xs text-gray-500"><i class="bi bi-shield-lock"></i> Data Anda aman. Setiap saran
+                            dan kritik akan kami baca dan tindaklanjuti.</p>
                     </div>
                 </div>
 
@@ -378,17 +378,11 @@
     <footer class="bg-gray-900 text-white pt-12 pb-6">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <!-- Profil Singkat -->
                 <div>
-                    <h3 class="font-bold text-lg mb-3">
-                        PKBM NAKAI<br />CERDAS BELAJAR
-                    </h3>
-                    <p class="text-gray-400 text-sm">
-                        Mencerdaskan kehidupan bangsa dari Distrik Pulau Tiga, Asmat, Papua Selatan.
-                    </p>
+                    <h3 class="font-bold text-lg mb-3">PKBM NAKAI<br />CERDAS BELAJAR</h3>
+                    <p class="text-gray-400 text-sm">Mencerdaskan kehidupan bangsa dari Distrik Pulau Tiga, Asmat, Papua
+                        Selatan.</p>
                 </div>
-
-                <!-- Halaman Utama -->
                 <div>
                     <h4 class="font-semibold mb-3">Halaman</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
@@ -399,19 +393,16 @@
                         <li><a href="kontak.html" class="hover:text-white transition">Kontak</a></li>
                     </ul>
                 </div>
-
-                <!-- Layanan & Informasi -->
                 <div>
                     <h4 class="font-semibold mb-3">Layanan</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
                         <li><a href="data-peserta.html" class="hover:text-white transition">Data Peserta</a></li>
                         <li><a href="pendaftaran.html" class="hover:text-white transition">Pendaftaran</a></li>
                         <li><a href="laporan.html" class="hover:text-white transition">LPJ & Laporan</a></li>
+                        <li><a href="saran.html" class="hover:text-white transition">Saran & Kritik</a></li>
                         <li><a href="galeri.html" class="hover:text-white transition">Galeri</a></li>
                     </ul>
                 </div>
-
-                <!-- Kontak & Transparansi -->
                 <div>
                     <h4 class="font-semibold mb-3">Kontak</h4>
                     <ul class="space-y-2 text-sm text-gray-400">
@@ -421,16 +412,13 @@
                     </ul>
                     <p class="text-sm text-gray-400 mt-3">
                         <i class="bi bi-shield-check"></i> Transparansi keuangan dan data peserta dapat diakses melalui
-                        menu
-                        Data Peserta & LPJ.
+                        menu Data Peserta & LPJ.
                     </p>
                 </div>
             </div>
-
             <div class="border-t border-gray-800 pt-6 text-center text-sm text-gray-500">
-                <p>
-                    &copy; <span id="currentYear"></span> PKBM Nakai Cerdas Belajar | Pendidikan Kesetaraan untuk semua warga Asmat
-                </p>
+                <p>&copy; <span id="currentYear"></span> PKBM Nakai Cerdas Belajar | Pendidikan Kesetaraan untuk semua
+                    warga Asmat</p>
             </div>
         </div>
     </footer>
@@ -469,7 +457,7 @@
 
     <script>
         // Set tahun otomatis
-            document.getElementById('currentYear').innerHTML = new Date().getFullYear();
+        document.getElementById('currentYear').innerHTML = new Date().getFullYear();
         AOS.init({ once: true, duration: 800 });
 
         // Mobile menu toggle
@@ -502,51 +490,85 @@
         window.addEventListener('load', toggleScrollButtons);
         window.addEventListener('resize', toggleScrollButtons);
 
+        // ==================== DATA CONTOH (DUMMY) - TIDAK AKAN HILANG ====================
+        const dummySaranData = [
+            { id: 1, nama: "Yulianus Kolem", kategori: "Saran", pesan: "Semoga PKBM Nakai semakin maju dan bisa menjangkau lebih banyak warga Asmat yang belum bisa baca tulis. Kami sangat membutuhkan pendidikan di pedalaman.", rating: 5, tanggal: "2026-05-10" },
+            { id: 2, nama: "Maria Yotam", kategori: "Apresiasi", pesan: "Terima kasih PKBM Nakai, saya sekarang bisa membaca dan menulis. Sebelumnya saya tidak pernah bersekolah, sekarang saya bisa mengajar anak-anak saya di rumah. Luar biasa!", rating: 5, tanggal: "2026-05-08" },
+            { id: 3, nama: "Petrus Fokum", kategori: "Kritik", pesan: "Saran saya, jadwal belajar agar lebih konsisten dan tepat waktu. Terima kasih.", rating: 4, tanggal: "2026-05-05" },
+            { id: 4, nama: "Yustina Awom", kategori: "Masukan", pesan: "Buku modul belajar perlu ditambah stoknya, sering habis. Terima kasih.", rating: 4, tanggal: "2026-05-03" },
+            { id: 5, nama: "Markus Kambu", kategori: "Saran", pesan: "Mungkin bisa ditambahkan kursus komputer dasar karena anak-anak muda sekarang butuh keterampilan digital.", rating: 5, tanggal: "2026-05-01" },
+            { id: 6, nama: "Elisabet Waker", kategori: "Apresiasi", pesan: "Terima kasih untuk Ibu Maria yang sabar mengajari saya matematika. Sekarang saya mulai suka matematika!", rating: 5, tanggal: "2026-04-28" },
+            { id: 7, nama: "Benyamin Ukur", kategori: "Saran", pesan: "Saran saya, PKBM bisa merekrut lebih banyak tutor, terutama untuk pelajaran Bahasa Inggris.", rating: 4, tanggal: "2026-04-25" },
+            { id: 8, nama: "Ruth Alom", kategori: "Kritik", pesan: "Fasilitas penerangan di ruang belajar kurang terang. Mohon ditambah lampu.", rating: 4, tanggal: "2026-04-20" },
+            { id: 9, nama: "Lazarus Kenyam", kategori: "Saran", pesan: "Bagi peserta dari kampung Kayu, jarak ke PKBM cukup jauh. Kalau bisa dibuka kelas kecil di kampung-kampung terdekat.", rating: 4, tanggal: "2026-04-15" },
+            { id: 10, nama: "Marta Yotam", kategori: "Apresiasi", pesan: "Terima kasih PKBM NAKAI! Pendidikan gratis ini sangat membantu keluarga kami. Anak saya yang putus sekolah sekarang bisa lanjut belajar lagi.", rating: 5, tanggal: "2026-04-10" }
+        ];
+
         // ==================== KONFIGURASI GOOGLE APPS SCRIPT ====================
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxswCblegBjQI26qAnb-aczydYO4sYkuHPlSthwUISn9pUrrGkYuA8vu10N-YFjVH1J/exec';
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz--pIkWaIjGcgX1NzCx4lGsCG2pvGV-fKMOUR8Zcm5wUq0DHajwZWjWJyeh0z1T80H/exec';
 
         // ==================== AMBIL DATA DARI SPREADSHEET ====================
         async function fetchSaranFromSheet() {
             try {
                 const response = await fetch(`${APPS_SCRIPT_URL}?action=getData`);
                 const result = await response.json();
-
                 if (result.success && result.data && result.data.length > 0) {
                     return result.data;
-                } else {
-                    // Jika tidak ada data, kembalikan array kosong
-                    return [];
                 }
+                return [];
             } catch (error) {
                 console.error('Error fetching data:', error);
                 return [];
             }
         }
 
-        // ==================== RENDER TESTIMONI ====================
+        // ==================== GABUNGKAN DATA DUMMY + DATA BACKEND ====================
+        function mergeData(backendData) {
+            const allData = [...dummySaranData];
+            if (backendData && backendData.length > 0) {
+                backendData.forEach(backendItem => {
+                    const isDuplicate = allData.some(dummyItem =>
+                        dummyItem.nama === backendItem.nama &&
+                        dummyItem.pesan.substring(0, 50) === (backendItem.pesan || '').substring(0, 50)
+                    );
+                    if (!isDuplicate && backendItem.nama !== 'ANONIM') {
+                        allData.push({
+                            id: allData.length + 1,
+                            nama: backendItem.nama || 'Anonim',
+                            kategori: backendItem.kategori || 'Masukan',
+                            pesan: backendItem.pesan || '',
+                            rating: backendItem.rating || 0,
+                            tanggal: backendItem.tanggal || new Date().toISOString().split('T')[0]
+                        });
+                    }
+                });
+            }
+            allData.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
+            return allData;
+        }
+
+        // ==================== RENDER TESTIMONI DENGAN AOS ANIMATION ====================
         function renderTestimoni(saranData) {
             const container = document.getElementById('testimoniContainer');
             const loading = document.getElementById('loadingTestimoni');
             if (!container) return;
-
             if (loading) loading.classList.add('hidden');
-
             if (!saranData || saranData.length === 0) {
-                container.innerHTML = '<div class="text-center py-10 col-span-full"><i class="bi bi-chat-dots text-4xl text-gray-400"></i><p class="text-gray-500 mt-3">Belum ada saran atau kritik</p></div>';
+                container.innerHTML = '<div class="text-center py-10 col-span-full"><i class="bi bi-chat-dots text-4xl text-gray-400"></i><p class="text-gray-500 mt-3">Belum ada saran atau kritik. Jadilah yang pertama!</p></div>';
                 return;
             }
 
-            // Ambil 6 data terbaru
-            const latestData = saranData.slice(0, 6);
-
-            container.innerHTML = latestData.map(item => {
+            const latestData = saranData.slice(0, 9);
+            container.innerHTML = latestData.map((item, index) => {
                 let ratingStars = '';
                 const rating = item.rating || 0;
                 for (let i = 1; i <= 5; i++) {
                     ratingStars += `<i class="bi bi-star-fill text-yellow-400 ${i <= rating ? 'opacity-100' : 'opacity-30'}"></i>`;
                 }
+                // Set delay yang berbeda untuk setiap card agar animasi lebih hidup
+                const delay = (index % 3) * 100;
                 return `
-                    <div class="bg-white rounded-xl p-5 shadow-sm border hover:shadow-md transition" data-aos="fade-up">
+                    <div class="bg-white rounded-xl p-5 shadow-sm border hover:shadow-md transition testimoni-card" data-aos="fade-up" data-aos-delay="${delay}">
                         <div class="flex justify-between items-start mb-3">
                             <div>
                                 <h4 class="font-bold text-gray-800">${escapeHtml(item.nama || 'Anonim')}</h4>
@@ -559,9 +581,11 @@
                     </div>
                 `;
             }).join('');
+
+            // Refresh AOS untuk mendeteksi elemen baru
+            AOS.refresh();
         }
 
-        // Fungsi untuk menghindari XSS
         function escapeHtml(text) {
             if (!text) return '';
             const div = document.createElement('div');
@@ -572,12 +596,10 @@
         // ==================== FUNGSI SUBMIT KE APPS SCRIPT ====================
         async function submitToGoogleSheets(data) {
             try {
-                const response = await fetch(APPS_SCRIPT_URL, {
+                await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
                 });
                 return true;
@@ -591,19 +613,10 @@
         async function loadData() {
             const loading = document.getElementById('loadingTestimoni');
             if (loading) loading.classList.remove('hidden');
-
-            const data = await fetchSaranFromSheet();
-
-            if (data && data.length > 0) {
-                renderTestimoni(data);
-            } else {
-                // Jika tidak ada data, tampilkan pesan
-                const container = document.getElementById('testimoniContainer');
-                if (container) {
-                    container.innerHTML = '<div class="text-center py-10 col-span-full"><i class="bi bi-chat-dots text-4xl text-gray-400"></i><p class="text-gray-500 mt-3">Belum ada saran atau kritik. Jadilah yang pertama!</p></div>';
-                }
-                if (loading) loading.classList.add('hidden');
-            }
+            const backendData = await fetchSaranFromSheet();
+            const mergedData = mergeData(backendData);
+            renderTestimoni(mergedData);
+            if (loading) loading.classList.add('hidden');
         }
 
         // ==================== FORM SUBMIT ====================
@@ -618,22 +631,11 @@
             const rating = document.querySelector('input[name="rating"]:checked')?.value || 0;
 
             if (!nama || !email || !kategori || !pesan) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Data Belum Lengkap',
-                    text: 'Silakan lengkapi semua data yang diperlukan',
-                    confirmButtonColor: '#1D4ED8'
-                });
+                Swal.fire({ icon: 'error', title: 'Data Belum Lengkap', text: 'Silakan lengkapi semua data yang diperlukan', confirmButtonColor: '#1D4ED8' });
                 return;
             }
-
             if (!email.includes('@')) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Email Tidak Valid',
-                    text: 'Masukkan alamat email yang benar',
-                    confirmButtonColor: '#1D4ED8'
-                });
+                Swal.fire({ icon: 'error', title: 'Email Tidak Valid', text: 'Masukkan alamat email yang benar', confirmButtonColor: '#1D4ED8' });
                 return;
             }
 
@@ -648,29 +650,13 @@
                 isAnonim: isAnonim
             };
 
-            Swal.fire({
-                title: 'Mengirim...',
-                text: 'Saran/kritik Anda sedang dikirim',
-                allowOutsideClick: false,
-                didOpen: () => { Swal.showLoading(); }
-            });
-
-            const success = await submitToGoogleSheets(formData);
+            Swal.fire({ title: 'Mengirim...', text: 'Saran/kritik Anda sedang dikirim', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
+            await submitToGoogleSheets(formData);
 
             setTimeout(() => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Terima Kasih!',
-                    html: `Saran dan kritik Anda telah kami terima.<br>Kami akan menindaklanjutinya maksimal 3x24 jam.`,
-                    confirmButtonColor: '#1D4ED8',
-                    confirmButtonText: 'OK'
-                });
-
-                // Reset form
+                Swal.fire({ icon: 'success', title: 'Terima Kasih!', html: `Saran dan kritik Anda telah kami terima.<br>Kami akan menindaklanjutinya maksimal 3x24 jam.`, confirmButtonColor: '#1D4ED8', confirmButtonText: 'OK' });
                 document.getElementById('saranForm').reset();
                 document.querySelectorAll('input[name="rating"]').forEach(r => r.checked = false);
-
-                // Reload data dari spreadsheet
                 loadData();
             }, 100);
         });
