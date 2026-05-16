@@ -38,14 +38,7 @@
         body {
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            background-color: #ffffff;
-            width: 100%;
-            max-width: 100%;
-            position: relative;
-        }
-
-        html {
-            overflow-x: hidden;
+            background-color: #f0f2f5;
             width: 100%;
             max-width: 100%;
         }
@@ -58,28 +51,20 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* Container responsive */
-        .container {
-            width: 100%;
-            max-width: 100%;
-            padding-left: 1rem;
-            padding-right: 1rem;
+        /* Container */
+        .container-custom {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
 
         @media (min-width: 640px) {
-            .container {
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
+            .container-custom {
+                padding: 0 1.5rem;
             }
         }
 
-        @media (min-width: 1024px) {
-            .container {
-                padding-left: 2rem;
-                padding-right: 2rem;
-            }
-        }
-
+        /* Form Styles - PERTAHANKAN ASLI */
         .form-container {
             background: white;
             border-radius: 1.5rem;
@@ -170,34 +155,12 @@
             border-radius: 12px;
         }
 
-        @media (min-width: 768px) {
-            .info-box {
-                padding: 1rem;
-            }
-        }
-
-        .info-box p {
-            font-size: 0.75rem;
-        }
-
-        @media (min-width: 768px) {
-            .info-box p {
-                font-size: 0.85rem;
-            }
-        }
-
         /* Rating Stars */
         .rating {
             display: flex;
             flex-direction: row-reverse;
             justify-content: flex-end;
             gap: 0.35rem;
-        }
-
-        @media (min-width: 768px) {
-            .rating {
-                gap: 0.5rem;
-            }
         }
 
         .rating input {
@@ -211,24 +174,18 @@
             transition: all 0.2s;
         }
 
-        @media (min-width: 768px) {
-            .rating label {
-                font-size: 2rem;
-            }
-        }
-
         .rating label:hover,
         .rating label:hover~label,
         .rating input:checked~label {
             color: #F59E0B;
         }
 
-        /* Scroll buttons */
+        /* Scroll buttons - POSISI DIATAS ADMIN BUTTON */
         .scroll-btn {
             position: fixed;
             right: 20px;
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             background-color: #1D4ED8;
             color: white;
             border-radius: 50%;
@@ -236,7 +193,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 999;
+            z-index: 998;
             transition: all 0.3s ease;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
@@ -247,77 +204,243 @@
         }
 
         .scroll-up {
-            bottom: 80px;
+            bottom: 90px;
         }
 
         .scroll-down {
-            bottom: 30px;
+            bottom: 40px;
         }
 
-        .scroll-btn i {
-            font-size: 1.2rem;
+        /* Floating Admin Button - POSISI TIDAK TIMPAL */
+        .admin-float-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1D4ED8;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            transition: all 0.3s;
         }
 
-        @media (max-width: 768px) {
-            .scroll-btn {
-                width: 34px;
-                height: 34px;
-                right: 15px;
-            }
-
-            .scroll-up {
-                bottom: 70px;
-            }
-
-            .scroll-down {
-                bottom: 25px;
-            }
-
-            .scroll-btn i {
-                font-size: 1rem;
-            }
+        .admin-float-btn:hover {
+            background: #F59E0B;
+            transform: scale(1.05);
         }
 
-        /* Card testimoni */
-        .testimoni-card {
-            transition: all 0.3s ease;
+        .admin-float-btn i {
+            font-size: 24px;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 320px;
             background: white;
-            border-radius: 1rem;
-            padding: 1rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            border: 1px solid #e2e8f0;
         }
 
-        @media (min-width: 640px) {
-            .testimoni-card {
-                padding: 1.25rem;
-            }
+        .admin-panel.active {
+            display: block;
         }
 
-        .testimoni-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        .admin-panel-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #1D4ED8;
         }
 
-        /* Grid testimoni */
-        .testimoni-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
+        /* ========== FACEBOOK STYLE COMMENT THREAD ========== */
+        .comments-thread {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        @media (min-width: 640px) {
-            .testimoni-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.25rem;
-            }
+        /* Komentar utama */
+        .comment-item {
+            padding: 12px 16px;
+            transition: background 0.2s;
         }
 
-        @media (min-width: 1024px) {
-            .testimoni-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1.5rem;
-            }
+        .comment-item:hover {
+            background: #fafafa;
+        }
+
+        /* Avatar */
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            object-fit: cover;
+        }
+
+        .comment-avatar-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e4e6eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .comment-avatar-icon i {
+            font-size: 22px;
+            color: #65676b;
+        }
+
+        /* Bubble chat */
+        .comment-bubble {
+            flex: 1;
+        }
+
+        .comment-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #1e293b;
+        }
+
+        .comment-time {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-left: 0.5rem;
+        }
+
+        .comment-pesan {
+            font-size: 0.875rem;
+            color: #334155;
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        .comment-actions {
+            margin-top: 8px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .comment-action-btn {
+            font-size: 0.75rem;
+            color: #64748b;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .comment-action-btn:hover {
+            color: #1D4ED8;
+        }
+
+        /* === GARIS VERTIKAL UNTUK BALASAN (seperti Facebook) === */
+        .replies-container {
+            position: relative;
+        }
+
+        .replies-container::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e4e6eb;
+        }
+
+        .reply-item {
+            position: relative;
+            padding-left: 48px;
+            margin-top: 8px;
+        }
+
+        /* Garis horizontal penghubung */
+        .reply-item::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 24px;
+            width: 28px;
+            height: 2px;
+            background: #e4e6eb;
+        }
+
+        /* Reply form inline */
+        .reply-form-inline {
+            margin-left: 48px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .reply-form-inline.active {
+            display: block;
+        }
+
+        .reply-textarea {
+            width: 100%;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 0.875rem;
+            resize: none;
+            background: #f8fafc;
+        }
+
+        .reply-textarea:focus {
+            outline: none;
+            border-color: #1D4ED8;
+            background: white;
+        }
+
+        /* Badges */
+        .admin-badge {
+            background: #1D4ED8;
+            color: white;
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            margin-left: 0.5rem;
+        }
+
+        .verified-badge {
+            background: #F59E0B;
+            color: white;
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 999px;
+            margin-left: 0.5rem;
+        }
+
+        .verified-badge i {
+            font-size: 0.6rem;
+        }
+
+        /* Rating kecil */
+        .rating-small {
+            display: inline-flex;
+            gap: 2px;
+            margin-left: 8px;
+        }
+
+        .rating-small i {
+            font-size: 0.7rem;
+            color: #F59E0B;
         }
 
         .loader {
@@ -327,7 +450,6 @@
             border-bottom-color: #1D4ED8;
             border-radius: 50%;
             display: inline-block;
-            box-sizing: border-box;
             animation: rotation 1s linear infinite;
         }
 
@@ -341,19 +463,11 @@
             }
         }
 
-        /* Info cards grid */
         .info-cards {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.75rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
             margin-top: 1.5rem;
-        }
-
-        @media (min-width: 640px) {
-            .info-cards {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1rem;
-            }
         }
 
         .info-card {
@@ -363,12 +477,6 @@
             text-align: center;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             border: 1px solid #e5e7eb;
-        }
-
-        @media (min-width: 768px) {
-            .info-card {
-                padding: 1rem;
-            }
         }
     </style>
 </head>
@@ -390,7 +498,6 @@
                             L A J A R</span>
                     </div>
                 </a>
-
                 <div class="hidden md:flex space-x-4 lg:space-x-6">
                     <a href="../index.html"
                         class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Beranda</a>
@@ -410,13 +517,11 @@
                     <a href="galeri.html" class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Galeri</a>
                     <a href="kontak.html" class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Kontak</a>
                 </div>
-
                 <button id="mobileMenuButton" class="md:hidden text-gray-600 focus:outline-none">
                     <i class="bi bi-list text-2xl sm:text-3xl"></i>
                 </button>
             </div>
         </div>
-
         <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4 w-full">
             <div class="flex flex-col space-y-2">
                 <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3 text-sm">Beranda</a>
@@ -441,10 +546,8 @@
 
     <!-- ==================== FORM SARAN & KRITIK ==================== -->
     <section class="py-8 md:py-12 lg:py-16 w-full">
-        <div class="w-full px-4 sm:px-6 lg:px-8">
+        <div class="container-custom">
             <div class="max-w-3xl mx-auto">
-
-                <!-- Info Box -->
                 <div class="info-box mb-4 md:mb-6" data-aos="fade-up">
                     <div class="flex items-start gap-2 md:gap-3">
                         <i class="bi bi-chat-square-text-fill text-blue-700 text-lg md:text-xl"></i>
@@ -458,7 +561,6 @@
                     </div>
                 </div>
 
-                <!-- Form Container -->
                 <div class="form-container" data-aos="fade-up" data-aos-delay="100">
                     <form id="saranForm" method="POST">
                         <div class="mb-4 md:mb-5">
@@ -466,13 +568,11 @@
                             <input type="text" id="nama" class="form-control-custom"
                                 placeholder="Contoh: Yulianus Kolem" required>
                         </div>
-
                         <div class="mb-4 md:mb-5">
                             <label class="form-label required">Email</label>
                             <input type="email" id="email" class="form-control-custom"
                                 placeholder="contoh: email@gmail.com" required>
                         </div>
-
                         <div class="mb-4 md:mb-5">
                             <label class="form-label required">Kategori</label>
                             <select id="kategori" class="form-select-custom" required>
@@ -484,31 +584,28 @@
                                 <option value="Apresiasi">👏 Apresiasi / Pujian</option>
                             </select>
                         </div>
-
                         <div class="mb-4 md:mb-5">
                             <label class="form-label">Rating Kepuasan (1-5)</label>
                             <div class="rating" id="ratingContainer">
-                                <input type="radio" name="rating" value="5" id="star5">
-                                <label for="star5"><i class="bi bi-star-fill"></i></label>
-                                <input type="radio" name="rating" value="4" id="star4">
-                                <label for="star4"><i class="bi bi-star-fill"></i></label>
-                                <input type="radio" name="rating" value="3" id="star3">
-                                <label for="star3"><i class="bi bi-star-fill"></i></label>
-                                <input type="radio" name="rating" value="2" id="star2">
-                                <label for="star2"><i class="bi bi-star-fill"></i></label>
-                                <input type="radio" name="rating" value="1" id="star1">
-                                <label for="star1"><i class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" value="5" id="star5"><label for="star5"><i
+                                        class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" value="4" id="star4"><label for="star4"><i
+                                        class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" value="3" id="star3"><label for="star3"><i
+                                        class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" value="2" id="star2"><label for="star2"><i
+                                        class="bi bi-star-fill"></i></label>
+                                <input type="radio" name="rating" value="1" id="star1"><label for="star1"><i
+                                        class="bi bi-star-fill"></i></label>
                             </div>
                             <p class="text-[10px] md:text-xs text-gray-500 mt-1">(5 = Sangat Puas, 1 = Kurang Puas)</p>
                         </div>
-
                         <div class="mb-4 md:mb-5">
                             <label class="form-label required">Pesan / Saran / Kritik</label>
                             <textarea id="pesan" rows="5" class="form-textarea-custom"
                                 placeholder="Tulis saran, kritik, atau masukan Anda dengan jelas dan sopan..."
                                 required></textarea>
                         </div>
-
                         <div class="mb-4 md:mb-5">
                             <label class="flex items-center gap-2 md:gap-3 cursor-pointer">
                                 <input type="checkbox" id="anonim" class="w-3 h-3 md:w-4 md:h-4">
@@ -516,32 +613,26 @@
                                     dipublikasikan)</span>
                             </label>
                         </div>
-
                         <button type="submit"
                             class="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 md:py-3 rounded-xl transition text-sm md:text-base">
                             <i class="bi bi-send-fill mr-2"></i> Kirim Saran & Kritik
                         </button>
                     </form>
-
                     <div class="mt-3 md:mt-4 text-center">
                         <p class="text-[10px] md:text-xs text-gray-500"><i class="bi bi-shield-lock"></i> Data Anda
                             aman. Setiap saran dan kritik akan kami baca dan tindaklanjuti.</p>
                     </div>
                 </div>
 
-                <!-- Informasi Tambahan -->
                 <div class="info-cards" data-aos="fade-up" data-aos-delay="200">
-                    <div class="info-card">
-                        <i class="bi bi-chat-dots text-green-500 text-xl md:text-2xl"></i>
+                    <div class="info-card"><i class="bi bi-chat-dots text-green-500 text-xl md:text-2xl"></i>
                         <p class="text-xs md:text-sm text-gray-600 mt-1 md:mt-2">Respon Cepat<br>Maksimal 3x24 jam</p>
                     </div>
-                    <div class="info-card">
-                        <i class="bi bi-people-fill text-blue-500 text-xl md:text-2xl"></i>
+                    <div class="info-card"><i class="bi bi-people-fill text-blue-500 text-xl md:text-2xl"></i>
                         <p class="text-xs md:text-sm text-gray-600 mt-1 md:mt-2">Dibaca Langsung<br>Oleh Pengurus PKBM
                         </p>
                     </div>
-                    <div class="info-card">
-                        <i class="bi bi-graph-up text-purple-500 text-xl md:text-2xl"></i>
+                    <div class="info-card"><i class="bi bi-graph-up text-purple-500 text-xl md:text-2xl"></i>
                         <p class="text-xs md:text-sm text-gray-600 mt-1 md:mt-2">Untuk Kemajuan<br>Pendidikan Asmat</p>
                     </div>
                 </div>
@@ -549,20 +640,21 @@
         </div>
     </section>
 
-    <!-- ==================== SARAN SEBELUMNYA (PREVIEW) ==================== -->
-    <section class="py-8 md:py-12 bg-white border-t border-gray-100 w-full">
-        <div class="w-full px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-6 md:mb-8" data-aos="fade-up">
-                <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800">Apa Kata Mereka?</h2>
-                <div class="w-16 md:w-20 h-1 bg-yellow-500 mx-auto mt-2 md:mt-3 rounded-full"></div>
-                <p class="text-gray-600 mt-2 md:mt-3 text-sm md:text-base">Beberapa saran dan kritik yang sudah masuk
-                </p>
-            </div>
-
-            <div id="testimoniContainer" class="testimoni-grid">
-                <div class="text-center py-10 col-span-full" id="loadingTestimoni">
-                    <div class="loader mx-auto"></div>
-                    <p class="mt-3 text-gray-500 text-sm">Memuat saran terbaru...</p>
+    <!-- ==================== DAFTAR KOMENTAR ==================== -->
+    <section class="py-8 md:py-12 w-full">
+        <div class="container-custom">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-6 md:mb-8" data-aos="fade-up">
+                    <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800">Apa Kata Mereka?</h2>
+                    <div class="w-16 md:w-20 h-1 bg-yellow-500 mx-auto mt-2 md:mt-3 rounded-full"></div>
+                    <p class="text-gray-600 mt-2 md:mt-3 text-sm md:text-base">Saran, kritik, dan balasan dari pengurus
+                        PKBM</p>
+                </div>
+                <div id="commentsContainer" class="comments-thread">
+                    <div class="text-center py-10" id="loadingComments">
+                        <div class="loader mx-auto"></div>
+                        <p class="mt-3 text-gray-500 text-sm">Memuat komentar...</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -570,7 +662,7 @@
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="bg-gray-900 text-white pt-8 md:pt-10 pb-4 md:pb-6 w-full">
-        <div class="w-full px-4 sm:px-6 lg:px-8">
+        <div class="container-custom">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-4 md:mb-6">
                 <div>
                     <h3 class="font-bold text-sm md:text-base mb-1 md:mb-2">PKBM NAKAI<br>CERDAS BELAJAR</h3>
@@ -604,8 +696,6 @@
                         <li><i class="bi bi-whatsapp mr-1"></i> +62 822-5473-0476</li>
                         <li><i class="bi bi-envelope mr-1"></i> pkbm.nakai@gmail.com</li>
                     </ul>
-                    <p class="text-gray-500 text-[8px] md:text-[10px] mt-1 md:mt-2"><i class="bi bi-shield-check"></i>
-                        Transparansi keuangan & data peserta via Data Peserta & LPJ.</p>
                 </div>
             </div>
             <div class="border-t border-gray-800 pt-3 md:pt-4 text-center text-[8px] md:text-xs text-gray-500">
@@ -616,21 +706,57 @@
     </footer>
 
     <!-- ==================== SCROLL BUTTONS ==================== -->
-    <div class="scroll-btn scroll-up" id="scrollUpBtn" title="Scroll ke atas"><i class="bi bi-chevron-up"></i></div>
-    <div class="scroll-btn scroll-down" id="scrollDownBtn" title="Scroll ke bawah"><i class="bi bi-chevron-down"></i>
+    <div class="scroll-btn scroll-up" id="scrollUpBtn"><i class="bi bi-chevron-up"></i></div>
+    <div class="scroll-btn scroll-down" id="scrollDownBtn"><i class="bi bi-chevron-down"></i></div>
+
+    <!-- Floating Admin Button -->
+    <div class="admin-float-btn" id="adminFloatBtn">
+        <i class="bi bi-shield-lock-fill"></i>
     </div>
 
-    <!-- Scripts -->
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-panel-header">
+            <span><i class="bi bi-shield-check"></i> Panel Admin</span>
+            <button id="closeAdminPanel" class="text-gray-400 hover:text-gray-600 bg-transparent border-0">✕</button>
+        </div>
+        <div id="adminLoginSection" class="p-4">
+            <input type="password" id="adminPassword" placeholder="Masukkan kode admin"
+                class="w-full border rounded-xl px-3 py-2 text-sm mb-3">
+            <button id="adminLoginBtn"
+                class="w-full bg-blue-600 text-white py-2 rounded-xl text-sm font-semibold">Login</button>
+            <p class="text-xs text-gray-400 text-center mt-2">Kode: <strong>admin123</strong></p>
+        </div>
+        <div id="adminReplySection" style="display:none;" class="p-4">
+            <p class="text-sm text-gray-600 mb-2">Membalas komentar ID: <span id="replyingToId"
+                    class="font-bold">-</span></p>
+            <p class="text-xs text-gray-400 mb-3">Kepada: <span id="replyingToName" class="font-medium">-</span></p>
+            <textarea id="adminReplyMessage" rows="3" placeholder="Tulis balasan sebagai admin PKBM Nakai..."
+                class="w-full border rounded-xl px-3 py-2 text-sm resize-none"></textarea>
+            <button id="submitAdminReply"
+                class="w-full bg-green-600 text-white py-2 rounded-xl text-sm font-semibold mt-3">Kirim Balasan</button>
+            <button id="logoutAdminBtn" class="w-full text-red-500 text-xs py-1 mt-2">Logout</button>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="../js/main.js"></script>
 
     <script>
-        // Set tahun otomatis
+        // ==================== KONFIGURASI ====================
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwlb3bd82eEOHcsPxj8-noxO1F5fl8nRJjfjRLJWt5xqZYZwL0UVr1Mc4zivwBw285P/exec';
+        const ADMIN_PASSWORD = 'admin123';
+        let isAdminLoggedIn = false;
+        let currentReplyingComment = null;
+
+        // Counter untuk menghitung frekuensi komentar per user (verified icon)
+        let userCommentCount = {};
+
+        // ==================== UTILITY ====================
         document.getElementById('currentYear').innerHTML = new Date().getFullYear();
         AOS.init({ once: true, duration: 800 });
 
-        // Mobile menu toggle
+        // Mobile menu
         const menuBtn = document.getElementById('mobileMenuButton');
         const mobileMenu = document.getElementById('mobileMenu');
         if (menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
@@ -638,120 +764,20 @@
         // Scroll buttons
         const scrollUpBtn = document.getElementById('scrollUpBtn');
         const scrollDownBtn = document.getElementById('scrollDownBtn');
-
         function toggleScrollButtons() {
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
             const documentHeight = document.body.scrollHeight;
-            const seventyPercent = documentHeight * 0.7;
-            const isBelowSeventyPercent = scrollY + windowHeight >= seventyPercent;
             const isAtBottom = (windowHeight + scrollY) >= documentHeight - 100;
-
-            if (isBelowSeventyPercent) { scrollUpBtn.style.display = 'flex'; scrollDownBtn.style.display = 'flex'; }
-            else { scrollUpBtn.style.display = 'none'; scrollDownBtn.style.display = 'none'; }
-            if (isAtBottom) scrollDownBtn.style.display = 'none';
-            if (scrollY === 0) scrollUpBtn.style.display = 'none';
+            if (scrollY > 200) scrollUpBtn.style.display = 'flex';
+            else scrollUpBtn.style.display = 'none';
+            if (!isAtBottom && scrollY > 100) scrollDownBtn.style.display = 'flex';
+            else scrollDownBtn.style.display = 'none';
         }
-
-        if (scrollUpBtn) scrollUpBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-        if (scrollDownBtn) scrollDownBtn.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
-
+        scrollUpBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        scrollDownBtn?.addEventListener('click', () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }));
         window.addEventListener('scroll', toggleScrollButtons);
         window.addEventListener('load', toggleScrollButtons);
-        window.addEventListener('resize', toggleScrollButtons);
-
-        // ==================== DATA CONTOH (DUMMY) - TIDAK AKAN HILANG ====================
-        const dummySaranData = [
-            { id: 1, nama: "Yulianus Kolem", kategori: "Saran", pesan: "Semoga PKBM Nakai semakin maju dan bisa menjangkau lebih banyak warga Asmat yang belum bisa baca tulis. Kami sangat membutuhkan pendidikan di pedalaman.", rating: 5, tanggal: "2026-05-10" },
-            { id: 2, nama: "Maria Yotam", kategori: "Apresiasi", pesan: "Terima kasih PKBM Nakai, saya sekarang bisa membaca dan menulis. Sebelumnya saya tidak pernah bersekolah, sekarang saya bisa mengajar anak-anak saya di rumah. Luar biasa!", rating: 5, tanggal: "2026-05-08" },
-            { id: 3, nama: "Petrus Fokum", kategori: "Kritik", pesan: "Saran saya, jadwal belajar agar lebih konsisten dan tepat waktu. Terima kasih.", rating: 4, tanggal: "2026-05-05" },
-            { id: 4, nama: "Yustina Awom", kategori: "Masukan", pesan: "Buku modul belajar perlu ditambah stoknya, sering habis. Terima kasih.", rating: 4, tanggal: "2026-05-03" },
-            { id: 5, nama: "Markus Kambu", kategori: "Saran", pesan: "Mungkin bisa ditambahkan kursus komputer dasar karena anak-anak muda sekarang butuh keterampilan digital.", rating: 5, tanggal: "2026-05-01" },
-            { id: 6, nama: "Elisabet Waker", kategori: "Apresiasi", pesan: "Terima kasih untuk Ibu Maria yang sabar mengajari saya matematika. Sekarang saya mulai suka matematika!", rating: 5, tanggal: "2026-04-28" },
-            { id: 7, nama: "Benyamin Ukur", kategori: "Saran", pesan: "Saran saya, PKBM bisa merekrut lebih banyak tutor, terutama untuk pelajaran Bahasa Inggris.", rating: 4, tanggal: "2026-04-25" },
-            { id: 8, nama: "Ruth Alom", kategori: "Kritik", pesan: "Fasilitas penerangan di ruang belajar kurang terang. Mohon ditambah lampu.", rating: 4, tanggal: "2026-04-20" },
-            { id: 9, nama: "Lazarus Kenyam", kategori: "Saran", pesan: "Bagi peserta dari kampung Kayu, jarak ke PKBM cukup jauh. Kalau bisa dibuka kelas kecil di kampung-kampung terdekat.", rating: 4, tanggal: "2026-04-15" },
-            { id: 10, nama: "Marta Yotam", kategori: "Apresiasi", pesan: "Terima kasih PKBM NAKAI! Pendidikan gratis ini sangat membantu keluarga kami. Anak saya yang putus sekolah sekarang bisa lanjut belajar lagi.", rating: 5, tanggal: "2026-04-10" }
-        ];
-
-        // ==================== KONFIGURASI GOOGLE APPS SCRIPT ====================
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz--pIkWaIjGcgX1NzCx4lGsCG2pvGV-fKMOUR8Zcm5wUq0DHajwZWjWJyeh0z1T80H/exec';
-
-        // ==================== AMBIL DATA DARI SPREADSHEET ====================
-        async function fetchSaranFromSheet() {
-            try {
-                const response = await fetch(`${APPS_SCRIPT_URL}?action=getData`);
-                const result = await response.json();
-                if (result.success && result.data && result.data.length > 0) {
-                    return result.data;
-                }
-                return [];
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                return [];
-            }
-        }
-
-        // ==================== GABUNGKAN DATA DUMMY + DATA BACKEND ====================
-        function mergeData(backendData) {
-            const allData = [...dummySaranData];
-            if (backendData && backendData.length > 0) {
-                backendData.forEach(backendItem => {
-                    const isDuplicate = allData.some(dummyItem =>
-                        dummyItem.nama === backendItem.nama &&
-                        dummyItem.pesan.substring(0, 50) === (backendItem.pesan || '').substring(0, 50)
-                    );
-                    if (!isDuplicate && backendItem.nama !== 'ANONIM') {
-                        allData.push({
-                            id: allData.length + 1,
-                            nama: backendItem.nama || 'Anonim',
-                            kategori: backendItem.kategori || 'Masukan',
-                            pesan: backendItem.pesan || '',
-                            rating: backendItem.rating || 0,
-                            tanggal: backendItem.tanggal || new Date().toISOString().split('T')[0]
-                        });
-                    }
-                });
-            }
-            allData.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
-            return allData;
-        }
-
-        // ==================== RENDER TESTIMONI DENGAN AOS ANIMATION ====================
-        function renderTestimoni(saranData) {
-            const container = document.getElementById('testimoniContainer');
-            const loading = document.getElementById('loadingTestimoni');
-            if (!container) return;
-            if (loading) loading.classList.add('hidden');
-            if (!saranData || saranData.length === 0) {
-                container.innerHTML = '<div class="text-center py-10 col-span-full"><i class="bi bi-chat-dots text-4xl text-gray-400"></i><p class="text-gray-500 mt-3 text-sm">Belum ada saran atau kritik. Jadilah yang pertama!</p></div>';
-                return;
-            }
-
-            const latestData = saranData.slice(0, 9);
-            container.innerHTML = latestData.map((item, index) => {
-                let ratingStars = '';
-                const rating = item.rating || 0;
-                for (let i = 1; i <= 5; i++) {
-                    ratingStars += `<i class="bi bi-star-fill text-yellow-400 ${i <= rating ? 'opacity-100' : 'opacity-30'}"></i>`;
-                }
-                const delay = (index % 3) * 100;
-                return `
-                    <div class="testimoni-card" data-aos="fade-up" data-aos-delay="${delay}">
-                        <div class="flex justify-between items-start mb-2 md:mb-3 flex-wrap gap-1">
-                            <div>
-                                <h4 class="font-bold text-gray-800 text-sm md:text-base">${escapeHtml(item.nama || 'Anonim')}</h4>
-                                <span class="text-[10px] md:text-xs text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">${escapeHtml(item.kategori || 'Masukan')}</span>
-                            </div>
-                            <div class="text-[10px] md:text-xs text-gray-400">${item.tanggal || ''}</div>
-                        </div>
-                        <div class="mb-1 md:mb-2">${ratingStars}</div>
-                        <p class="text-gray-600 text-xs md:text-sm">"${escapeHtml(item.pesan || '').substring(0, 150)}${(item.pesan || '').length > 150 ? '...' : ''}"</p>
-                    </div>
-                `;
-            }).join('');
-            AOS.refresh();
-        }
 
         function escapeHtml(text) {
             if (!text) return '';
@@ -760,36 +786,370 @@
             return div.innerHTML;
         }
 
-        // ==================== FUNGSI SUBMIT KE APPS SCRIPT ====================
-        async function submitToGoogleSheets(data) {
+        function formatDate(timestamp) {
+            if (!timestamp) return '';
+            const date = new Date(timestamp);
+            const now = new Date();
+            const diff = Math.floor((now - date) / 1000);
+            if (diff < 60) return 'baru saja';
+            if (diff < 3600) return `${Math.floor(diff / 60)} menit lalu`;
+            if (diff < 86400) return `${Math.floor(diff / 3600)} jam lalu`;
+            if (diff < 604800) return `${Math.floor(diff / 86400)} hari lalu`;
+            return date.toLocaleDateString('id-ID');
+        }
+
+        // Deteksi admin (dari email atau nama mengandung @admin)
+        function isAdminUser(nama, email) {
+            if (email && email.toLowerCase() === 'pkbm.nakai@gmail.com') return true;
+            if (nama && nama.toLowerCase().includes('@admin')) return true;
+            return false;
+        }
+
+        // Deteksi verified user (berdasarkan jumlah komentar > 2)
+        function isVerifiedUser(nama, email, allComments) {
+            if (isAdminUser(nama, email)) return false; // Admin punya badge sendiri
+            const key = (email && email !== '') ? email.toLowerCase() : nama.toLowerCase();
+            const count = userCommentCount[key] || 0;
+            return count >= 3; // Minimal 3 komentar dapat verified badge
+        }
+
+        // Hitung frekuensi komentar per user dari semua data
+        function countUserComments(threads) {
+            const counts = {};
+            function traverse(comments) {
+                for (const comment of comments) {
+                    const key = (comment.email && comment.email !== '') ? comment.email.toLowerCase() : comment.nama.toLowerCase();
+                    counts[key] = (counts[key] || 0) + 1;
+                    if (comment.replies && comment.replies.length) traverse(comment.replies);
+                }
+            }
+            traverse(threads);
+            return counts;
+        }
+
+        function getAvatarHtml(nama, email) {
+            if (isAdminUser(nama, email)) {
+                return `<img src="../images/logo/Logo1.png" alt="PKBM Nakai" class="comment-avatar border-2 border-blue-500" onerror="this.src='https://placehold.co/40x40/1D4ED8/white?text=PKBM'">`;
+            } else {
+                return `<div class="comment-avatar-icon"><i class="bi bi-person-circle"></i></div>`;
+            }
+        }
+
+        function renderRatingStars(rating) {
+            if (!rating || rating === 0) return '';
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                stars += `<i class="bi bi-star-fill ${i <= rating ? 'text-yellow-400' : 'text-gray-300'}"></i>`;
+            }
+            return `<div class="rating-small">${stars}</div>`;
+        }
+
+        // Render komentar dengan gaya Facebook (garis vertikal)
+        function renderComment(comment, depth = 0, isReply = false) {
+            const avatarHtml = getAvatarHtml(comment.nama, comment.email);
+            const isAdmin = isAdminUser(comment.nama, comment.email);
+            const isVerified = isVerifiedUser(comment.nama, comment.email, null);
+            const adminBadge = isAdmin ? '<span class="admin-badge"><i class="bi bi-shield-check"></i> Admin</span>' : '';
+            const verifiedBadge = isVerified ? '<span class="verified-badge"><i class="bi bi-patch-check-fill"></i> Aktif</span>' : '';
+            const namaDisplay = comment.isAnonim ? 'Anonim' : escapeHtml(comment.nama);
+            const ratingHtml = renderRatingStars(comment.rating);
+            const kategoriHtml = comment.kategori ? `<span class="text-xs text-gray-400 ml-1">· ${escapeHtml(comment.kategori)}</span>` : '';
+
+            let html = `
+                <div class="comment-item" data-comment-id="${comment.id}" data-depth="${depth}">
+                    <div class="flex gap-3">
+                        ${avatarHtml}
+                        <div class="comment-bubble">
+                            <div class="flex items-center flex-wrap gap-1">
+                                <span class="comment-name">${namaDisplay}</span>
+                                ${adminBadge}
+                                ${verifiedBadge}
+                                ${kategoriHtml}
+                                <span class="comment-time">· ${formatDate(comment.timestamp)}</span>
+                            </div>
+                            ${ratingHtml}
+                            <div class="comment-pesan">${escapeHtml(comment.pesan)}</div>
+                            <div class="comment-actions">
+                                <span class="comment-action-btn reply-trigger" data-id="${comment.id}" data-nama="${namaDisplay}">
+                                    <i class="bi bi-reply-fill"></i> Balas
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Form balasan inline
+            html += `
+                <div id="reply-form-${comment.id}" class="reply-form-inline">
+                    <div class="flex gap-2">
+                        <div class="comment-avatar-icon" style="width:32px;height:32px;">
+                            <i class="bi bi-person-circle" style="font-size:18px;"></i>
+                        </div>
+                        <div class="flex-1">
+                            <textarea id="reply-text-${comment.id}" rows="2" placeholder="Tulis balasan Anda..." class="reply-textarea"></textarea>
+                            <div class="flex justify-end gap-2 mt-2">
+                                <button class="cancel-reply-btn text-gray-500 text-xs px-3 py-1 rounded-full hover:bg-gray-100">Batal</button>
+                                <button class="submit-reply-btn bg-blue-600 text-white text-xs px-4 py-1 rounded-full hover:bg-blue-700" data-id="${comment.id}">Kirim</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Render BALASAN dengan container yang punya garis vertikal
+            if (comment.replies && comment.replies.length > 0) {
+                html += `<div class="replies-container">`;
+                for (const reply of comment.replies) {
+                    html += `<div class="reply-item">${renderComment(reply, depth + 1, true)}</div>`;
+                }
+                html += `</div>`;
+            }
+
+            return html;
+        }
+
+        function renderAllComments(threads) {
+            if (!threads || threads.length === 0) {
+                return '<div class="text-center py-10"><i class="bi bi-chat-dots text-4xl text-gray-400"></i><p class="text-gray-500 mt-3 text-sm">Belum ada saran atau kritik. Jadilah yang pertama!</p></div>';
+            }
+            let html = '';
+            for (const thread of threads) {
+                html += renderComment(thread, 0);
+            }
+            return html;
+        }
+
+        // ==================== API CALLS ====================
+        async function fetchComments() {
+            try {
+                const response = await fetch(APPS_SCRIPT_URL);
+                const result = await response.json();
+                if (result.success && result.data && result.data.length > 0) {
+                    // Hitung frekuensi user untuk verified badge
+                    userCommentCount = countUserComments(result.data);
+                    return result.data;
+                }
+                return [];
+            } catch (error) {
+                console.error('Error:', error);
+                return [];
+            }
+        }
+
+        async function submitComment(formData) {
             try {
                 await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(formData)
                 });
                 return true;
             } catch (error) {
-                console.error('Error submitting to Google Sheets:', error);
                 return false;
             }
         }
 
-        // ==================== LOAD DATA SAAT HALAMAN DIMUAT ====================
-        async function loadData() {
-            const loading = document.getElementById('loadingTestimoni');
-            if (loading) loading.classList.remove('hidden');
-            const backendData = await fetchSaranFromSheet();
-            const mergedData = mergeData(backendData);
-            renderTestimoni(mergedData);
-            if (loading) loading.classList.add('hidden');
+        async function submitReply(parentId, nama, email, pesan) {
+            const replyData = {
+                parent_id: parseInt(parentId),
+                timestamp: new Date().toISOString(),
+                nama: nama,
+                email: email || '',
+                pesan: pesan,
+                isAnonim: false
+            };
+            try {
+                await fetch(`${APPS_SCRIPT_URL}?action=postReply`, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(replyData)
+                });
+                return true;
+            } catch (error) {
+                return false;
+            }
         }
+
+        async function loadComments() {
+            const container = document.getElementById('commentsContainer');
+            const loading = document.getElementById('loadingComments');
+            if (loading) loading.classList.remove('hidden');
+
+            const threads = await fetchComments();
+            container.innerHTML = renderAllComments(threads);
+
+            if (loading) loading.classList.add('hidden');
+            AOS.refresh();
+            attachReplyEventListeners();
+        }
+
+        // ==================== EVENT LISTENERS ====================
+        function attachReplyEventListeners() {
+            document.querySelectorAll('.reply-trigger').forEach(btn => {
+                btn.removeEventListener('click', handleReplyTrigger);
+                btn.addEventListener('click', handleReplyTrigger);
+            });
+            document.querySelectorAll('.submit-reply-btn').forEach(btn => {
+                btn.removeEventListener('click', handleSubmitReply);
+                btn.addEventListener('click', handleSubmitReply);
+            });
+            document.querySelectorAll('.cancel-reply-btn').forEach(btn => {
+                btn.removeEventListener('click', handleCancelReply);
+                btn.addEventListener('click', handleCancelReply);
+            });
+        }
+
+        function handleReplyTrigger(e) {
+            const btn = e.currentTarget;
+            const commentId = btn.dataset.id;
+            const form = document.getElementById(`reply-form-${commentId}`);
+            if (form) {
+                document.querySelectorAll('.reply-form-inline').forEach(f => {
+                    if (f.id !== `reply-form-${commentId}`) f.classList.remove('active');
+                });
+                form.classList.toggle('active');
+                const textarea = form.querySelector('textarea');
+                if (textarea) textarea.focus();
+            }
+        }
+
+        function handleCancelReply(e) {
+            const form = e.currentTarget.closest('.reply-form-inline');
+            if (form) {
+                form.classList.remove('active');
+                const textarea = form.querySelector('textarea');
+                if (textarea) textarea.value = '';
+            }
+        }
+
+        async function handleSubmitReply(e) {
+            const btn = e.currentTarget;
+            const commentId = btn.dataset.id;
+            const form = document.getElementById(`reply-form-${commentId}`);
+            const textarea = form.querySelector('textarea');
+            const pesan = textarea.value.trim();
+
+            if (!pesan) {
+                Swal.fire({ icon: 'error', title: 'Pesan kosong', text: 'Silakan tulis balasan terlebih dahulu' });
+                return;
+            }
+
+            if (isAdminLoggedIn) {
+                Swal.fire({ title: 'Mengirim...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+                const success = await submitReply(commentId, 'Admin PKBM Nakai @admin', 'pkbm.nakai@gmail.com', pesan);
+                if (success) {
+                    Swal.fire({ icon: 'success', title: 'Berhasil!', text: 'Balasan admin terkirim', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+                    form.classList.remove('active');
+                    textarea.value = '';
+                    loadComments();
+                } else {
+                    Swal.fire({ icon: 'error', title: 'Gagal', text: 'Coba lagi nanti' });
+                }
+            } else {
+                const { value: nama } = await Swal.fire({
+                    title: 'Balas Komentar',
+                    input: 'text',
+                    inputPlaceholder: 'Nama Anda',
+                    showCancelButton: true
+                });
+                if (!nama) return;
+
+                const { value: email } = await Swal.fire({
+                    title: 'Email (opsional)',
+                    input: 'email',
+                    inputPlaceholder: 'email@contoh.com',
+                    showCancelButton: true
+                });
+
+                Swal.fire({ title: 'Mengirim...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+                const success = await submitReply(commentId, nama, email || '', pesan);
+                if (success) {
+                    Swal.fire({ icon: 'success', title: 'Terima Kasih!', text: 'Balasan Anda telah dikirim', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+                    form.classList.remove('active');
+                    textarea.value = '';
+                    loadComments();
+                } else {
+                    Swal.fire({ icon: 'error', title: 'Gagal', text: 'Coba lagi nanti' });
+                }
+            }
+        }
+
+        // ==================== ADMIN PANEL ====================
+        const adminFloatBtn = document.getElementById('adminFloatBtn');
+        const adminPanel = document.getElementById('adminPanel');
+        const closeAdminPanel = document.getElementById('closeAdminPanel');
+
+        adminFloatBtn?.addEventListener('click', () => adminPanel.classList.toggle('active'));
+        closeAdminPanel?.addEventListener('click', () => adminPanel.classList.remove('active'));
+
+        document.getElementById('adminLoginBtn')?.addEventListener('click', () => {
+            const pwd = document.getElementById('adminPassword').value;
+            if (pwd === ADMIN_PASSWORD) {
+                isAdminLoggedIn = true;
+                document.getElementById('adminLoginSection').style.display = 'none';
+                document.getElementById('adminReplySection').style.display = 'block';
+                Swal.fire({ icon: 'success', title: 'Login berhasil!', text: 'Anda sekarang bisa membalas komentar sebagai admin', timer: 2000, showConfirmButton: false });
+            } else {
+                Swal.fire({ icon: 'error', title: 'Kode salah!', text: 'Coba lagi dengan kode: admin123' });
+            }
+        });
+
+        document.getElementById('logoutAdminBtn')?.addEventListener('click', () => {
+            isAdminLoggedIn = false;
+            document.getElementById('adminLoginSection').style.display = 'block';
+            document.getElementById('adminReplySection').style.display = 'none';
+            document.getElementById('adminPassword').value = '';
+            currentReplyingComment = null;
+            Swal.fire({ icon: 'info', title: 'Logout', text: 'Anda telah keluar dari mode admin', timer: 1500, showConfirmButton: false });
+        });
+
+        document.getElementById('submitAdminReply')?.addEventListener('click', async () => {
+            if (!currentReplyingComment) {
+                Swal.fire({ icon: 'warning', title: 'Pilih komentar', text: 'Klik tombol "Balas" di komentar yang ingin dijawab' });
+                return;
+            }
+            const pesan = document.getElementById('adminReplyMessage').value.trim();
+            if (!pesan) {
+                Swal.fire({ icon: 'error', title: 'Pesan kosong' });
+                return;
+            }
+            Swal.fire({ title: 'Mengirim...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            const success = await submitReply(currentReplyingComment.id, 'Admin PKBM Nakai @admin', 'pkbm.nakai@gmail.com', pesan);
+            if (success) {
+                Swal.fire({ icon: 'success', title: 'Balasan terkirim!', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+                document.getElementById('adminReplyMessage').value = '';
+                currentReplyingComment = null;
+                document.getElementById('replyingToId').textContent = '-';
+                document.getElementById('replyingToName').textContent = '-';
+                adminPanel.classList.remove('active');
+                loadComments();
+            } else {
+                Swal.fire({ icon: 'error', title: 'Gagal', text: 'Coba lagi' });
+            }
+        });
+
+        // Admin reply trigger
+        document.addEventListener('click', (e) => {
+            const replyBtn = e.target.closest('.reply-trigger');
+            if (replyBtn && isAdminLoggedIn) {
+                e.preventDefault();
+                const commentId = replyBtn.dataset.id;
+                const commentNama = replyBtn.dataset.nama;
+                currentReplyingComment = { id: commentId, nama: commentNama };
+                document.getElementById('replyingToId').textContent = commentId;
+                document.getElementById('replyingToName').textContent = commentNama;
+                document.getElementById('adminReplyMessage').focus();
+                adminPanel.classList.add('active');
+                Swal.fire({ icon: 'info', title: 'Mode Admin Aktif', text: `Membalas komentar dari ${commentNama}`, timer: 1500, showConfirmButton: false });
+            }
+        });
 
         // ==================== FORM SUBMIT ====================
         document.getElementById('saranForm').addEventListener('submit', async function (e) {
             e.preventDefault();
-
             const nama = document.getElementById('nama').value.trim();
             const email = document.getElementById('email').value.trim();
             const kategori = document.getElementById('kategori').value;
@@ -798,11 +1158,11 @@
             const rating = document.querySelector('input[name="rating"]:checked')?.value || 0;
 
             if (!nama || !email || !kategori || !pesan) {
-                Swal.fire({ icon: 'error', title: 'Data Belum Lengkap', text: 'Silakan lengkapi semua data yang diperlukan', confirmButtonColor: '#1D4ED8' });
+                Swal.fire({ icon: 'error', title: 'Data Belum Lengkap', text: 'Silakan lengkapi semua data yang diperlukan' });
                 return;
             }
             if (!email.includes('@')) {
-                Swal.fire({ icon: 'error', title: 'Email Tidak Valid', text: 'Masukkan alamat email yang benar', confirmButtonColor: '#1D4ED8' });
+                Swal.fire({ icon: 'error', title: 'Email Tidak Valid', text: 'Masukkan alamat email yang benar' });
                 return;
             }
 
@@ -817,18 +1177,20 @@
                 isAnonim: isAnonim
             };
 
-            Swal.fire({ title: 'Mengirim...', text: 'Saran/kritik Anda sedang dikirim', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); } });
-            await submitToGoogleSheets(formData);
-
-            setTimeout(() => {
-                Swal.fire({ icon: 'success', title: 'Terima Kasih!', html: `Saran dan kritik Anda telah kami terima.<br>Kami akan menindaklanjutinya maksimal 3x24 jam.`, confirmButtonColor: '#1D4ED8', confirmButtonText: 'OK' });
+            Swal.fire({ title: 'Mengirim...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            const success = await submitComment(formData);
+            if (success) {
+                Swal.fire({ icon: 'success', title: 'Terima Kasih!', html: `Saran dan kritik Anda telah kami terima.<br>Kami akan menindaklanjutinya maksimal 3x24 jam.` });
                 document.getElementById('saranForm').reset();
                 document.querySelectorAll('input[name="rating"]').forEach(r => r.checked = false);
-                loadData();
-            }, 100);
+                document.querySelectorAll('.rating label').forEach(l => l.style.color = '#cbd5e1');
+                loadComments();
+            } else {
+                Swal.fire({ icon: 'error', title: 'Gagal mengirim', text: 'Terjadi kesalahan, silakan coba lagi.' });
+            }
         });
 
-        loadData();
+        loadComments();
     </script>
 </body>
 
