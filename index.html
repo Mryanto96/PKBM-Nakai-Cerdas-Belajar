@@ -1,20 +1,19 @@
-﻿<!-- PKBM Nakai Cerdas Belajar - Beranda -->
-<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover" />
     <meta name="description"
         content="PKBM Nakai Cerdas Belajar - Pusat Kegiatan Belajar Masyarakat di Distrik Pulau Tiga, Kabupaten Asmat, Papua Selatan. Pendidikan kesetaraan Paket A (SD), B (SMP), C (SMA) gratis dan terbuka untuk semua." />
     <meta name="keywords"
         content="PKBM, Paket A, Paket B, Paket C, Asmat, Papua Selatan, Pendidikan Kesetaraan, Nakai" />
     <meta name="author" content="PKBM Nakai Cerdas Belajar" />
-    <title>
-        PKBM Nakai Cerdas Belajar | Pendidikan Setara SD/SMP/SMA - Asmat, Papua
-        Selatan
-    </title>
+    <title>PKBM Nakai Cerdas Belajar | Pendidikan Setara SD/SMP/SMA - Asmat, Papua Selatan</title>
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="Favicon.png" />
+
     <!-- TailwindCSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -34,10 +33,25 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: "Inter", sans-serif;
             overflow-x: hidden;
             background-color: #ffffff;
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+        }
+
+        html {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
         }
 
         h1,
@@ -48,6 +62,28 @@
             font-family: "Poppins", sans-serif;
         }
 
+        /* Container responsive - tidak menyebabkan horizontal scroll */
+        .container {
+            width: 100%;
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
         /* Card hover effect */
         .hover-card {
             transition: all 0.3s ease;
@@ -55,24 +91,34 @@
 
         .hover-card:hover {
             transform: translateY(-8px);
-            box-shadow:
-                0 20px 25px -5px rgba(0, 0, 0, 0.1),
-                0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
         }
 
         /* Statistik angka */
         .counter-number {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             font-weight: 800;
         }
 
+        @media (min-width: 640px) {
+            .counter-number {
+                font-size: 2.2rem;
+            }
+        }
+
         @media (min-width: 768px) {
+            .counter-number {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
             .counter-number {
                 font-size: 3.5rem;
             }
         }
 
-        /* Scroll buttons - ukuran kecil & elegan */
+        /* Scroll buttons */
         .scroll-btn {
             position: fixed;
             right: 20px;
@@ -126,74 +172,192 @@
                 font-size: 1rem;
             }
         }
+
+        /* Grid card untuk program - memastikan tidak overflow */
+        .program-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .program-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .program-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Statistik grid */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .stat-grid {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .stat-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Visi misi grid */
+        .visi-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .visi-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Lokasi grid */
+        .lokasi-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .lokasi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Footer grid */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Hero image */
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Tombol flex */
+        .button-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        @media (min-width: 640px) {
+            .button-flex {
+                flex-direction: row;
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 
 <body class="bg-white">
-<!-- ==================== NAVBAR (Responsive) ==================== -->
-<nav class="bg-white shadow-md sticky top-0 z-50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-2 md:py-3">
-            <!-- Logo + Teks (dapat diklik kembali ke beranda) -->
-            <a href="index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
-                <img src="images/logo/Logo1.png" alt="Logo PKBM Nakai"
-                    class="h-10 sm:h-12 md:h-14 lg:h-16 w-auto object-contain"
-                    onerror="this.src='https://placehold.co/200x60/1D4ED8/white?text=Logo'">
-                <div class="flex flex-col">
-                    <span class="text-xs sm:text-sm md:text-base font-semibold text-blue-800 leading-tight">NAKAI
-                        CERDAS</span>
-                    <span class="text-xs sm:text-sm md:text-base font-semibold text-blue-600 leading-tight">B E L A J A
-                        R</span>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="bg-white shadow-md sticky top-0 z-50 w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-2 md:py-3">
+                <a href="index.html" class="flex items-center gap-2 md:gap-3 shrink-0">
+                    <img src="images/logo/Logo1.png" alt="Logo PKBM Nakai"
+                        class="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain"
+                        onerror="this.src='https://placehold.co/200x60/1D4ED8/white?text=Logo'">
+                    <div class="flex flex-col">
+                        <span class="text-[10px] sm:text-xs md:text-sm font-semibold text-blue-800 leading-tight">NAKAI
+                            CERDAS</span>
+                        <span class="text-[9px] sm:text-[10px] md:text-xs font-semibold text-blue-600 leading-tight">B E
+                            L A J A R</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-4 lg:space-x-6">
+                    <a href="index.html"
+                        class="text-blue-700 border-b-2 border-blue-700 font-semibold py-2 text-sm lg:text-base">Beranda</a>
+                    <a href="pages/visi-misi.html"
+                        class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Visi Misi</a>
+                    <a href="pages/struktur.html"
+                        class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Struktur</a>
+                    <a href="pages/program.html"
+                        class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Program</a>
+                    <a href="pages/data-peserta.html"
+                        class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Data Peserta</a>
+                    <a href="pages/pendaftaran.html"
+                        class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Pendaftaran</a>
+                    <a href="pages/laporan.html"
+                        class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">LPJ</a>
+                    <a href="pages/saran.html"
+                        class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Saran</a>
+                    <a href="pages/galeri.html"
+                        class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Galeri</a>
+                    <a href="pages/kontak.html"
+                        class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Kontak</a>
                 </div>
-            </a>
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-6 lg:space-x-8">
-                <a href="index.html" class="text-blue-700 border-b-2 border-blue-700 font-semibold py-2">Beranda</a>
-                <a href="pages/visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2">Visi Misi</a>
-                <a href="pages/struktur.html" class="text-gray-600 hover:text-blue-700 py-2">Struktur</a>
-                <a href="pages/program.html" class="text-gray-600 hover:text-blue-700 py-2">Program</a>
-                <a href="pages/data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2">Data Peserta</a>
-                <a href="pages/pendaftaran.html" class="text-gray-600 hover:text-blue-700 py-2">Pendaftaran</a>
-                <a href="pages/laporan.html" class="text-gray-600 hover:text-blue-700 py-2">LPJ</a>
-                <a href="pages/saran.html" class="text-gray-600 hover:text-blue-700 py-2">Saran</a>
-                <a href="pages/galeri.html" class="text-gray-600 hover:text-blue-700 py-2">Galeri</a>
-                <a href="pages/kontak.html" class="text-gray-600 hover:text-blue-700 py-2">Kontak</a>
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="md:hidden text-gray-600 focus:outline-none">
+                    <i class="bi bi-list text-2xl sm:text-3xl"></i>
+                </button>
             </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobileMenuButton" class="md:hidden text-gray-600 focus:outline-none">
-                <i class="bi bi-list text-3xl"></i>
-            </button>
         </div>
-    </div>
 
-    <!-- Mobile Menu Dropdown -->
-    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4">
-        <div class="flex flex-col space-y-3">
-            <a href="index.html" class="text-blue-700 font-semibold py-2 border-l-4 border-blue-700 pl-3">Beranda</a>
-            <a href="pages/visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Visi Misi</a>
-            <a href="pages/struktur.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Struktur</a>
-            <a href="pages/program.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Program</a>
-            <a href="pages/data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Data Peserta</a>
-            <a href="pages/pendaftaran.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Pendaftaran</a>
-            <a href="pages/laporan.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">LPJ</a>
-            <a href="pages/saran.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Saran</a>
-            <a href="pages/galeri.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Galeri</a>
-            <a href="pages/kontak.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3">Kontak</a>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4 w-full">
+            <div class="flex flex-col space-y-2">
+                <a href="index.html"
+                    class="text-blue-700 font-semibold py-2 border-l-4 border-blue-700 pl-3 text-sm">Beranda</a>
+                <a href="pages/visi-misi.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3 text-sm">Visi Misi</a>
+                <a href="pages/struktur.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3 text-sm">Struktur</a>
+                <a href="pages/program.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3 text-sm">Program</a>
+                <a href="pages/data-peserta.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3 text-sm">Data
+                    Peserta</a>
+                <a href="pages/pendaftaran.html"
+                    class="text-gray-600 hover:text-blue-700 py-2 pl-3 text-sm">Pendaftaran</a>
+                <a href="pages/laporan.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3 text-sm">LPJ</a>
+                <a href="pages/saran.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3 text-sm">Saran</a>
+                <a href="pages/galeri.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3 text-sm">Galeri</a>
+                <a href="pages/kontak.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3 text-sm">Kontak</a>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+
     <!-- ==================== HERO SECTION ==================== -->
-    <section class="relative w-full bg-white" id="heroSection">
-        <img src="images/hero/Hero1.png" alt="PKBM Nakai Cerdas Belajar" class="w-full h-auto block" />
+    <section class="relative w-full bg-white overflow-hidden">
+        <img src="images/hero/Hero1.png" alt="PKBM Nakai Cerdas Belajar" class="hero-image w-full h-auto">
     </section>
 
     <!-- ==================== SECTION TOMBOL ==================== -->
-    <section class="relative bg-white py-4 md:py-5">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center" data-aos="fade-up"
-                data-aos-duration="1000">
+    <section class="relative bg-white py-4 md:py-5 w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="button-flex justify-center" data-aos="fade-up" data-aos-duration="1000">
                 <a href="pages/pendaftaran.html"
                     class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold py-2.5 px-5 md:py-3 md:px-7 rounded-lg transition duration-300 shadow-lg text-center text-sm md:text-base">
                     <i class="bi bi-pencil-square mr-2"></i> Daftar Sekarang
@@ -207,123 +371,124 @@
     </section>
 
     <!-- ==================== STATISTIK CEPAT ==================== -->
-    <section class="py-12 bg-white border-b border-gray-100">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="text-center p-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="bi bi-people-fill text-2xl text-blue-700"></i>
+    <section class="py-8 md:py-12 bg-white border-b border-gray-100 w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="stat-grid">
+                <div class="text-center p-3 md:p-4" data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="w-12 h-12 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-3">
+                        <i class="bi bi-people-fill text-xl md:text-2xl text-blue-700"></i>
                     </div>
-                    <div class="counter-number text-blue-800 font-bold" id="totalPeserta">
-                        0
-                    </div>
-                    <p class="text-gray-500 font-medium">Total Peserta Aktif</p>
+                    <div class="counter-number text-blue-800 font-bold" id="totalPeserta">0</div>
+                    <p class="text-gray-500 font-medium text-xs md:text-sm">Total Peserta Aktif</p>
                 </div>
-                <div class="text-center p-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="bi bi-award-fill text-2xl text-green-700"></i>
+                <div class="text-center p-3 md:p-4" data-aos="fade-up" data-aos-delay="200">
+                    <div
+                        class="w-12 h-12 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-3">
+                        <i class="bi bi-award-fill text-xl md:text-2xl text-green-700"></i>
                     </div>
-                    <div class="counter-number text-green-800 font-bold" id="totalLulus">
-                        0
-                    </div>
-                    <p class="text-gray-500 font-medium">Lulusan (2023-2025)</p>
+                    <div class="counter-number text-green-800 font-bold" id="totalLulus">0</div>
+                    <p class="text-gray-500 font-medium text-xs md:text-sm">Lulusan (2023-2025)</p>
                 </div>
-                <div class="text-center p-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="bi bi-mortarboard-fill text-2xl text-yellow-700"></i>
+                <div class="text-center p-3 md:p-4" data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="w-12 h-12 md:w-16 md:h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-3">
+                        <i class="bi bi-mortarboard-fill text-xl md:text-2xl text-yellow-700"></i>
                     </div>
-                    <div class="counter-number text-yellow-800 font-bold" id="totalPaket">
-                        0
-                    </div>
-                    <p class="text-gray-500 font-medium">Program Paket (A/B/C)</p>
+                    <div class="counter-number text-yellow-800 font-bold" id="totalPaket">0</div>
+                    <p class="text-gray-500 font-medium text-xs md:text-sm">Program Paket (A/B/C)</p>
                 </div>
-                <div class="text-center p-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <i class="bi bi-trophy-fill text-2xl text-purple-700"></i>
+                <div class="text-center p-3 md:p-4" data-aos="fade-up" data-aos-delay="400">
+                    <div
+                        class="w-12 h-12 md:w-16 md:h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-3">
+                        <i class="bi bi-trophy-fill text-xl md:text-2xl text-purple-700"></i>
                     </div>
-                    <div class="counter-number text-purple-800 font-bold" id="kelulusan">
-                        0
-                    </div>
-                    <p class="text-gray-500 font-medium">Tingkat Kelulusan</p>
+                    <div class="counter-number text-purple-800 font-bold" id="kelulusan">0</div>
+                    <p class="text-gray-500 font-medium text-xs md:text-sm">Tingkat Kelulusan</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ==================== VISI & MISI PREVIEW ==================== -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <p class="text-blue-600 font-semibold uppercase tracking-wide">
-                    Tentang Kami
-                </p>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2">
-                    Misi Mulia Mencerdaskan<br />Anak Negeri Asmat
-                </h2>
-                <div class="w-24 h-1 bg-yellow-500 mx-auto mt-4 rounded-full"></div>
+    <section class="py-12 md:py-16 bg-white w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8 md:mb-12" data-aos="fade-up">
+                <p class="text-blue-600 font-semibold uppercase tracking-wide text-xs md:text-sm">Tentang Kami</p>
+                <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mt-2">Misi Mulia
+                    Mencerdaskan<br>Anak Negeri Asmat</h2>
+                <div class="w-20 md:w-24 h-1 bg-yellow-500 mx-auto mt-3 md:mt-4 rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl shadow-md p-6 hover-card" data-aos="fade-right" data-aos-delay="100">
-                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="bi bi-eye-fill text-2xl text-blue-700"></i>
+            <div class="visi-grid">
+                <div class="bg-white rounded-xl shadow-md p-5 md:p-6 hover-card" data-aos="fade-right"
+                    data-aos-delay="100">
+                    <div
+                        class="w-12 h-12 md:w-14 md:h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                        <i class="bi bi-eye-fill text-xl md:text-2xl text-blue-700"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Visi</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        "Terwujudnya masyarakat Distrik Pulau Tiga yang cerdas,
-                        berkarakter, mandiri, dan berdaya saing melalui pendidikan
-                        kesetaraan yang inklusif, berkualitas, serta berbasis kearifan
-                        lokal Asmat."
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">Visi</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                        "Terwujudnya masyarakat Distrik Pulau Tiga yang cerdas, berkarakter, mandiri, dan berdaya saing
+                        melalui pendidikan kesetaraan yang inklusif, berkualitas, serta berbasis kearifan lokal Asmat."
                     </p>
                 </div>
-                <div class="bg-white rounded-xl shadow-md p-6 hover-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="bi bi-book-half text-2xl text-green-700"></i>
+                <div class="bg-white rounded-xl shadow-md p-5 md:p-6 hover-card" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div
+                        class="w-12 h-12 md:w-14 md:h-14 bg-green-100 rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                        <i class="bi bi-book-half text-xl md:text-2xl text-green-700"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Misi (1)</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Menyelenggarakan program pendidikan kesetaraan Paket A, B, dan C
-                        yang terjangkau, berkualitas, dan berbasis kompetensi.
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">Misi (1)</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                        Menyelenggarakan program pendidikan kesetaraan Paket A, B, dan C yang terjangkau, berkualitas,
+                        dan berbasis kompetensi.
                     </p>
                 </div>
-                <div class="bg-white rounded-xl shadow-md p-6 hover-card" data-aos="fade-left" data-aos-delay="300">
-                    <div class="w-14 h-14 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="bi bi-people text-2xl text-yellow-700"></i>
+                <div class="bg-white rounded-xl shadow-md p-5 md:p-6 hover-card" data-aos="fade-left"
+                    data-aos-delay="300">
+                    <div
+                        class="w-12 h-12 md:w-14 md:h-14 bg-yellow-100 rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                        <i class="bi bi-people text-xl md:text-2xl text-yellow-700"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Misi (2)</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Memberdayakan masyarakat melalui program literasi, keterampilan
-                        vokasional, dan kewirausahaan berbasis potensi lokal Asmat.
-                    </p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-                <div class="bg-white rounded-xl shadow-md p-6 hover-card" data-aos="fade-right" data-aos-delay="400">
-                    <div class="w-14 h-14 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="bi bi-graph-up text-2xl text-red-700"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Misi (3)</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Meningkatkan kualifikasi dan kompetensi tutor serta pengelola PKBM
-                        melalui pelatihan berkelanjutan.
-                    </p>
-                </div>
-                <div class="bg-white rounded-xl shadow-md p-6 hover-card" data-aos="fade-left" data-aos-delay="500">
-                    <div class="w-14 h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <i class="bi bi-building text-2xl text-purple-700"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Misi (4)</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Membangun kemitraan strategis dengan pemerintah daerah, dunia
-                        usaha, dan masyarakat untuk mendukung pendidikan di Asmat.
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">Misi (2)</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                        Memberdayakan masyarakat melalui program literasi, keterampilan vokasional, dan kewirausahaan
+                        berbasis potensi lokal Asmat.
                     </p>
                 </div>
             </div>
 
-            <div class="text-center mt-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div class="bg-white rounded-xl shadow-md p-5 md:p-6 hover-card" data-aos="fade-right"
+                    data-aos-delay="400">
+                    <div
+                        class="w-12 h-12 md:w-14 md:h-14 bg-red-100 rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                        <i class="bi bi-graph-up text-xl md:text-2xl text-red-700"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">Misi (3)</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                        Meningkatkan kualifikasi dan kompetensi tutor serta pengelola PKBM melalui pelatihan
+                        berkelanjutan.
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-5 md:p-6 hover-card" data-aos="fade-left"
+                    data-aos-delay="500">
+                    <div
+                        class="w-12 h-12 md:w-14 md:h-14 bg-purple-100 rounded-lg flex items-center justify-center mb-3 md:mb-4">
+                        <i class="bi bi-building text-xl md:text-2xl text-purple-700"></i>
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-2 md:mb-3">Misi (4)</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                        Membangun kemitraan strategis dengan pemerintah daerah, dunia usaha, dan masyarakat untuk
+                        mendukung pendidikan di Asmat.
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 md:mt-10">
                 <a href="pages/visi-misi.html"
-                    class="inline-flex items-center text-blue-700 font-semibold hover:text-blue-900">
+                    class="inline-flex items-center text-blue-700 font-semibold hover:text-blue-900 text-sm md:text-base">
                     Baca Selengkapnya <i class="bi bi-arrow-right ml-2"></i>
                 </a>
             </div>
@@ -331,115 +496,98 @@
     </section>
 
     <!-- ==================== PROGRAM PAKET ==================== -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <p class="text-blue-600 font-semibold uppercase tracking-wide">
-                    Layanan Kami
-                </p>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2">
-                    Program Pendidikan Kesetaraan
-                </h2>
-                <div class="w-24 h-1 bg-yellow-500 mx-auto mt-4 rounded-full"></div>
-                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
-                    Pilih program sesuai jenjang pendidikan yang ingin Anda capai.
-                    GRATIS untuk seluruh warga Asmat!
-                </p>
+    <section class="py-12 md:py-16 bg-white w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8 md:mb-12" data-aos="fade-up">
+                <p class="text-blue-600 font-semibold uppercase tracking-wide text-xs md:text-sm">Layanan Kami</p>
+                <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mt-2">Program Pendidikan
+                    Kesetaraan</h2>
+                <div class="w-20 md:w-24 h-1 bg-yellow-500 mx-auto mt-3 md:mt-4 rounded-full"></div>
+                <p class="text-gray-600 mt-4 text-sm md:text-base max-w-2xl mx-auto px-4">Pilih program sesuai jenjang
+                    pendidikan yang ingin Anda capai. GRATIS untuk seluruh warga Asmat!</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="program-grid">
                 <div class="border rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition bg-white"
                     data-aos="fade-up" data-aos-delay="100">
-                    <div class="bg-green-600 p-4 text-white text-center">
-                        <i class="bi bi-backpack text-4xl"></i>
-                        <h3 class="text-xl font-bold mt-2">Paket A</h3>
-                        <p class="text-sm opacity-90">Setara SD / MI</p>
+                    <div class="bg-green-600 p-3 md:p-4 text-white text-center">
+                        <i class="bi bi-backpack text-2xl md:text-4xl"></i>
+                        <h3 class="text-base md:text-xl font-bold mt-1 md:mt-2">Paket A</h3>
+                        <p class="text-xs md:text-sm opacity-90">Setara SD / MI</p>
                     </div>
-                    <div class="p-6">
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-start">
-                                <i class="bi bi-check-circle-fill text-green-500 mr-2 mt-1"></i>
-                                <span>Durasi: 6 tahun (kelas 1-6)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="bi bi-check-circle-fill text-green-500 mr-2 mt-1"></i>
-                                <span>Kuota: 40 peserta/tahun</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="bi bi-check-circle-fill text-green-500 mr-2 mt-1"></i>
-                                <span>Biaya: GRATIS</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="bi bi-check-circle-fill text-green-500 mr-2 mt-1"></i>
-                                <span>Usia minimal: 7 tahun</span>
-                            </li>
+                    <div class="p-4 md:p-6">
+                        <ul class="space-y-2 md:space-y-3 mb-4 md:mb-6">
+                            <li class="flex items-start text-sm md:text-base"><i
+                                    class="bi bi-check-circle-fill text-green-500 mr-2 mt-0.5"></i> <span>Durasi: 6
+                                    tahun (kelas 1-6)</span></li>
+                            <li class="flex items-start text-sm md:text-base"><i
+                                    class="bi bi-check-circle-fill text-green-500 mr-2 mt-0.5"></i> <span>Kuota: 40
+                                    peserta/tahun</span></li>
+                            <li class="flex items-start text-sm md:text-base"><i
+                                    class="bi bi-check-circle-fill text-green-500 mr-2 mt-0.5"></i> <span>Biaya:
+                                    GRATIS</span></li>
+                            <li class="flex items-start text-sm md:text-base"><i
+                                    class="bi bi-check-circle-fill text-green-500 mr-2 mt-0.5"></i> <span>Usia minimal:
+                                    7 tahun</span></li>
                         </ul>
                         <a href="pages/pendaftaran.html"
-                            class="block text-center bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition">Daftar
+                            class="block text-center bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition text-sm md:text-base">Daftar
                             Paket A →</a>
                     </div>
                 </div>
 
                 <div class="border rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition bg-white"
                     data-aos="fade-up" data-aos-delay="200">
-                    <div class="bg-blue-600 p-4 text-white text-center">
-                        <i class="bi bi-journal-bookmark-fill text-4xl"></i>
-                        <h3 class="text-xl font-bold mt-2">Paket B</h3>
-                        <p class="text-sm opacity-90">Setara SMP / MTs</p>
+                    <div class="bg-blue-600 p-3 md:p-4 text-white text-center">
+                        <i class="bi bi-journal-bookmark-fill text-2xl md:text-4xl"></i>
+                        <h3 class="text-base md:text-xl font-bold mt-1 md:mt-2">Paket B</h3>
+                        <p class="text-xs md:text-sm opacity-90">Setara SMP / MTs</p>
                     </div>
-                    <div class="p-6">
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-start">
-                                <i class="bi bi-check-circle-fill text-blue-500 mr-2 mt-1"></i>
-                                <span>Durasi: 3 tahun (kelas 7-9)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="bi bi-check-circle-fill text-blue-500 mr-2 mt-1"></i>
-                                <span>Kuota: 50 peserta/tahun</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="bi bi-check-circle-fill text-blue-500 mr-2 mt-1"></i>
-                                <span>Biaya: GRATIS</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="bi bi-check-circle-fill text-blue-500 mr-2 mt-1"></i>
-                                <span>Lulusan SD/Paket A</span>
-                            </li>
+                    <div class="p-4 md:p-6">
+                        <ul class="space-y-2 md:space-y-3 mb-4 md:mb-6">
+                            <li class="flex items-start text-sm md:text-base"><i
+                                    class="bi bi-check-circle-fill text-blue-500 mr-2 mt-0.5"></i> <span>Durasi: 3 tahun
+                                    (kelas 7-9)</span></li>
+                            <li class="flex items-start text-sm md:text-base"><i
+                                    class="bi bi-check-circle-fill text-blue-500 mr-2 mt-0.5"></i> <span>Kuota: 50
+                                    peserta/tahun</span></li>
+                            <li class="flex items-start text-sm md:text-base"><i
+                                    class="bi bi-check-circle-fill text-blue-500 mr-2 mt-0.5"></i> <span>Biaya:
+                                    GRATIS</span></li>
+                            <li class="flex items-start text-sm md:text-base"><i
+                                    class="bi bi-check-circle-fill text-blue-500 mr-2 mt-0.5"></i> <span>Lulusan
+                                    SD/Paket A</span></li>
                         </ul>
                         <a href="pages/pendaftaran.html"
-                            class="block text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition">Daftar
+                            class="block text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition text-sm md:text-base">Daftar
                             Paket B →</a>
                     </div>
                 </div>
 
                 <div class="border rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition bg-white"
                     data-aos="fade-up" data-aos-delay="300">
-                    <div class="bg-yellow-600 p-4 text-white text-center">
-                        <i class="bi bi-mortarboard-fill text-4xl"></i>
-                        <h3 class="text-xl font-bold mt-2">Paket C</h3>
-                        <p class="text-sm opacity-90">Setara SMA / MA</p>
+                    <div class="bg-yellow-600 p-3 md:p-4 text-white text-center">
+                        <i class="bi bi-mortarboard-fill text-2xl md:text-4xl"></i>
+                        <h3 class="text-base md:text-xl font-bold mt-1 md:mt-2">Paket C</h3>
+                        <p class="text-xs md:text-sm opacity-90">Setara SMA / MA</p>
                     </div>
-                    <div class="p-6">
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-start">
-                                <i class="bi bi-check-circle-fill text-yellow-500 mr-2 mt-1"></i>
-                                <span>Durasi: 3 tahun (kelas 10-12)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="bi bi-check-circle-fill text-yellow-500 mr-2 mt-1"></i>
-                                <span>Kuota: 60 peserta/tahun</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="bi bi-check-circle-fill text-yellow-500 mr-2 mt-1"></i>
-                                <span>Biaya: GRATIS</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="bi bi-check-circle-fill text-yellow-500 mr-2 mt-1"></i>
-                                <span>Lulusan SMP/Paket B</span>
-                            </li>
+                    <div class="p-4 md:p-6">
+                        <ul class="space-y-2 md:space-y-3 mb-4 md:mb-6">
+                            <li class="flex items-start text-sm md:text-base"><i
+                                    class="bi bi-check-circle-fill text-yellow-500 mr-2 mt-0.5"></i> <span>Durasi: 3
+                                    tahun (kelas 10-12)</span></li>
+                            <li class="flex items-start text-sm md:text-base"><i
+                                    class="bi bi-check-circle-fill text-yellow-500 mr-2 mt-0.5"></i> <span>Kuota: 60
+                                    peserta/tahun</span></li>
+                            <li class="flex items-start text-sm md:text-base"><i
+                                    class="bi bi-check-circle-fill text-yellow-500 mr-2 mt-0.5"></i> <span>Biaya:
+                                    GRATIS</span></li>
+                            <li class="flex items-start text-sm md:text-base"><i
+                                    class="bi bi-check-circle-fill text-yellow-500 mr-2 mt-0.5"></i> <span>Lulusan
+                                    SMP/Paket B</span></li>
                         </ul>
                         <a href="pages/pendaftaran.html"
-                            class="block text-center bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-2 rounded-lg transition">Daftar
+                            class="block text-center bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-2 rounded-lg transition text-sm md:text-base">Daftar
                             Paket C →</a>
                     </div>
                 </div>
@@ -448,109 +596,94 @@
     </section>
 
     <!-- ==================== PENGUMUMAN TERBARU ==================== -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <p class="text-blue-600 font-semibold uppercase tracking-wide">
-                    Informasi
-                </p>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mt-2">
-                    Pengumuman Terbaru
+    <section class="py-12 md:py-16 bg-white w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8 md:mb-12" data-aos="fade-up">
+                <p class="text-blue-600 font-semibold uppercase tracking-wide text-xs md:text-sm">Informasi</p>
+                <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mt-2">Pengumuman Terbaru
                 </h2>
-                <div class="w-24 h-1 bg-yellow-500 mx-auto mt-4 rounded-full"></div>
+                <div class="w-20 md:w-24 h-1 bg-yellow-500 mx-auto mt-3 md:mt-4 rounded-full"></div>
             </div>
 
             <div class="max-w-3xl mx-auto" data-aos="fade-up">
-                <div class="bg-white rounded-xl shadow-md p-6 mb-4 border-l-4 border-yellow-500">
+                <div class="bg-white rounded-xl shadow-md p-4 md:p-6 mb-4 border-l-4 border-yellow-500">
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                         <span
-                            class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full w-fit">PENTING</span>
-                        <span class="text-sm text-gray-500"><i class="bi bi-calendar3 mr-1"></i> 12 Mei 2026</span>
+                            class="bg-yellow-100 text-yellow-800 text-[10px] md:text-xs font-semibold px-3 py-1 rounded-full w-fit">PENTING</span>
+                        <span class="text-xs md:text-sm text-gray-500"><i class="bi bi-calendar3 mr-1"></i> 12 Mei
+                            2026</span>
                     </div>
-                    <h3 class="font-bold text-lg mt-3">
-                        Pendaftaran Peserta Didik Baru TA 2026/2027 Dibuka!
-                    </h3>
-                    <p class="text-gray-600 mt-2">
-                        Pendaftaran dibuka mulai 12 Mei - 30 Juni 2026. Segera daftarkan
-                        diri Anda secara online atau datang langsung ke PKBM Nakai.
-                    </p>
+                    <h3 class="font-bold text-sm md:text-lg mt-2 md:mt-3">Pendaftaran Peserta Didik Baru TA 2026/2027
+                        Dibuka!</h3>
+                    <p class="text-gray-600 mt-1 md:mt-2 text-xs md:text-sm">Pendaftaran dibuka mulai 12 Mei - 30 Juni
+                        2026. Segera daftarkan diri Anda secara online atau datang langsung ke PKBM Nakai.</p>
                     <a href="pages/pendaftaran.html"
-                        class="inline-block mt-3 text-blue-700 font-semibold text-sm">Daftar sekarang →</a>
+                        class="inline-block mt-2 md:mt-3 text-blue-700 font-semibold text-xs md:text-sm">Daftar sekarang
+                        →</a>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-md p-6 mb-4 border-l-4 border-green-500">
+                <div class="bg-white rounded-xl shadow-md p-4 md:p-6 mb-4 border-l-4 border-green-500">
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                         <span
-                            class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full w-fit">INFO</span>
-                        <span class="text-sm text-gray-500"><i class="bi bi-calendar3 mr-1"></i> 10 Mei 2026</span>
+                            class="bg-green-100 text-green-800 text-[10px] md:text-xs font-semibold px-3 py-1 rounded-full w-fit">INFO</span>
+                        <span class="text-xs md:text-sm text-gray-500"><i class="bi bi-calendar3 mr-1"></i> 10 Mei
+                            2026</span>
                     </div>
-                    <h3 class="font-bold text-lg mt-3">
-                        Jadwal Ujian Kesetaraan Paket C 2026
-                    </h3>
-                    <p class="text-gray-600 mt-2">
-                        Ujian kesetaraan Paket C akan dilaksanakan pada 20-25 Juni 2026.
-                        Seluruh peserta harap mempersiapkan diri.
-                    </p>
+                    <h3 class="font-bold text-sm md:text-lg mt-2 md:mt-3">Jadwal Ujian Kesetaraan Paket C 2026</h3>
+                    <p class="text-gray-600 mt-1 md:mt-2 text-xs md:text-sm">Ujian kesetaraan Paket C akan dilaksanakan
+                        pada 20-25 Juni 2026. Seluruh peserta harap mempersiapkan diri.</p>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <div class="bg-white rounded-xl shadow-md p-4 md:p-6 border-l-4 border-blue-500">
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                         <span
-                            class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full w-fit">PRESTASI</span>
-                        <span class="text-sm text-gray-500"><i class="bi bi-calendar3 mr-1"></i> 5 Mei 2026</span>
+                            class="bg-blue-100 text-blue-800 text-[10px] md:text-xs font-semibold px-3 py-1 rounded-full w-fit">PRESTASI</span>
+                        <span class="text-xs md:text-sm text-gray-500"><i class="bi bi-calendar3 mr-1"></i> 5 Mei
+                            2026</span>
                     </div>
-                    <h3 class="font-bold text-lg mt-3">
-                        12 Lulusan Paket C Diterima di Perguruan Tinggi!
-                    </h3>
-                    <p class="text-gray-600 mt-2">
-                        Selamat kepada para lulusan yang berhasil melanjutkan pendidikan
-                        ke jenjang perguruan tinggi melalui jalur beasiswa afirmasi.
-                    </p>
+                    <h3 class="font-bold text-sm md:text-lg mt-2 md:mt-3">12 Lulusan Paket C Diterima di Perguruan
+                        Tinggi!</h3>
+                    <p class="text-gray-600 mt-1 md:mt-2 text-xs md:text-sm">Selamat kepada para lulusan yang berhasil
+                        melanjutkan pendidikan ke jenjang perguruan tinggi melalui jalur beasiswa afirmasi.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ==================== LOKASI & KONTAK ==================== -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="bg-white rounded-xl shadow-md p-6" data-aos="fade-right">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">
-                        <i class="bi bi-geo-alt-fill text-blue-700 mr-2"></i> Alamat Kami
-                    </h3>
-                    <p class="text-gray-600 mb-2">Kampung Nakai, Distrik Pulau Tiga</p>
-                    <p class="text-gray-600 mb-2">
-                        Kabupaten Asmat, Provinsi Papua Selatan
+    <section class="py-12 md:py-16 bg-white w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="lokasi-grid gap-6 md:gap-8">
+                <div class="bg-white rounded-xl shadow-md p-5 md:p-6" data-aos="fade-right">
+                    <h3 class="text-base md:text-lg lg:text-xl font-bold text-gray-800 mb-3 md:mb-4"><i
+                            class="bi bi-geo-alt-fill text-blue-700 mr-2"></i> Alamat Kami</h3>
+                    <p class="text-gray-600 text-sm md:text-base mb-1 md:mb-2">Kampung Nakai, Distrik Pulau Tiga</p>
+                    <p class="text-gray-600 text-sm md:text-base mb-1 md:mb-2">Kabupaten Asmat, Provinsi Papua Selatan
                     </p>
-                    <p class="text-gray-600 mb-4">Kode Pos: 99777</p>
-                    <div class="bg-gray-100 rounded-lg p-3 text-center text-sm text-gray-500">
-                        <i class="bi bi-info-circle"></i> Belum tersedia peta digital.
-                        Petunjuk arah bisa ditanyakan ke kontak kami.
+                    <p class="text-gray-600 text-sm md:text-base mb-3 md:mb-4">Kode Pos: 99777</p>
+                    <div class="bg-gray-100 rounded-lg p-3 text-center text-xs md:text-sm text-gray-500">
+                        <i class="bi bi-info-circle"></i> Belum tersedia peta digital. Petunjuk arah bisa ditanyakan ke
+                        kontak kami.
                     </div>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-md p-6" data-aos="fade-left">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">
-                        <i class="bi bi-headset"></i> Hubungi Kami
-                    </h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-center">
-                            <i class="bi bi-whatsapp text-green-500 text-xl mr-3"></i>
-                            <span>+62 812-3456-7890 (WhatsApp)</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-envelope-fill text-red-500 text-xl mr-3"></i>
-                            <span>pkbm.nakai@gmail.com</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="bi bi-clock-fill text-blue-500 text-xl mr-3"></i>
-                            <span>Senin - Sabtu: 08.00 - 15.00 WIT</span>
-                        </li>
+                <div class="bg-white rounded-xl shadow-md p-5 md:p-6" data-aos="fade-left">
+                    <h3 class="text-base md:text-lg lg:text-xl font-bold text-gray-800 mb-3 md:mb-4"><i
+                            class="bi bi-headset"></i> Hubungi Kami</h3>
+                    <ul class="space-y-2 md:space-y-3">
+                        <li class="flex items-center text-sm md:text-base"><i
+                                class="bi bi-whatsapp text-green-500 text-lg md:text-xl mr-2 md:mr-3"></i> <span>+62
+                                812-3456-7890 (WhatsApp)</span></li>
+                        <li class="flex items-center text-sm md:text-base"><i
+                                class="bi bi-envelope-fill text-red-500 text-lg md:text-xl mr-2 md:mr-3"></i>
+                            <span>pkbm.nakai@gmail.com</span></li>
+                        <li class="flex items-center text-sm md:text-base"><i
+                                class="bi bi-clock-fill text-blue-500 text-lg md:text-xl mr-2 md:mr-3"></i> <span>Senin
+                                - Sabtu: 08.00 - 15.00 WIT</span></li>
                     </ul>
                     <button
-                        class="mt-4 w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 rounded-lg transition"
-                        onclick="window.location.href = 'https://wa.me/6281234567890'">
+                        class="mt-4 w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 rounded-lg transition text-sm md:text-base"
+                        onclick="window.location.href='https://wa.me/6281234567890'">
                         <i class="bi bi-whatsapp mr-2"></i> Chat via WhatsApp
                     </button>
                 </div>
@@ -559,23 +692,17 @@
     </section>
 
     <!-- ==================== FOOTER ==================== -->
-    <footer class="bg-gray-900 text-white pt-12 pb-6">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <!-- Profil Singkat -->
+    <footer class="bg-gray-900 text-white pt-10 md:pt-12 pb-6 w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="footer-grid gap-6 md:gap-8 mb-6 md:mb-8">
                 <div>
-                    <h3 class="font-bold text-lg mb-3">
-                        PKBM NAKAI<br />CERDAS BELAJAR
-                    </h3>
-                    <p class="text-gray-400 text-sm">
-                        Mencerdaskan kehidupan bangsa dari Distrik Pulau Tiga, Asmat, Papua Selatan.
-                    </p>
+                    <h3 class="font-bold text-base md:text-lg mb-2 md:mb-3">PKBM NAKAI<br>CERDAS BELAJAR</h3>
+                    <p class="text-gray-400 text-xs md:text-sm">Mencerdaskan kehidupan bangsa dari Distrik Pulau Tiga,
+                        Asmat, Papua Selatan.</p>
                 </div>
-
-                <!-- Halaman Utama -->
                 <div>
-                    <h4 class="font-semibold mb-3">Halaman</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
+                    <h4 class="font-semibold text-sm md:text-base mb-2 md:mb-3">Halaman</h4>
+                    <ul class="space-y-1 md:space-y-2 text-xs md:text-sm text-gray-400">
                         <li><a href="index.html" class="hover:text-white transition">Beranda</a></li>
                         <li><a href="pages/visi-misi.html" class="hover:text-white transition">Visi Misi</a></li>
                         <li><a href="pages/struktur.html" class="hover:text-white transition">Struktur</a></li>
@@ -583,63 +710,48 @@
                         <li><a href="pages/kontak.html" class="hover:text-white transition">Kontak</a></li>
                     </ul>
                 </div>
-
-                <!-- Layanan & Informasi -->
                 <div>
-                    <h4 class="font-semibold mb-3">Layanan</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
+                    <h4 class="font-semibold text-sm md:text-base mb-2 md:mb-3">Layanan</h4>
+                    <ul class="space-y-1 md:space-y-2 text-xs md:text-sm text-gray-400">
                         <li><a href="pages/data-peserta.html" class="hover:text-white transition">Data Peserta</a></li>
                         <li><a href="pages/pendaftaran.html" class="hover:text-white transition">Pendaftaran</a></li>
                         <li><a href="pages/laporan.html" class="hover:text-white transition">LPJ & Laporan</a></li>
-                    <li><a href="pages/saran.html" class="hover:text-white transition">Saran & Kritik</a></li>
+                        <li><a href="pages/saran.html" class="hover:text-white transition">Saran & Kritik</a></li>
                         <li><a href="pages/galeri.html" class="hover:text-white transition">Galeri</a></li>
                     </ul>
                 </div>
-
-                <!-- Kontak & Transparansi -->
                 <div>
-                    <h4 class="font-semibold mb-3">Kontak Kami</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
+                    <h4 class="font-semibold text-sm md:text-base mb-2 md:mb-3">Kontak Kami</h4>
+                    <ul class="space-y-1 md:space-y-2 text-xs md:text-sm text-gray-400">
                         <li><i class="bi bi-geo-alt mr-2"></i> Kampung Nakai, Pulau Tiga</li>
                         <li><i class="bi bi-whatsapp mr-2"></i> +62 822-5473-0476</li>
                         <li><i class="bi bi-envelope mr-2"></i> pkbm.nakai@gmail.com</li>
                     </ul>
-                    <p class="text-sm text-gray-400 mt-3">
-                        <i class="bi bi-shield-check"></i> Transparansi keuangan dan data peserta dapat diakses melalui
-                        menu
-                        Data Peserta & LPJ.
-                    </p>
+                    <p class="text-gray-500 text-[10px] md:text-xs mt-2 md:mt-3"><i class="bi bi-shield-check"></i>
+                        Transparansi keuangan & data peserta via Data Peserta & LPJ.</p>
                 </div>
             </div>
-
-            <div class="border-t border-gray-800 pt-6 text-center text-sm text-gray-500">
-                <p>
-                    &copy; <span id="currentYear"></span> PKBM Nakai Cerdas Belajar | Pendidikan Kesetaraan untuk semua warga Asmat
-                </p>
+            <div class="border-t border-gray-800 pt-4 md:pt-6 text-center text-[10px] md:text-sm text-gray-500">
+                <p>&copy; <span id="currentYear"></span> PKBM Nakai Cerdas Belajar | Pendidikan Kesetaraan untuk semua
+                    warga Asmat</p>
             </div>
         </div>
     </footer>
 
     <!-- ==================== SCROLL BUTTONS ==================== -->
-    <div class="scroll-btn scroll-up" id="scrollUpBtn" title="Scroll ke atas">
-        <i class="bi bi-chevron-up"></i>
-    </div>
-    <div class="scroll-btn scroll-down" id="scrollDownBtn" title="Scroll ke bawah">
-        <i class="bi bi-chevron-down"></i>
+    <div class="scroll-btn scroll-up" id="scrollUpBtn" title="Scroll ke atas"><i class="bi bi-chevron-up"></i></div>
+    <div class="scroll-btn scroll-down" id="scrollDownBtn" title="Scroll ke bawah"><i class="bi bi-chevron-down"></i>
     </div>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
         // Set tahun otomatis
-            document.getElementById('currentYear').innerHTML = new Date().getFullYear();
+        document.getElementById('currentYear').innerHTML = new Date().getFullYear();
+
         // Inisialisasi AOS
-        AOS.init({
-            once: true,
-            duration: 800,
-        });
+        AOS.init({ once: true, duration: 800 });
 
         // Mobile menu toggle
         const menuBtn = document.getElementById("mobileMenuButton");
@@ -650,26 +762,18 @@
             });
         }
 
-        // Scroll buttons elements
+        // Scroll buttons
         const scrollUpBtn = document.getElementById("scrollUpBtn");
         const scrollDownBtn = document.getElementById("scrollDownBtn");
 
-        // Fungsi untuk mengatur visibilitas scroll buttons
         function toggleScrollButtons() {
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
             const documentHeight = document.body.scrollHeight;
-
-            // Hitung 70% dari halaman (baru muncul setelah user scroll lebih dari 70%)
             const seventyPercent = documentHeight * 0.7;
-
-            // Cek apakah user sudah mencapai 70% ke bawah halaman
             const isBelowSeventyPercent = scrollY + windowHeight >= seventyPercent;
-
-            // Cek apakah sudah di paling bawah (100%)
             const isAtBottom = windowHeight + scrollY >= documentHeight - 100;
 
-            // Scroll Up & Scroll Down: muncul hanya ketika user sudah mencapai 70% ke bawah halaman
             if (isBelowSeventyPercent) {
                 scrollUpBtn.style.display = "flex";
                 scrollDownBtn.style.display = "flex";
@@ -677,50 +781,24 @@
                 scrollUpBtn.style.display = "none";
                 scrollDownBtn.style.display = "none";
             }
-
-            // Sembunyikan scroll down jika sudah di paling bawah
-            if (isAtBottom) {
-                scrollDownBtn.style.display = "none";
-            }
-
-            // Sembunyikan scroll up jika di paling atas (opsional)
-            if (scrollY === 0) {
-                scrollUpBtn.style.display = "none";
-            }
+            if (isAtBottom) scrollDownBtn.style.display = "none";
+            if (scrollY === 0) scrollUpBtn.style.display = "none";
         }
 
-        // Event click untuk scroll up
         if (scrollUpBtn) {
             scrollUpBtn.addEventListener("click", () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth",
-                });
+                window.scrollTo({ top: 0, behavior: "smooth" });
             });
         }
-
-        // Event click untuk scroll down
         if (scrollDownBtn) {
             scrollDownBtn.addEventListener("click", () => {
-                window.scrollTo({
-                    top: document.body.scrollHeight,
-                    behavior: "smooth",
-                });
+                window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
             });
         }
 
-        // Event scroll untuk toggle visibilitas buttons
         window.addEventListener("scroll", toggleScrollButtons);
-
-        // Panggil sekali saat halaman dimuat
-        window.addEventListener("load", () => {
-            toggleScrollButtons();
-        });
-
-        // Resize handler untuk menghitung ulang
-        window.addEventListener("resize", () => {
-            toggleScrollButtons();
-        });
+        window.addEventListener("load", toggleScrollButtons);
+        window.addEventListener("resize", toggleScrollButtons);
 
         // Simulasi load data statistik
         function loadStatistics() {
@@ -730,7 +808,6 @@
                 totalPaket: 3,
                 kelulusan: 94,
             };
-
             animateNumber("totalPeserta", 0, stats.totalPeserta, 1500);
             animateNumber("totalLulus", 0, stats.totalLulus, 1500);
             animateNumber("totalPaket", 0, stats.totalPaket, 1500);
@@ -740,7 +817,6 @@
         function animateNumber(elementId, start, end, duration) {
             const element = document.getElementById(elementId);
             if (!element) return;
-
             const increment = (end - start) / (duration / 16);
             let current = start;
             const timer = setInterval(() => {
@@ -749,8 +825,7 @@
                     element.innerText = end + (elementId === "kelulusan" ? "%" : "");
                     clearInterval(timer);
                 } else {
-                    const val = Math.floor(current);
-                    element.innerText = val + (elementId === "kelulusan" ? "%" : "");
+                    element.innerText = Math.floor(current) + (elementId === "kelulusan" ? "%" : "");
                 }
             }, 16);
         }
