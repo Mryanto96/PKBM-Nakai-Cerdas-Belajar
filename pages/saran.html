@@ -18,8 +18,11 @@
 
     <!-- Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -33,34 +36,34 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
+            background: #ffffff;
             width: 100%;
+            min-height: 100vh;
         }
 
-        /* Container sederhana */
         .container-simple {
-            max-width: 760px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 16px;
+            padding: 0 20px;
         }
 
-        /* Form Style - tetap seperti asli */
         .form-container {
             background: #ffffff;
-            border-radius: 16px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 24px;
             margin-bottom: 24px;
             border: 1px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .form-control-custom,
         .form-select-custom {
             width: 100%;
-            padding: 10px 14px;
+            padding: 12px 16px;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             font-size: 14px;
-            transition: all 0.2s;
+            background: white;
         }
 
         .form-control-custom:focus,
@@ -73,7 +76,7 @@
 
         .form-textarea-custom {
             width: 100%;
-            padding: 10px 14px;
+            padding: 12px 16px;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             font-size: 14px;
@@ -93,12 +96,11 @@
             color: #ef4444;
         }
 
-        /* Rating Stars */
         .rating {
             display: flex;
             flex-direction: row-reverse;
             justify-content: flex-end;
-            gap: 4px;
+            gap: 6px;
         }
 
         .rating input {
@@ -107,7 +109,7 @@
 
         .rating label {
             cursor: pointer;
-            font-size: 22px;
+            font-size: 24px;
             color: #cbd5e1;
             transition: all 0.2s;
         }
@@ -118,114 +120,126 @@
             color: #F59E0B;
         }
 
-        /* ========== STYLE KOMENTAR SEPERTI BLOG/FACEBOOK ========== */
-        .comment-thread {
-            border-top: 1px solid #e5e7eb;
-        }
-
         .comment-item {
-            padding: 16px 0;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f2f5;
         }
 
         .comment-avatar {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             flex-shrink: 0;
             object-fit: cover;
         }
 
         .comment-avatar-icon {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background: #e4e6eb;
+            background: #f1f5f9;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .comment-avatar-icon i {
-            font-size: 22px;
-            color: #65676b;
+            font-size: 24px;
+            color: #64748b;
         }
 
-        /* Nama dan mention warna biru */
         .comment-name {
-            font-weight: 600;
+            font-weight: 700;
             font-size: 14px;
             color: #1D4ED8;
-            cursor: pointer;
-        }
-
-        .comment-name:hover {
-            text-decoration: underline;
         }
 
         .mention {
             color: #1D4ED8;
-            font-weight: 500;
-            text-decoration: none;
-        }
-
-        .mention:hover {
-            text-decoration: underline;
+            font-weight: 600;
+            background: #eff6ff;
+            padding: 2px 8px;
+            border-radius: 16px;
+            display: inline-block;
         }
 
         .comment-time {
             font-size: 11px;
-            color: #9ca3af;
+            color: #94a3b8;
             margin-left: 8px;
         }
 
         .comment-pesan {
             font-size: 14px;
-            color: #1f2937;
-            margin-top: 6px;
-            line-height: 1.5;
+            color: #1e293b;
+            margin-top: 8px;
+            line-height: 1.6;
         }
 
         .comment-actions {
-            margin-top: 8px;
+            margin-top: 10px;
             display: flex;
             gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .comment-action-btn {
             font-size: 12px;
-            color: #6b7280;
+            color: #64748b;
             cursor: pointer;
             font-weight: 500;
+            padding: 4px 8px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
         }
 
         .comment-action-btn:hover {
+            background: #f0f2f5;
+        }
+
+        /* Like button - warna biru saat aktif */
+        .like-btn {
+            color: #64748b;
+        }
+
+        .like-btn.liked {
             color: #1D4ED8;
         }
 
-        /* Admin badge kecil */
+        /* Dislike button - warna merah saat aktif */
+        .dislike-btn {
+            color: #64748b;
+        }
+
+        .dislike-btn.disliked {
+            color: #ef4444;
+        }
+
         .admin-badge {
             background: #1D4ED8;
             color: white;
             font-size: 10px;
-            padding: 2px 8px;
+            padding: 2px 10px;
             border-radius: 999px;
             margin-left: 8px;
             display: inline-block;
+            font-weight: 600;
         }
 
-        /* Verified badge */
         .verified-badge {
             background: #F59E0B;
             color: white;
             font-size: 10px;
-            padding: 2px 6px;
+            padding: 2px 8px;
             border-radius: 999px;
             margin-left: 6px;
             display: inline-block;
         }
 
-        /* Rating kecil */
         .rating-small {
             display: inline-flex;
             gap: 2px;
@@ -237,41 +251,39 @@
             color: #F59E0B;
         }
 
-        /* === GARIS VERTIKAL UNTUK BALASAN === */
         .replies-container {
             position: relative;
-            margin-top: 12px;
+            margin-top: 16px;
         }
 
         .replies-container::before {
             content: '';
             position: absolute;
-            left: 20px;
+            left: 22px;
             top: 0;
             bottom: 0;
             width: 2px;
-            background: #e4e6eb;
+            background: #e2e8f0;
         }
 
         .reply-item {
             position: relative;
-            padding-left: 48px;
-            margin-top: 12px;
+            padding-left: 52px;
+            margin-top: 16px;
         }
 
         .reply-item::before {
             content: '';
             position: absolute;
-            left: 20px;
-            top: 24px;
-            width: 28px;
+            left: 22px;
+            top: 28px;
+            width: 30px;
             height: 2px;
-            background: #e4e6eb;
+            background: #e2e8f0;
         }
 
-        /* Reply form inline */
         .reply-form-inline {
-            margin-left: 48px;
+            margin-left: 52px;
             margin-top: 12px;
             display: none;
         }
@@ -284,10 +296,10 @@
             width: 100%;
             border: 1px solid #e2e8f0;
             border-radius: 20px;
-            padding: 8px 16px;
+            padding: 10px 16px;
             font-size: 13px;
             resize: none;
-            background: #f9fafb;
+            background: #f8fafc;
         }
 
         .reply-textarea:focus {
@@ -296,13 +308,12 @@
             background: white;
         }
 
-        /* Scroll button */
         .scroll-btn {
             position: fixed;
             right: 20px;
-            width: 40px;
-            height: 40px;
-            background-color: #1D4ED8;
+            width: 42px;
+            height: 42px;
+            background: #1D4ED8;
             color: white;
             border-radius: 50%;
             display: none;
@@ -310,17 +321,11 @@
             justify-content: center;
             cursor: pointer;
             z-index: 999;
-            transition: all 0.3s;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .scroll-btn:hover {
-            background-color: #F59E0B;
-            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
         .scroll-up {
-            bottom: 80px;
+            bottom: 90px;
         }
 
         .scroll-down {
@@ -328,8 +333,8 @@
         }
 
         .loader {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             border: 3px solid #e2e8f0;
             border-bottom-color: #1D4ED8;
             border-radius: 50%;
@@ -347,22 +352,35 @@
             }
         }
 
+        .spin {
+            animation: spin 0.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         .info-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-top: 20px;
+            gap: 16px;
+            margin-top: 24px;
         }
 
         .info-card {
-            background: #f9fafb;
-            border-radius: 12px;
-            padding: 12px;
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
             text-align: center;
             border: 1px solid #e5e7eb;
         }
 
-        /* Navbar styling */
         .navbar {
             background: white;
             border-bottom: 1px solid #e5e7eb;
@@ -370,12 +388,16 @@
             top: 0;
             z-index: 50;
         }
+
+        [data-aos] {
+            transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- ==================== NAVBAR LENGKAP ==================== -->
+    <!-- ==================== NAVBAR ==================== -->
     <nav class="navbar">
         <div class="w-full px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-2 md:py-3">
@@ -390,7 +412,6 @@
                             L A J A R</span>
                     </div>
                 </a>
-
                 <div class="hidden md:flex space-x-4 lg:space-x-6">
                     <a href="../index.html"
                         class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Beranda</a>
@@ -410,13 +431,11 @@
                     <a href="galeri.html" class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Galeri</a>
                     <a href="kontak.html" class="text-gray-600 hover:text-blue-700 py-2 text-sm lg:text-base">Kontak</a>
                 </div>
-
                 <button id="mobileMenuButton" class="md:hidden text-gray-600 focus:outline-none">
                     <i class="bi bi-list text-2xl sm:text-3xl"></i>
                 </button>
             </div>
         </div>
-
         <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-3 px-4 w-full">
             <div class="flex flex-col space-y-2">
                 <a href="../index.html" class="text-gray-600 hover:text-blue-700 py-2 pl-3 text-sm">Beranda</a>
@@ -434,12 +453,10 @@
         </div>
     </nav>
 
-    <!-- ==================== HERO ==================== -->
-    <img src="../images/hero/Saran.png" alt="PKBM Nakai" class="w-full h-auto">
+    <img src="../images/hero/Saran.png" alt="PKBM Nakai" class="w-full h-auto" data-aos="fade-in">
 
-    <!-- ==================== FORM SARAN ==================== -->
     <div class="container-simple py-6">
-        <div class="form-container">
+        <div class="form-container" data-aos="fade-up" data-aos-duration="800">
             <form id="saranForm">
                 <div class="grid grid-cols-2 gap-3 mb-3">
                     <div>
@@ -483,31 +500,32 @@
                         <input type="checkbox" id="anonim"> Kirim sebagai anonim
                     </label>
                     <button type="submit"
-                        class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-medium">
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-sm font-medium transition">
                         <i class="bi bi-send"></i> Kirim
                     </button>
                 </div>
             </form>
         </div>
 
-        <!-- Info Cards -->
         <div class="info-cards">
-            <div class="info-card"><i class="bi bi-chat-dots text-green-500 text-xl"></i>
+            <div class="info-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="bi bi-chat-dots text-green-500 text-2xl"></i>
                 <p class="text-xs text-gray-600 mt-1">Respon Cepat<br>Maksimal 3x24 jam</p>
             </div>
-            <div class="info-card"><i class="bi bi-people-fill text-blue-500 text-xl"></i>
+            <div class="info-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="bi bi-people-fill text-blue-500 text-2xl"></i>
                 <p class="text-xs text-gray-600 mt-1">Dibaca Langsung<br>Oleh Pengurus PKBM</p>
             </div>
-            <div class="info-card"><i class="bi bi-graph-up text-purple-500 text-xl"></i>
+            <div class="info-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-graph-up text-purple-500 text-2xl"></i>
                 <p class="text-xs text-gray-600 mt-1">Untuk Kemajuan<br>Pendidikan Asmat</p>
             </div>
         </div>
     </div>
 
-    <!-- ==================== DAFTAR KOMENTAR ==================== -->
     <div class="container-simple">
-        <div class="border-t border-gray-200 pt-4">
-            <h2 class="text-lg font-bold text-gray-800">💬 Apa Kata Mereka?</h2>
+        <div class="border-t border-gray-200 pt-4" data-aos="fade-up">
+            <h2 class="text-xl font-bold text-gray-800">💬 Diskusi</h2>
             <p class="text-xs text-gray-400 mb-4">Saran, kritik, dan balasan dari komunitas</p>
         </div>
         <div id="commentsContainer">
@@ -518,63 +536,72 @@
         </div>
     </div>
 
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="bg-gray-900 text-white mt-8 py-6">
-        <div class="container-simple">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+    <footer class="bg-gray-900 text-white pt-8 md:pt-10 pb-4 md:pb-6 w-full">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-4 md:mb-6">
                 <div>
-                    <h3 class="font-bold text-sm mb-1">PKBM NAKAI<br>CERDAS BELAJAR</h3>
-                    <p class="text-gray-400 text-[10px]">Mencerdaskan kehidupan bangsa dari Distrik Pulau Tiga, Asmat,
-                        Papua Selatan.</p>
+                    <h3 class="font-bold text-sm md:text-base mb-1 md:mb-2">PKBM NAKAI<br>CERDAS BELAJAR</h3>
+                    <p class="text-gray-400 text-[10px] md:text-xs">Mencerdaskan kehidupan bangsa dari Distrik Pulau
+                        Tiga, Asmat, Papua Selatan.</p>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-xs mb-1">Halaman</h4>
-                    <ul class="space-y-1 text-[9px] text-gray-400">
-                        <li><a href="../index.html" class="hover:text-white">Beranda</a></li>
-                        <li><a href="visi-misi.html" class="hover:text-white">Visi Misi</a></li>
-                        <li><a href="struktur.html" class="hover:text-white">Struktur</a></li>
-                        <li><a href="program.html" class="hover:text-white">Program</a></li>
-                        <li><a href="kontak.html" class="hover:text-white">Kontak</a></li>
+                    <h4 class="font-semibold text-xs md:text-sm mb-1 md:mb-2">Halaman</h4>
+                    <ul class="space-y-1 text-[9px] md:text-xs text-gray-400">
+                        <li><a href="../index.html" class="hover:text-white transition">Beranda</a></li>
+                        <li><a href="visi-misi.html" class="hover:text-white transition">Visi Misi</a></li>
+                        <li><a href="struktur.html" class="hover:text-white transition">Struktur</a></li>
+                        <li><a href="program.html" class="hover:text-white transition">Program</a></li>
+                        <li><a href="kontak.html" class="hover:text-white transition">Kontak</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-xs mb-1">Layanan</h4>
-                    <ul class="space-y-1 text-[9px] text-gray-400">
-                        <li><a href="data-peserta.html" class="hover:text-white">Data Peserta</a></li>
-                        <li><a href="pendaftaran.html" class="hover:text-white">Pendaftaran</a></li>
-                        <li><a href="laporan.html" class="hover:text-white">LPJ & Laporan</a></li>
-                        <li><a href="saran.html" class="hover:text-white">Saran & Kritik</a></li>
-                        <li><a href="galeri.html" class="hover:text-white">Galeri</a></li>
+                    <h4 class="font-semibold text-xs md:text-sm mb-1 md:mb-2">Layanan</h4>
+                    <ul class="space-y-1 text-[9px] md:text-xs text-gray-400">
+                        <li><a href="data-peserta.html" class="hover:text-white transition">Data Peserta</a></li>
+                        <li><a href="pendaftaran.html" class="hover:text-white transition">Pendaftaran</a></li>
+                        <li><a href="laporan.html" class="hover:text-white transition">LPJ & Laporan</a></li>
+                        <li><a href="saran.html" class="hover:text-white transition">Saran & Kritik</a></li>
+                        <li><a href="galeri.html" class="hover:text-white transition">Galeri</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-xs mb-1">Kontak</h4>
-                    <ul class="space-y-1 text-[9px] text-gray-400">
+                    <h4 class="font-semibold text-xs md:text-sm mb-1 md:mb-2">Kontak</h4>
+                    <ul class="space-y-1 text-[9px] md:text-xs text-gray-400">
                         <li><i class="bi bi-geo-alt mr-1"></i> Kampung Nakai, Pulau Tiga</li>
                         <li><i class="bi bi-whatsapp mr-1"></i> +62 822-5473-0476</li>
                         <li><i class="bi bi-envelope mr-1"></i> pkbm.nakai@gmail.com</li>
                     </ul>
+                    <p class="text-gray-500 text-[8px] md:text-[10px] mt-1 md:mt-2"><i class="bi bi-shield-check"></i>
+                        Transparansi keuangan & data peserta via Data Peserta & LPJ.</p>
                 </div>
             </div>
-            <div class="border-t border-gray-800 pt-3 text-center text-[8px] text-gray-500">
+            <div class="border-t border-gray-800 pt-3 md:pt-4 text-center text-[8px] md:text-xs text-gray-500">
                 <p>&copy; <span id="currentYear"></span> PKBM Nakai Cerdas Belajar | Pendidikan Kesetaraan untuk semua
                     warga Asmat</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll buttons -->
     <div class="scroll-btn scroll-up" id="scrollUpBtn"><i class="bi bi-chevron-up"></i></div>
     <div class="scroll-btn scroll-down" id="scrollDownBtn"><i class="bi bi-chevron-down"></i></div>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // ==================== KONFIGURASI ====================
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwlb3bd82eEOHcsPxj8-noxO1F5fl8nRJjfjRLJWt5xqZYZwL0UVr1Mc4zivwBw285P/exec';
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnfQHLhsNWd7Ev2ZTEi8xUmjDnW_Et4j-gTRHN9QqHh5cdlWL-ynb7u1M_1mWB-Bwi/exec';
+
+        // User ID untuk tracking like/dislike (disimpan di localStorage)
+        let currentUserId = localStorage.getItem('pkb_nakai_user_id');
+        if (!currentUserId) {
+            currentUserId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('pkb_nakai_user_id', currentUserId);
+        }
+
+        AOS.init({ once: false, duration: 600, offset: 50, easing: 'ease-in-out' });
 
         // ==================== UTILITY ====================
         document.getElementById('currentYear').innerHTML = new Date().getFullYear();
 
-        // Mobile menu toggle
         const menuBtn = document.getElementById('mobileMenuButton');
         const mobileMenu = document.getElementById('mobileMenu');
         if (menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
@@ -586,10 +613,14 @@
             return div.innerHTML;
         }
 
-        // Parse mention di pesan
+        function escapeRegex(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
         function parseMentions(text) {
             if (!text) return '';
-            return text.replace(/@(\w+(?:\s+\w+)?)/g, '<span class="mention">@$1</span>');
+            let cleaned = text.replace(/^@(\w+(?:\s+\w+)?)\s+@\1\s+/i, '@$1 ');
+            return cleaned.replace(/@(\w+(?:\s+\w+)?)/g, '<span class="mention">@$1</span>');
         }
 
         function formatDate(timestamp) {
@@ -604,14 +635,12 @@
             return date.toLocaleDateString('id-ID');
         }
 
-        // Deteksi admin dari nama (cukup tulis @admin di nama)
         function isAdminUser(nama, email) {
             if (email && email.toLowerCase() === 'pkbm.nakai@gmail.com') return true;
             if (nama && nama.toLowerCase().includes('@admin')) return true;
             return false;
         }
 
-        // Hitung frekuensi komentar
         let userCommentCount = {};
         function countUserComments(threads) {
             const counts = {};
@@ -635,7 +664,7 @@
 
         function getAvatarHtml(nama, email) {
             if (isAdminUser(nama, email)) {
-                return `<img src="../images/logo/Logo1.png" class="comment-avatar border-2 border-blue-500" onerror="this.src='https://placehold.co/40x40/1D4ED8/white?text=PKBM'">`;
+                return `<img src="../images/logo/Logo1.png" class="comment-avatar border-2 border-blue-500" onerror="this.src='https://placehold.co/44x44/1D4ED8/white?text=PKBM'">`;
             } else {
                 return `<div class="comment-avatar-icon"><i class="bi bi-person-circle"></i></div>`;
             }
@@ -650,7 +679,7 @@
             return `<div class="rating-small">${stars}</div>`;
         }
 
-        // Render komentar dengan mention
+        // ==================== RENDER KOMENTAR DENGAN LIKE & DISLIKE ====================
         function renderComment(comment, depth = 0) {
             const avatarHtml = getAvatarHtml(comment.nama, comment.email);
             const isAdmin = isAdminUser(comment.nama, comment.email);
@@ -659,18 +688,34 @@
             const verifiedBadge = isVerified ? '<span class="verified-badge"><i class="bi bi-patch-check-fill"></i> Aktif</span>' : '';
             const namaDisplay = comment.isAnonim ? 'Anonim' : escapeHtml(comment.nama);
 
-            // Tampilkan mention @nama yang dibalas
             let mentionHtml = '';
-            if (comment.reply_to && !comment.isAnonim) {
+            if (comment.reply_to && !comment.isAnonim && comment.reply_to !== comment.nama) {
                 mentionHtml = `<span class="mention">@${escapeHtml(comment.reply_to)}</span> `;
             }
 
             const ratingHtml = renderRatingStars(comment.rating);
             const kategoriHtml = comment.kategori ? `<span class="text-xs text-gray-400 ml-1">· ${escapeHtml(comment.kategori)}</span>` : '';
-            const parsedPesan = parseMentions(escapeHtml(comment.pesan));
+
+            let cleanPesan = comment.pesan || '';
+            if (comment.reply_to && !comment.isAnonim) {
+                const mentionPattern = new RegExp(`^@${escapeRegex(comment.reply_to)}\\s+`, 'i');
+                cleanPesan = cleanPesan.replace(mentionPattern, '');
+            }
+            const parsedPesan = parseMentions(escapeHtml(cleanPesan));
+
+            // Cek status like dan dislike
+            const likedByArray = comment.liked_by ? comment.liked_by.split(',') : [];
+            const dislikedByArray = comment.disliked_by ? comment.disliked_by.split(',') : [];
+            const userLiked = likedByArray.includes(currentUserId);
+            const userDisliked = dislikedByArray.includes(currentUserId);
+
+            const likeClass = userLiked ? 'liked' : '';
+            const dislikeClass = userDisliked ? 'disliked' : '';
+            const likesCount = comment.likes || 0;
+            const dislikesCount = comment.dislikes || 0;
 
             let html = `
-                <div class="comment-item" data-comment-id="${comment.id}">
+                <div class="comment-item" data-comment-id="${comment.id}" data-aos="fade-up" data-aos-delay="${Math.min(depth * 50, 300)}">
                     <div class="flex gap-3">
                         ${avatarHtml}
                         <div class="flex-1">
@@ -686,6 +731,12 @@
                                 ${mentionHtml}${parsedPesan}
                             </div>
                             <div class="comment-actions">
+                                <span class="comment-action-btn like-btn ${likeClass}" data-id="${comment.id}" data-action="like" data-liked="${userLiked}">
+                                    <i class="bi bi-hand-thumbs-up-fill"></i> <span class="like-count">${likesCount}</span>
+                                </span>
+                                <span class="comment-action-btn dislike-btn ${dislikeClass}" data-id="${comment.id}" data-action="dislike" data-disliked="${userDisliked}">
+                                    <i class="bi bi-hand-thumbs-down-fill"></i> <span class="dislike-count">${dislikesCount}</span>
+                                </span>
                                 <span class="comment-action-btn reply-trigger" data-id="${comment.id}" data-nama="${namaDisplay}">
                                     <i class="bi bi-reply-fill"></i> Balas
                                 </span>
@@ -695,25 +746,25 @@
                 </div>
             `;
 
-            // Form balasan (hanya minta nama, tanpa email)
+            // Form balasan
             html += `
                 <div id="reply-form-${comment.id}" class="reply-form-inline">
                     <div class="flex gap-2">
-                        <div class="comment-avatar-icon" style="width:32px;height:32px;">
-                            <i class="bi bi-person-circle" style="font-size:18px;"></i>
+                        <div class="comment-avatar-icon" style="width:36px;height:36px;">
+                            <i class="bi bi-person-circle" style="font-size:20px;"></i>
                         </div>
                         <div class="flex-1">
                             <textarea id="reply-text-${comment.id}" rows="2" placeholder="Balas ${namaDisplay}..." class="reply-textarea"></textarea>
                             <div class="flex justify-end gap-2 mt-2">
-                                <button class="cancel-reply-btn text-gray-500 text-xs px-3 py-1 rounded-full hover:bg-gray-100">Batal</button>
-                                <button class="submit-reply-btn bg-blue-600 text-white text-xs px-4 py-1 rounded-full hover:bg-blue-700" data-id="${comment.id}" data-nama="${namaDisplay}">Kirim</button>
+                                <button class="cancel-reply-btn text-gray-500 text-xs px-3 py-1 rounded-full hover:bg-gray-100 transition">Batal</button>
+                                <button class="submit-reply-btn bg-blue-600 text-white text-xs px-4 py-1 rounded-full hover:bg-blue-700 transition" data-id="${comment.id}" data-nama="${namaDisplay}">Kirim</button>
                             </div>
                         </div>
                     </div>
                 </div>
             `;
 
-            // Render balasan
+            // Render balasan (replies)
             if (comment.replies && comment.replies.length > 0) {
                 html += `<div class="replies-container">`;
                 for (const reply of comment.replies) {
@@ -727,7 +778,7 @@
 
         function renderAllComments(threads) {
             if (!threads || threads.length === 0) {
-                return '<div class="text-center py-10 text-gray-400"><i class="bi bi-chat-dots text-3xl"></i><p class="text-sm mt-2">Belum ada saran atau kritik. Jadilah yang pertama!</p></div>';
+                return '<div class="text-center py-10 text-gray-400" data-aos="fade-up"><i class="bi bi-chat-dots text-4xl"></i><p class="text-sm mt-2">Belum ada saran atau kritik. Jadilah yang pertama!</p></div>';
             }
             let html = '';
             for (const thread of threads) {
@@ -747,7 +798,7 @@
                 }
                 return [];
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error fetching comments:', error);
                 return [];
             }
         }
@@ -762,17 +813,22 @@
                 });
                 return true;
             } catch (error) {
+                console.error('Error submitting comment:', error);
                 return false;
             }
         }
 
         async function submitReply(parentId, nama, pesan, replyToName) {
+            let cleanPesan = pesan;
+            const mentionPattern = new RegExp(`^@${escapeRegex(replyToName)}\\s+`, 'i');
+            cleanPesan = cleanPesan.replace(mentionPattern, '');
+
             const replyData = {
                 parent_id: parseInt(parentId),
                 timestamp: new Date().toISOString(),
                 nama: nama,
                 email: '',
-                pesan: `@${replyToName} ${pesan}`,
+                pesan: `@${replyToName} ${cleanPesan}`,
                 isAnonim: false,
                 reply_to: replyToName
             };
@@ -785,10 +841,89 @@
                 });
                 return true;
             } catch (error) {
+                console.error('Error submitting reply:', error);
                 return false;
             }
         }
 
+        // ==================== LIKE & DISLIKE HANDLER ====================
+        async function sendReactionRequest(commentId, action, currentState) {
+            try {
+                await fetch(`${APPS_SCRIPT_URL}?action=${action}`, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        commentId: parseInt(commentId),
+                        userId: currentUserId,
+                        action: currentState ? 'unlike' : 'like'
+                    })
+                });
+                return true;
+            } catch (error) {
+                console.error(`Error sending ${action} request:`, error);
+                return false;
+            }
+        }
+
+        async function sendDislikeRequest(commentId, action, currentState) {
+            try {
+                await fetch(`${APPS_SCRIPT_URL}?action=dislike`, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        commentId: parseInt(commentId),
+                        userId: currentUserId,
+                        action: currentState ? 'undislike' : 'dislike'
+                    })
+                });
+                return true;
+            } catch (error) {
+                console.error('Error sending dislike request:', error);
+                return false;
+            }
+        }
+
+        async function updateReaction(btn, commentId, currentState, type) {
+            // Animasi klik
+            const icon = btn.querySelector('i');
+            icon.style.transform = 'scale(1.2)';
+            setTimeout(() => { icon.style.transform = ''; }, 200);
+
+            // Tampilkan loading
+            const countSpan = btn.querySelector(type === 'like' ? '.like-count' : '.dislike-count');
+            const originalText = countSpan.textContent;
+
+            countSpan.innerHTML = '<i class="bi bi-arrow-repeat spin"></i>';
+
+            // Kirim request
+            let success;
+            if (type === 'like') {
+                success = await sendReactionRequest(commentId, 'like', currentState);
+            } else {
+                success = await sendDislikeRequest(commentId, 'dislike', currentState);
+            }
+
+            if (success) {
+                // Reload semua komentar untuk mendapatkan data akurat
+                await loadComments();
+            } else {
+                // Gagal, revert
+                countSpan.textContent = originalText;
+                Swal.fire({
+                    icon: 'error',
+                    title: `Gagal ${type === 'like' ? 'Like' : 'Dislike'}`,
+                    text: 'Coba lagi nanti',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+        }
+
+        // ==================== LOAD COMMENTS ====================
         async function loadComments() {
             const container = document.getElementById('commentsContainer');
             const loading = document.getElementById('loadingComments');
@@ -798,26 +933,61 @@
             container.innerHTML = renderAllComments(threads);
 
             if (loading) loading.classList.add('hidden');
-            attachReplyEventListeners();
+
+            AOS.refresh();
+            attachEventListeners();
         }
 
         // ==================== EVENT LISTENERS ====================
-        function attachReplyEventListeners() {
+        function attachEventListeners() {
+            // Like button
+            document.querySelectorAll('.like-btn').forEach(btn => {
+                btn.removeEventListener('click', likeClickHandler);
+                btn.addEventListener('click', likeClickHandler);
+            });
+
+            // Dislike button
+            document.querySelectorAll('.dislike-btn').forEach(btn => {
+                btn.removeEventListener('click', dislikeClickHandler);
+                btn.addEventListener('click', dislikeClickHandler);
+            });
+
+            // Reply trigger
             document.querySelectorAll('.reply-trigger').forEach(btn => {
-                btn.removeEventListener('click', handleReplyTrigger);
-                btn.addEventListener('click', handleReplyTrigger);
+                btn.removeEventListener('click', replyTriggerHandler);
+                btn.addEventListener('click', replyTriggerHandler);
             });
+
+            // Submit reply
             document.querySelectorAll('.submit-reply-btn').forEach(btn => {
-                btn.removeEventListener('click', handleSubmitReply);
-                btn.addEventListener('click', handleSubmitReply);
+                btn.removeEventListener('click', submitReplyHandler);
+                btn.addEventListener('click', submitReplyHandler);
             });
+
+            // Cancel reply
             document.querySelectorAll('.cancel-reply-btn').forEach(btn => {
-                btn.removeEventListener('click', handleCancelReply);
-                btn.addEventListener('click', handleCancelReply);
+                btn.removeEventListener('click', cancelReplyHandler);
+                btn.addEventListener('click', cancelReplyHandler);
             });
         }
 
-        function handleReplyTrigger(e) {
+        function likeClickHandler(e) {
+            e.stopPropagation();
+            const btn = e.currentTarget;
+            const commentId = btn.dataset.id;
+            const currentLiked = btn.dataset.liked === 'true';
+            updateReaction(btn, commentId, currentLiked, 'like');
+        }
+
+        function dislikeClickHandler(e) {
+            e.stopPropagation();
+            const btn = e.currentTarget;
+            const commentId = btn.dataset.id;
+            const currentDisliked = btn.dataset.disliked === 'true';
+            updateReaction(btn, commentId, currentDisliked, 'dislike');
+        }
+
+        function replyTriggerHandler(e) {
             const btn = e.currentTarget;
             const commentId = btn.dataset.id;
             const form = document.getElementById(`reply-form-${commentId}`);
@@ -826,11 +996,13 @@
                     if (f.id !== `reply-form-${commentId}`) f.classList.remove('active');
                 });
                 form.classList.toggle('active');
-                form.querySelector('textarea').focus();
+                if (form.classList.contains('active')) {
+                    form.querySelector('textarea').focus();
+                }
             }
         }
 
-        function handleCancelReply(e) {
+        function cancelReplyHandler(e) {
             const form = e.currentTarget.closest('.reply-form-inline');
             if (form) {
                 form.classList.remove('active');
@@ -838,7 +1010,7 @@
             }
         }
 
-        async function handleSubmitReply(e) {
+        async function submitReplyHandler(e) {
             const btn = e.currentTarget;
             const commentId = btn.dataset.id;
             const replyToName = btn.dataset.nama;
@@ -847,14 +1019,15 @@
             let pesan = textarea.value.trim();
 
             if (!pesan) {
-                Swal.fire({ icon: 'error', title: 'Kosong!', text: 'Tulis balasan dulu!' });
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Kosong!',
+                    text: 'Tulis balasan dulu!',
+                    confirmButtonColor: '#1D4ED8'
+                });
                 return;
             }
 
-            // Hapus @mention jika sudah ditulis user
-            pesan = pesan.replace(/^@\w+\s+/, '');
-
-            // Minta nama (tanpa email)
             const { value: nama } = await Swal.fire({
                 title: 'Balas Komentar',
                 text: `Membalas ${replyToName}`,
@@ -862,21 +1035,38 @@
                 inputPlaceholder: 'Nama Anda',
                 showCancelButton: true,
                 confirmButtonText: 'Kirim Balasan',
-                cancelButtonText: 'Batal'
+                cancelButtonText: 'Batal',
+                confirmButtonColor: '#1D4ED8'
             });
             if (!nama) return;
 
-            Swal.fire({ title: 'Mengirim...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            Swal.fire({
+                title: 'Mengirim...',
+                allowOutsideClick: false,
+                didOpen: () => Swal.showLoading()
+            });
 
             const success = await submitReply(commentId, nama, pesan, replyToName);
 
             if (success) {
-                Swal.fire({ icon: 'success', title: 'Terkirim!', toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Terkirim!',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 form.classList.remove('active');
                 textarea.value = '';
                 loadComments();
             } else {
-                Swal.fire({ icon: 'error', title: 'Gagal', text: 'Coba lagi nanti' });
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal',
+                    text: 'Coba lagi nanti',
+                    confirmButtonColor: '#1D4ED8'
+                });
             }
         }
 
@@ -892,11 +1082,21 @@
             const rating = document.querySelector('input[name="rating"]:checked')?.value || 0;
 
             if (!nama || !email || !kategori || !pesan) {
-                Swal.fire({ icon: 'error', title: 'Data Belum Lengkap', text: 'Silakan lengkapi semua data!' });
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Data Belum Lengkap',
+                    text: 'Silakan lengkapi semua data!',
+                    confirmButtonColor: '#1D4ED8'
+                });
                 return;
             }
             if (!email.includes('@')) {
-                Swal.fire({ icon: 'error', title: 'Email Tidak Valid', text: 'Masukkan alamat email yang benar!' });
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Email Tidak Valid',
+                    text: 'Masukkan alamat email yang benar!',
+                    confirmButtonColor: '#1D4ED8'
+                });
                 return;
             }
 
@@ -911,16 +1111,31 @@
                 isAnonim: isAnonim
             };
 
-            Swal.fire({ title: 'Mengirim...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            Swal.fire({
+                title: 'Mengirim...',
+                allowOutsideClick: false,
+                didOpen: () => Swal.showLoading()
+            });
+
             const success = await submitComment(formData);
 
             if (success) {
-                Swal.fire({ icon: 'success', title: 'Terima Kasih!', html: 'Saran dan kritik Anda telah kami terima.<br>Kami akan menindaklanjutinya maksimal 3x24 jam.' });
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Terima Kasih!',
+                    html: 'Saran dan kritik Anda telah kami terima.<br>Kami akan menindaklanjutinya maksimal 3x24 jam.',
+                    confirmButtonColor: '#1D4ED8'
+                });
                 document.getElementById('saranForm').reset();
                 document.querySelectorAll('.rating label').forEach(l => l.style.color = '#cbd5e1');
                 loadComments();
             } else {
-                Swal.fire({ icon: 'error', title: 'Gagal mengirim', text: 'Terjadi kesalahan, silakan coba lagi.' });
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal mengirim',
+                    text: 'Terjadi kesalahan, silakan coba lagi.',
+                    confirmButtonColor: '#1D4ED8'
+                });
             }
         });
 
